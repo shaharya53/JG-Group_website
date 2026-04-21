@@ -220,7 +220,7 @@ export function Header() {
               Contact
             </Link>
             <Link
-              to="/contact"
+              to="/get-quote"
               className="inline-flex items-center gap-1.5 px-4 py-2 bg-gold text-gold-foreground text-[13px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-sm"
             >
               Get Quote <ArrowRight className="w-3.5 h-3.5" />
@@ -383,7 +383,7 @@ export function Header() {
 
           <div className="p-4 border-t border-border">
             <Link
-              to="/contact"
+              to="/get-quote"
               onClick={() => setMobileOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-3 bg-gold text-gold-foreground text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
             >

@@ -13,6 +13,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as GroupRouteImport } from './routes/group'
+import { Route as GetQuoteRouteImport } from './routes/get-quote'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
@@ -42,6 +43,11 @@ const IndustriesRoute = IndustriesRouteImport.update({
 const GroupRoute = GroupRouteImport.update({
   id: '/group',
   path: '/group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetQuoteRoute = GetQuoteRouteImport.update({
+  id: '/get-quote',
+  path: '/get-quote',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/get-quote': typeof GetQuoteRoute
   '/group': typeof GroupRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/products': typeof ProductsRouteWithChildren
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/get-quote': typeof GetQuoteRoute
   '/group': typeof GroupRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/get-quote': typeof GetQuoteRoute
   '/group': typeof GroupRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/products': typeof ProductsRouteWithChildren
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/get-quote'
     | '/group'
     | '/industries'
     | '/products'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/get-quote'
     | '/group'
     | '/industries/$slug'
     | '/products/$slug'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/get-quote'
     | '/group'
     | '/industries'
     | '/products'
@@ -194,6 +206,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  GetQuoteRoute: typeof GetQuoteRoute
   GroupRoute: typeof GroupRoute
   IndustriesRoute: typeof IndustriesRouteWithChildren
   ProductsRoute: typeof ProductsRouteWithChildren
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/group'
       fullPath: '/group'
       preLoaderRoute: typeof GroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-quote': {
+      id: '/get-quote'
+      path: '/get-quote'
+      fullPath: '/get-quote'
+      preLoaderRoute: typeof GetQuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -350,6 +370,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  GetQuoteRoute: GetQuoteRoute,
   GroupRoute: GroupRoute,
   IndustriesRoute: IndustriesRouteWithChildren,
   ProductsRoute: ProductsRouteWithChildren,

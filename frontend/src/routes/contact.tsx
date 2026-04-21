@@ -1,6 +1,7 @@
+import { useState, type FormEvent, type ChangeEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionHeading } from "../components/SectionHeading";
-import { MapPin, Phone, Mail, Clock, Globe } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Globe, CheckCircle, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -27,6 +28,92 @@ const regions = [
   { name: "Southern India", cities: "Chennai (LHO) | Hyderabad (LHO) | Bengaluru | Coimbatore | Kochi" },
   { name: "Eastern India", cities: "Kolkata (LHO) | Bhubaneswar | Ranchi | Guwahati | Patna" },
 ];
+
+const inputCls = "w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring hover:border-gold/40 transition-colors";
+
+interface ContactValues {
+  fullName: string; email: string; phone: string;
+  company: string; enquiryType: string; message: string;
+}
+
+const CONTACT_EMPTY: ContactValues = { fullName: "", email: "", phone: "", company: "", enquiryType: "", message: "" };
+
+function ContactForm() {
+  const [values, setValues] = useState<ContactValues>(CONTACT_EMPTY);
+  const [sending, setSending] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setValues(v => ({ ...v, [name]: value }));
+    setError(null);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!values.fullName || !values.email || !values.message) {
+      setError("Please fill in your name, email and message."); return;
+    }
+    try {
+      setSending(true);
+      const apiBase = (import.meta as any).env?.VITE_API_URL ?? "";
+      const res = await fetch(`${apiBase}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) { setError(data?.error ?? "Could not send message. Please try again."); return; }
+      setDone(true);
+      setValues(CONTACT_EMPTY);
+      setTimeout(() => setDone(false), 6000);
+    } catch {
+      setError("Network error. Please check your connection.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (done) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 py-10 text-center">
+        <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
+          <CheckCircle className="w-8 h-8 text-green-600" />
+        </div>
+        <p className="font-extrabold text-foreground">Message Sent!</p>
+        <p className="text-sm text-muted-foreground">Our team will get back to you shortly.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input name="fullName" value={values.fullName} onChange={handleChange} type="text" placeholder="Full Name *" className={inputCls} />
+        <input name="email" value={values.email} onChange={handleChange} type="email" placeholder="Email Address *" className={inputCls} />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input name="phone" value={values.phone} onChange={handleChange} type="tel" placeholder="Phone Number" className={inputCls} />
+        <input name="company" value={values.company} onChange={handleChange} type="text" placeholder="Company Name" className={inputCls} />
+      </div>
+      <select name="enquiryType" value={values.enquiryType} onChange={handleChange} className={`${inputCls} appearance-none cursor-pointer`}>
+        <option value="">Select Enquiry Type</option>
+        <option>Product Enquiry</option>
+        <option>Service Request</option>
+        <option>Partnership / JV</option>
+        <option>Vendor Registration</option>
+        <option>Career Enquiry</option>
+        <option>General Enquiry</option>
+      </select>
+      <textarea name="message" value={values.message} onChange={handleChange} rows={4} placeholder="Your Message *" className={`${inputCls} resize-none`} />
+      {error && <p className="text-xs text-red-500 font-semibold">{error}</p>}
+      <button type="submit" disabled={sending} className="w-full py-3 bg-gold text-gold-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm flex items-center justify-center gap-2 disabled:opacity-60">
+        {sending ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : "Send Message"}
+      </button>
+    </form>
+  );
+}
 
 function ContactPage() {
   return (
@@ -99,29 +186,7 @@ function ContactPage() {
           {/* Contact Form */}
           <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
             <h3 className="text-xl font-bold text-card-foreground mb-6">Send Us a Message</h3>
-            <form className="space-y-4" onSubmit={e => e.preventDefault()}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" placeholder="Full Name" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
-                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
-                <input type="text" placeholder="Company Name" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
-              </div>
-              <select className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-                <option>Select Enquiry Type</option>
-                <option>Product Enquiry</option>
-                <option>Service Request</option>
-                <option>Partnership / JV</option>
-                <option>Vendor Registration</option>
-                <option>Career Enquiry</option>
-                <option>General Enquiry</option>
-              </select>
-              <textarea rows={4} placeholder="Your Message" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none" />
-              <button type="submit" className="w-full py-3 bg-gold text-gold-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>

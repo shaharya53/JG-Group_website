@@ -20,6 +20,14 @@ export interface ProductSection {
   steps: ProductStep[];
 }
 
+export interface ProductItem {
+  name: string;
+  spec: string;
+  category: string;
+  brand?: string;
+  tags: string[];
+}
+
 export interface Product {
   slug: string;
   title: string;
@@ -31,6 +39,7 @@ export interface Product {
   categories: string[];
   highlights: string[];
   sections: ProductSection[];
+  productItems?: ProductItem[];
   ctaLabel?: string;
 }
 
@@ -110,6 +119,16 @@ export const productsData: Product[] = [
         ],
       },
     ],
+    productItems: [
+      { name: "LHB Wheel Set Assembly",          spec: "920mm dia, IS 6362, axle bore 130mm, for BG LHB coaches",              category: "Rolling Stock Parts",          brand: "RWF / BEML",     tags: ["RDSO Approved", "IRS compliant"] },
+      { name: "FRP Coach Side Panel",            spec: "2000×1000×4mm, glass-fibre reinforced, IS 2046, fire class F1",        category: "Coach Interiors & Furnishing", brand: "Associated",     tags: ["RDSO Approved", "IS 2046"] },
+      { name: "Roof-Mounted AC Unit",            spec: "4.5TR / 6TR, 3-phase 415V, RDSO spec No. ELRS/SPEC/AC-0010",          category: "HVAC & Electrical",            brand: "Subros / BAPL",  tags: ["RDSO Approved", "IRS SPEC"] },
+      { name: "Electronic Point Machine",        spec: "24V DC, max throw 220mm, CDU compatible, IP55",                        category: "Signaling & S&T",              brand: "Alstom / Kyosan", tags: ["RDSO Approved", "EN 50129"] },
+      { name: "OHE Contact Wire",                spec: "107 mm², cadmium copper, BS 215 Pt. 2, 1600m reel",                   category: "OHE Materials",                brand: "Kanpur/Agra",    tags: ["IRS ETI-OHE-16", "RDSO Approved"] },
+      { name: "KAWACH On-Board Unit",            spec: "TCAS-compliant, 4G LTE + GSM-R, ALP display, SIL-4",                 category: "KAWACH Systems",               brand: "Medha / HBL",    tags: ["RDSO Spec STS", "SIL-4"] },
+      { name: "Tamping Machine Hydraulic Pump",  spec: "280 bar, SAE-B flange, 45cc/rev, compatible with Duomatic 09-32",     category: "Track Machine Spares",         brand: "Bosch Rexroth",  tags: ["OEM Equivalent", "RDSO Listed"] },
+      { name: "Wheel Lathe (CNC Underfloor)",    spec: "Wheel dia 840–1250mm, turning ±0.01mm, auto-profile, BG/MG",         category: "Depot & Workshop Equipment",   brand: "RAFAMET / HMT",  tags: ["CE Certified", "RDSO Spec"] },
+    ],
     ctaLabel: "Request Railway Catalogue",
   },
 
@@ -176,6 +195,16 @@ export const productsData: Product[] = [
         ],
       },
     ],
+    productItems: [
+      { name: "Platform Screen Door (Full-Height)", spec: "2100mm H, 1400mm W opening, DC brushless motor, IP54, EN 50155",   category: "Automatic Doors & PSDs",       brand: "Nabtesco / Gilgen", tags: ["EN 45545", "IP54"] },
+      { name: "Metro Saloon AC Package",             spec: "7.5kW cooling, 415V 3-ph, refrigerant R-32, EN 50155 rail grade",  category: "HVAC & Climate Control",       brand: "Faiveley / Sigma",  tags: ["EN 50155", "EN 45545-2"] },
+      { name: "CBTC Transponder Balise",             spec: "Eurobalise SRS 3.6.0, 1000 kHz uplink, IP67, -40°C to +70°C",    category: "ATC & Train Control",          brand: "Alstom / Siemens",  tags: ["CENELEC SIL-4", "EN 50159"] },
+      { name: "Passenger Information Display",       spec: "32\" TFT, 2000 nit, HDMI+Ethernet, GTFS-RT compatible, IP54",    category: "Passenger Information Systems", brand: "Luminator / Info-Sys", tags: ["IP54", "EN 50155"] },
+      { name: "AFC Flap Gate",                       spec: "NCMC + QR + NFC, throughput 40 pax/min, SLA 99.9%, CE marked",   category: "Automatic Fare Collection",    brand: "Scheidt & Bachmann", tags: ["NCMC Certified", "CE Marked"] },
+      { name: "Traction Lift (Station)",             spec: "MRL, 1000kg, 1.0m/s, 4-stop, EN 81-20, IP43 machine room",       category: "Escalators, Lifts & Travelators", brand: "KONE / Otis",    tags: ["EN 81-20", "BEE Rated"] },
+      { name: "IP Dome Camera (Station)",            spec: "4MP, IR 30m, H.265, IP66, IK10, ONVIF, -20°C to +60°C",         category: "CCTV & Surveillance",          brand: "Axis / Hikvision",  tags: ["IP66", "ONVIF"] },
+      { name: "Anti-Slip Saloon Flooring",           spec: "3mm PVC, R11 anti-slip, EN 45545-2 HL3, welded seams, BG gauge", category: "Interior Fit-out & Flooring",  brand: "Tarkett / Altro",   tags: ["EN 45545-2", "R11 Anti-Slip"] },
+    ],
     ctaLabel: "Request Metro Catalogue",
   },
 
@@ -239,6 +268,16 @@ export const productsData: Product[] = [
           { title: "Tactical Communication & Surveillance", detail: "Tactical radios, antennas, thermal imagers, night-vision devices, optical sights and ruggedized communication accessories for field operations.", image: railwayImg },
         ],
       },
+    ],
+    productItems: [
+      { name: "Titanium 6Al-4V Precision Part",     spec: "±0.005mm tolerance, 5-axis CNC, AMS 4928, AS9100 lot traceability", category: "Precision Machined Components",    brand: "In-house",       tags: ["AS9100D", "AMS 4928"] },
+      { name: "Ballistic Steel Plate (AR500)",       spec: "6mm / 10mm, NIJ Level III, Brinell 500–550 HB, 1000×2000mm",       category: "Strategic & Specialty Materials", brand: "SAIL / ISRO",    tags: ["NIJ III", "BIS Certified"] },
+      { name: "MIL-SPEC High-Tensile Bolt",          spec: "M8–M36, Grade 12.9, MIL-S-8879, cadmium plated, 100% magnetic test", category: "Military Fasteners & Hardware",  brand: "SPS Technologies", tags: ["MIL-STD", "NAS Spec"] },
+      { name: "PCB Assembly (MIL-STD-454)",          spec: "Class 3 IPC-A-610, conformal coated, Ruggedized, -40°C to +85°C",  category: "Electronic Sub-Assemblies",       brand: "In-house",       tags: ["IPC Class 3", "MIL-STD-454"] },
+      { name: "Soft Body Armour Vest",               spec: "NIJ 0101.06 Level IIIA, UHMWPE core, size S–2XL, 3.2 kg",         category: "Body Armour & Protection",        brand: "MKU",            tags: ["NIJ Level IIIA", "DGQA Approved"] },
+      { name: "Ruggedized Tactical Radio",           spec: "30–512 MHz, 25W, AES-256, IP67, MIL-STD-810H, SINCGARS compat.",  category: "Communication & Surveillance",    brand: "BEL / Harris",   tags: ["MIL-STD-810H", "IP67"] },
+      { name: "Airframe Sheet Metal Assembly",       spec: "Al 7075-T6 ribs + stringers, AS9100, FAI per AS9102, NDT cleared", category: "Aerospace Structural Components", brand: "HAL Tier-1",     tags: ["AS9100D", "AS9102 FAI"] },
+      { name: "Thermal Imager (Handheld)",           spec: "384×288 resolution, <50mK NETD, 19mm lens, 600m detection, IP67",  category: "Communication & Surveillance",    brand: "FLIR / BEL",     tags: ["IP67", "MIL-STD-810H"] },
     ],
     ctaLabel: "Submit Confidential Requirement",
   },
@@ -306,6 +345,16 @@ export const productsData: Product[] = [
         ],
       },
     ],
+    productItems: [
+      { name: "MCC Panel (Motor Control Centre)",   spec: "415V, 3-ph, 50Hz, up to 6300A, draw-out type, IEC 61439-2",        category: "Panels & Switchgear",           brand: "Schneider / ABB",  tags: ["IEC 61439-2", "BIS Certified"] },
+      { name: "XLPE HT Cable 11kV",                 spec: "3C×240 sq mm, XLPE insulation, IS 7098, armoured, 11kV grade",     category: "Cables & Wires (LT/HT)",        brand: "KEI / Polycab",    tags: ["IS 7098", "BIS Marked"] },
+      { name: "VFD Drive (AC Drive)",               spec: "5.5kW–560kW, 415V 3-ph, IP55, built-in EMC filter, MODBUS RTU",   category: "VFD Drives & Soft Starters",    brand: "ABB / Siemens",    tags: ["CE Marked", "IEC 61800-5"] },
+      { name: "Industrial LED High-Bay 150W",       spec: "150W, 21000 lm, IP65, IK08, 5700K, BEE 5-star, DLC listed",       category: "LED Lighting Systems",          brand: "Philips / Havells", tags: ["BEE 5-Star", "IP65"] },
+      { name: "Online UPS 60kVA",                   spec: "60kVA/54kW, DSP-based, IGBT, 0.9PF, N+1 parallel, IEC 62040-3",  category: "UPS & Power Backup",            brand: "APC / Vertiv",     tags: ["IEC 62040-3", "CE Marked"] },
+      { name: "Smart Energy Meter (CT Operated)",   spec: "3-ph 4W, MID approved, RS-485 MODBUS, IS 16444, tamper-proof",    category: "Smart Energy Management",       brand: "Secure / L&T",     tags: ["MID Approved", "IS 16444"] },
+      { name: "Pressure Transmitter 4–20mA",        spec: "0–100 bar, ±0.075% accuracy, SS 316L, IP67, HART protocol",       category: "Sensors & Instrumentation",     brand: "Endress+Hauser",   tags: ["ATEX Zone-2", "IP67"] },
+      { name: "100kVA Distribution Transformer",    spec: "11kV/433V, CRGO core, ONAN, IS 1180, BEE star rated, outdoor type", category: "Transformers & Stabilizers",   brand: "EMCO / Voltamp",   tags: ["BEE Star", "IS 1180"] },
+    ],
     ctaLabel: "Request Electrical Catalogue",
   },
 
@@ -371,6 +420,16 @@ export const productsData: Product[] = [
           { title: "Solar BoS & Mounting Structures", detail: "Module mounting structures, trackers, junction boxes, DC cables, fuses, surge protectors, lightning arresters and complete balance-of-system kits.", image: defenceImg },
         ],
       },
+    ],
+    productItems: [
+      { name: "Bifacial Solar Module 550W",         spec: "182mm cell, TOPCon, 21.4% eff., IEC 61215, 30-yr linear warranty",  category: "Solar Panels & Modules",        brand: "Waaree / Adani",   tags: ["ALMM Listed", "IEC 61215"] },
+      { name: "PM-KUSUM Solar Pump 7.5HP",          spec: "7.5HP DC surface, MPPT VFD, IS 16221, Ah-rated MNRE empanelled",   category: "Solar Pumps & Controllers",     brand: "CRI / Grundfos",   tags: ["MNRE Empanelled", "PM-KUSUM"] },
+      { name: "Lithium-Ion BESS 100kWh",            spec: "100kWh, LFP cells, ≥4000 cycles, BMS with cloud monitoring, IP54",  category: "Battery Storage Systems",       brand: "Exicom / Amara Raja", tags: ["IEC 62619", "IP54"] },
+      { name: "DC Fast EV Charger 60kW",            spec: "60kW, CCS2 + CHAdeMO, OCPP 2.0, 95% efficiency, IP55",             category: "EV Charging Infrastructure",    brand: "Exicom / Delta",   tags: ["BIS Certified", "OCPP 2.0"] },
+      { name: "Bio-CNG Upgradation Skid",           spec: "500 Nm³/hr capacity, PSA + membrane, 97% CH4 purity, skid-mounted", category: "Bio-CNG Plant Equipment",       brand: "In-house EPC",     tags: ["MNRE Approved", "CPCB Norm"] },
+      { name: "Smart Net Meter (Bidirectional)",     spec: "3-ph, AMR + GPRS, ToD tariff, IS 16444, anti-tamper, seal-proof",  category: "Smart Meters & Grid Solutions", brand: "Secure / HPL",     tags: ["IS 16444", "DISCOMS Approved"] },
+      { name: "String Solar Inverter 25kW",         spec: "25kW, 3-ph, MPPT 98.6%, 1000V DC, IP66, IS 16221 compliant",      category: "Solar Inverters & Controllers", brand: "SMA / Sungrow",    tags: ["IEC 62109", "IS 16221"] },
+      { name: "Aluminium Module Mounting Structure", spec: "Al 6005-T5, ground-mount, 0°–15° tilt, wind load 180 km/h, hot-dip GI fasteners", category: "Solar BoS & Mounting", brand: "Esdee / Structo",  tags: ["IS 2062", "Hot-Dip GI"] },
     ],
     ctaLabel: "Request Green Energy Catalogue",
   },
@@ -438,6 +497,16 @@ export const productsData: Product[] = [
         ],
       },
     ],
+    productItems: [
+      { name: "VMC Machining Centre 4-Axis",        spec: "Table 1000×500mm, spindle 10000 RPM, FANUC 0iMF, BT40, ±0.005mm",  category: "CNC Machines & Lathes",               brand: "BFW / JYOTI",      tags: ["CE Certified", "FANUC"] },
+      { name: "MIG Welding Machine 500A",           spec: "500A, CO₂/MAG, synergic, 40% duty cycle, IP23, IS 10628",         category: "Fabrication & Welding Equipment",      brand: "Lincoln / ESAB",   tags: ["IS 10628", "CE Marked"] },
+      { name: "EOT Crane 20T Double Girder",        spec: "20T SWL, 20m span, IS 3177, Class M5, FEM Group 3m, IP55 motors", category: "Material Handling Cranes & Hoists",    brand: "Hercules / Elecon", tags: ["IS 3177", "BIS Certified"] },
+      { name: "Screw Air Compressor 75kW",          spec: "75kW, 10 bar, 424 CFM, IE3 motor, IP55, integrated dryer option", category: "Compressors & Pneumatic Tools",         brand: "Atlas Copco / Elgi", tags: ["CE Marked", "IE3 Motor"] },
+      { name: "Heavy-Duty Belt Conveyor",           spec: "800mm belt width, 15m length, variable speed VFD, IS 1891",       category: "Conveyor Systems & Belts",             brand: "Fenner / Continental", tags: ["IS 1891", "CE Certified"] },
+      { name: "6-Axis Industrial Robot 20kg",       spec: "20kg payload, ±0.02mm repeatability, IP67, KUKA KRC5 controller", category: "Automation & Robotics",                brand: "KUKA / Fanuc",     tags: ["CE Marked", "ISO 10218"] },
+      { name: "Centrifugal Pump 100HP",             spec: "100HP, 3600 LPM, 80m head, SS 316 impeller, IS 9137, API 610",   category: "Pumps & Valves",                       brand: "KSB / Kirloskar",  tags: ["IS 9137", "API 610"] },
+      { name: "Full-Body Harness (Fall Arrest)",    spec: "EN 361, 140kg rated, polyester webbing, 5-point, IS 3521",        category: "Industrial Safety Equipment",          brand: "Karam / 3M",       tags: ["EN 361", "IS 3521"] },
+    ],
     ctaLabel: "Request Machinery Catalogue",
   },
 
@@ -501,6 +570,16 @@ export const productsData: Product[] = [
           { title: "Filters, Consumables & Distribution", detail: "Oil, air, fuel and cabin filters; fuel additives, cleaners and complete service-kit supplies with same-day dispatch from PAN-India warehouses.", image: greenImg },
         ],
       },
+    ],
+    productItems: [
+      { name: "LHB Crankshaft (Heavy CV)",          spec: "Induction hardened, nodular CI, ARAI approved, BS VI compatible",  category: "Engine Spares & Accessories",  brand: "Mahindra OEM",     tags: ["OEM Genuine", "ARAI Certified"] },
+      { name: "LFP Battery Pack 72V/100Ah",         spec: "72V 100Ah, BMS + CAN, ≥2000 cycles, IP67, UN38.3 transport cert",  category: "EV Components & Batteries",    brand: "Exide / Amara Raja", tags: ["AIS 038", "UN38.3"] },
+      { name: "Synthetic Engine Oil 15W-40 (208L)", spec: "CI-4 Plus / SL, API certified, 208L drum, BS VI engine approved",  category: "Lubricants & Coolants",        brand: "Castrol / Shell",  tags: ["API CI-4 Plus", "BS VI Approved"] },
+      { name: "Truck Tyre 295/80 R22.5",            spec: "295/80 R22.5, tubeless, load index 152, speed 'J', 6-star BEE",   category: "Tyres, Tubes & Brakes",        brand: "MRF / Bridgestone", tags: ["BIS Certified", "BEE 6-Star"] },
+      { name: "Disc Brake Pad Set",                 spec: "Front axle, low-metallic, ECE R90 homologated, for BS VI CVs",    category: "Tyres, Tubes & Brakes",        brand: "Rane / Jurid",     tags: ["ECE R90", "OEM Equivalent"] },
+      { name: "Oil Filter (Spin-On)",               spec: "β₁₀=200, SAE thread 3/4-16 UNF, compatible 1000+ CV models",     category: "Filters & Consumables",        brand: "Fleetguard / Mann", tags: ["OEM Equivalent", "IS 11029"] },
+      { name: "LED Headlamp Assembly (Tata BS VI)", spec: "LED + DRL, 6000K, IP67, plug-and-play, L+R pair",                 category: "Electrical & Lighting",        brand: "Lumax / Valeo",    tags: ["IP67", "AIS 008"] },
+      { name: "Starter Motor 24V 5.5kW",           spec: "24V 5.5kW, Bosch type, IP55, compatible Cummins / Kirloskar",     category: "Electrical & Lighting",        brand: "Bosch / Minda",    tags: ["BIS Certified", "OEM Equiv."] },
     ],
     ctaLabel: "Request Auto Parts Catalogue",
   },
@@ -567,6 +646,16 @@ export const productsData: Product[] = [
           { title: "Cold Chain & Hospital Consumables", detail: "Vaccine carriers, ice-lined refrigerators, IoT-monitored cold-chain logistics; surgical disposables, IV sets, gloves, sutures and OT consumable packages.", image: greenImg },
         ],
       },
+    ],
+    productItems: [
+      { name: "Hybrid Maize Seed (DKC 9144)",       spec: "80-day, 11T/ha yield potential, drought tolerant, 5kg pouch",       category: "Seeds & Planting Material",     brand: "Dekalb / Pioneer",  tags: ["FCO Registered", "CIB Approved"] },
+      { name: "NPK Fertilizer 20-20-0",             spec: "50kg bag, FCO notified, water soluble, S18%, SSAI certified",       category: "Fertilizers & Crop Protection", brand: "Coromandel / IFFCO", tags: ["FCO Notified", "SSAI"] },
+      { name: "Power Tiller 7HP (2-wheel)",         spec: "7HP diesel, reversible blades, 90cm working depth, 800kg",         category: "Agro Machinery & Implements",   brand: "VST / Krishi",      tags: ["BIS Certified", "GeM Listed"] },
+      { name: "Drip Inline Emitter 4LPH",           spec: "16mm, 4 LPH, 0.5–3.5 bar, inline, anti-siphon, UV stabilized",    category: "Drip & Micro-Irrigation",       brand: "Netafim / Jain",    tags: ["IS 13487", "PMKSY Approved"] },
+      { name: "Metformin HCl API (GMP)",            spec: "USP/IP grade, 99.5% purity, WHO-GMP CoA, ICH Q7 compliant",       category: "APIs & Excipients",             brand: "Sun Pharma / Ipca",  tags: ["WHO-GMP", "US-FDA DMF"] },
+      { name: "Patient Monitor 5-Para",             spec: "SpO2, ECG, NIBP, Temp, RR; 12\" TFT; CDSCO Cl. B; HL7 output",   category: "Medical Devices & Diagnostics", brand: "BPL Medical / Contec", tags: ["CDSCO Licensed", "IEC 60601"] },
+      { name: "HPLC System (Isocratic)",            spec: "Binary pump, UV/VIS DAD detector, 12,000 PSI, IS/USP compliant",   category: "Lab & Analytical Equipment",    brand: "Waters / Shimadzu",  tags: ["IQ/OQ Ready", "NABL Supported"] },
+      { name: "Vaccine Ice-Lined Refrigerator",     spec: "+2°C to +8°C, 320L, IoT logger, WHO PQS E003/032 certified",      category: "Cold Chain Packaging",          brand: "Vestfrost / Haier",  tags: ["WHO PQS", "CPCB Compliant"] },
     ],
     ctaLabel: "Request Agro & Pharma Catalogue",
   },

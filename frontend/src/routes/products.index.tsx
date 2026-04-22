@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Package2, ShieldCheck, Truck, BarChart3, Award, Search, ChevronRight } from "lucide-react";
 import { productsData } from "../data/productsData";
@@ -225,22 +224,10 @@ function FeaturedSection({ products }: { products: Product[] }) {
 
 /* ── FULL CATALOG ─────────────────────────────────────────────────────── */
 function CatalogSection({ products }: { products: Product[] }) {
-  const [filter, setFilter] = useState<string>("all");
-
-  const filtered = filter === "all"
-    ? products
-    : products.filter((p) => p.categories.includes(filter));
-
-  /* Top-5 categories appearing most across this slice */
-  const topFilters = Array.from(
-    new Set(products.flatMap((p) => p.categories))
-  ).slice(0, 6);
-
   return (
     <section id="catalog" className="pt-2 pb-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
-        {/* Header + filter bar */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
           <div>
             <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-2">Complete Catalogue</p>
@@ -249,49 +236,15 @@ function CatalogSection({ products }: { products: Product[] }) {
           <span className="hidden md:block text-sm text-muted-foreground">3M+ total SKUs across all categories</span>
         </div>
 
-        {/* Filter chips */}
-        <div className="flex flex-wrap gap-2 mb-8 pb-6 border-b border-border">
-          <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
-            All Verticals
-          </FilterChip>
-          {topFilters.map((cat) => (
-            <FilterChip key={cat} active={filter === cat} onClick={() => setFilter(cat)}>
-              {cat}
-            </FilterChip>
-          ))}
-        </div>
-
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((product, i) => (
+          {products.map((product, i) => (
             <CatalogCard key={product.slug} product={product} index={i} />
           ))}
-          {filtered.length === 0 && (
-            <div className="col-span-3 py-16 text-center text-muted-foreground text-sm">
-              No verticals match this filter.
-            </div>
-          )}
         </div>
       </div>
     </section>
   );
 }
-
-function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-3.5 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 ${
-        active
-          ? "bg-navy text-white border-navy shadow-sm"
-          : "bg-card text-muted-foreground border-border hover:border-gold/30 hover:text-foreground"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
 
 /* ── HOW TO PROCURE ───────────────────────────────────────────────────── */
 function ProcureSection() {

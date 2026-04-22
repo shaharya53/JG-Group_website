@@ -1,31 +1,70 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight, ChevronRight, CheckCircle2,
+  Building2, Zap,
+} from "lucide-react";
 import type { Industry, IndustrySection } from "../data/industriesData";
 import { padIndex } from "../lib/utils";
 import { CountUp } from "./CountUp";
 
-interface IndustryTemplateProps {
-  industry: Industry;
+/* ── Subsidiary name lookup ──────────────────────────────────────────────── */
+
+const SUBSIDIARY_NAMES: Record<string, string> = {
+  "jigisha-railtech":                "Jigisha Railtech",
+  "jigisha-electricals-electronics": "Jigisha Electricals & Electronics",
+  "jigisha-engineering":             "Jigisha Engineering",
+  "jigisha-industrial-services":     "Jigisha Industrial Services",
+  "jigisha-green":                   "Jigisha Green",
+  "jigisha-defense-technologies":    "Jigisha Defense Technologies",
+  "jigisha-industries":              "Jigisha Industries",
+  "jigisha-technologies":            "Jigisha Technologies",
+  "jigisha-pharma-healthcare":       "Jigisha Pharma & Healthcare",
+  "jigisha-logistics":               "Jigisha Logistics",
+  "jigisha-agro-industries":         "Jigisha Agro Industries",
+  "jigisha-envirocare":              "Jigisha Envirocare",
+  "jigisha-enterprises":             "Jigisha Enterprises",
+  "jigisha-infotech":                "Jigisha Infotech",
+  "jigisha-media-vision":            "Jigisha Media & Vision",
+  "jigisha-infin":                   "Jigisha Infin",
+  "jigisha-retails":                 "Jigisha Retails",
+  "jigisha-international":           "Jigisha International",
+};
+
+function subsidiaryName(slug: string): string {
+  return SUBSIDIARY_NAMES[slug] ?? slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
-export function IndustryTemplate({ industry }: IndustryTemplateProps) {
+/* ── Root ────────────────────────────────────────────────────────────────── */
+
+export function IndustryTemplate({ industry }: { industry: Industry }) {
   return (
     <>
-      <IndustryHero industry={industry} />
-      <StatsStrip industry={industry} />
-      <UseCasesSection industry={industry} />
+      <IndustryHero      industry={industry} />
+      <StatsStrip        industry={industry} />
+      <KeyOfferingsSection industry={industry} />
+      <UseCasesSection   industry={industry} />
       {industry.sections.map((section, i) => (
-        <ContentSection key={section.sectionTitle} section={section} flip={i % 2 !== 0} part={i + 1} />
+        <ContentSection
+          key={section.sectionTitle}
+          section={section}
+          flip={i % 2 !== 0}
+          part={i + 1}
+        />
       ))}
-      <HighlightsSection industry={industry} />
-      <WhyUsSection industry={industry} />
-      <CtaSection industry={industry} />
+      <CapabilitiesSection industry={industry} />
+      <SubsidiariesSection industry={industry} />
+      <WhyJigishaSection   industry={industry} />
+      <CtaSection          industry={industry} />
     </>
   );
 }
 
-/* ── HERO — left text + right asymmetric masonry grid ─────────────── */
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+
 function IndustryHero({ industry }: { industry: Industry }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [img0, img1, img2, img3] = industry.heroImages;
@@ -43,11 +82,13 @@ function IndustryHero({ industry }: { industry: Industry }) {
         <img src={img0} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="absolute inset-0 bg-linear-to-br from-[oklch(0.06_0.05_250)] via-[oklch(0.09_0.04_250)/92] to-[oklch(0.12_0.04_250)/50]" />
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjY1IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
 
+          {/* LEFT */}
           <div className="order-2 lg:order-1">
             <Link
               to="/industries"
@@ -69,6 +110,7 @@ function IndustryHero({ industry }: { industry: Industry }) {
               {industry.description}
             </p>
 
+            {/* Stat pills */}
             <div className="flex flex-wrap gap-2.5 mb-12">
               {industry.stats.map((s) => (
                 <div
@@ -84,12 +126,12 @@ function IndustryHero({ industry }: { industry: Industry }) {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-gold/20"
               >
                 {industry.ctaLabel ?? "Get Sector Brief"} <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href="#use-cases"
+                href="#offerings"
                 className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/80 font-semibold rounded-xl hover:bg-white/8 hover:text-white transition-all text-sm"
               >
                 Explore Solutions
@@ -97,6 +139,7 @@ function IndustryHero({ industry }: { industry: Industry }) {
             </div>
           </div>
 
+          {/* RIGHT — masonry image grid */}
           <div className="order-1 lg:order-2">
             <div
               className="grid gap-3"
@@ -150,7 +193,8 @@ function IndustryHero({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── STATS STRIP ──────────────────────────────────────────────────── */
+/* ── STATS STRIP ─────────────────────────────────────────────────────────── */
+
 function StatsStrip({ industry }: { industry: Industry }) {
   return (
     <div className="bg-navy border-y border-white/5 py-10">
@@ -158,7 +202,7 @@ function StatsStrip({ industry }: { industry: Industry }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/8">
           {industry.stats.map((s, i) => (
             <div key={s.label} className={`text-center ${i > 0 ? "pl-8" : ""}`}>
-              <CountUp value={s.value} className="text-3xl md:text-4xl font-extrabold text-gold leading-none mb-2" />
+              <CountUp value={s.value} className="text-3xl md:text-4xl font-extrabold text-gold leading-none mb-2 block" />
               <div className="text-xs text-white/45 tracking-widest uppercase">{s.label}</div>
             </div>
           ))}
@@ -168,7 +212,47 @@ function StatsStrip({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── USE CASES — editorial card grid (unique to industries) ───────── */
+/* ── KEY OFFERINGS ───────────────────────────────────────────────────────── */
+
+function KeyOfferingsSection({ industry }: { industry: Industry }) {
+  return (
+    <section id="offerings" className="py-24 bg-[oklch(0.975_0.003_250)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          <div>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">What We Deliver</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Key Offerings</h2>
+          </div>
+          <p className="text-muted-foreground text-sm hidden sm:block">
+            {industry.keyOfferings.length} service areas · {industry.title}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {industry.keyOfferings.map((offering, i) => (
+            <div
+              key={offering}
+              className="group flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:border-gold/35 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <div className="w-8 h-8 rounded-lg bg-navy/6 border border-navy/10 flex items-center justify-center shrink-0 group-hover:bg-gold/10 group-hover:border-gold/20 transition-all duration-300">
+                <span className="text-navy text-[10px] font-extrabold group-hover:text-gold transition-colors duration-300">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <span className="text-sm font-semibold text-gray-800 leading-snug pt-0.5 group-hover:text-foreground transition-colors duration-300">
+                {offering}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── USE CASES ───────────────────────────────────────────────────────────── */
+
 function UseCasesSection({ industry }: { industry: Industry }) {
   return (
     <section id="use-cases" className="py-28 bg-background">
@@ -197,15 +281,10 @@ function UseCasesSection({ industry }: { industry: Industry }) {
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 mb-5 group-hover:bg-gold/20 group-hover:border-gold/40 transition-all duration-300">
                   <span className="text-gold font-extrabold text-sm">{padIndex(i)}</span>
                 </div>
-
                 <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-gold transition-colors duration-300">
                   {uc.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-[1.8]">{uc.description}</p>
-
-                <div className="mt-5 flex items-center gap-1.5 text-gold/60 group-hover:text-gold text-xs font-semibold transition-colors duration-300">
-                  Learn how we do it <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
               </div>
 
               <div className="absolute left-0 top-0 bottom-0 w-0.75 bg-gold scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-top rounded-full" />
@@ -217,7 +296,8 @@ function UseCasesSection({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── CONTENT SECTION — alternating with step-hover image swap ────── */
+/* ── CONTENT SECTION (alternating) ──────────────────────────────────────── */
+
 function ContentSection({ section, flip, part }: { section: IndustrySection; flip: boolean; part: number }) {
   const [activeImage, setActiveImage] = useState(section.image);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -256,7 +336,7 @@ function ContentSection({ section, flip, part }: { section: IndustrySection; fli
               <div className="absolute inset-0 bg-linear-to-t from-navy/35 to-transparent pointer-events-none" />
 
               {activeIndex !== null && (
-                <div className="absolute top-5 left-5 flex items-center gap-2 bg-gold/90 backdrop-blur-sm text-gold-foreground text-xs font-bold px-3.5 py-2 rounded-full animate-fade-in">
+                <div className="absolute top-5 left-5 flex items-center gap-2 bg-gold/90 backdrop-blur-sm text-gold-foreground text-xs font-bold px-3.5 py-2 rounded-full">
                   <span className="w-1.5 h-1.5 bg-gold-foreground rounded-full" />
                   {section.steps[activeIndex].title}
                 </div>
@@ -298,11 +378,7 @@ function ContentSection({ section, flip, part }: { section: IndustrySection; fli
                     {padIndex(idx)}
                   </div>
                   <div className="min-w-0">
-                    <h4
-                      className={`font-bold text-sm mb-1.5 transition-colors duration-300 ${
-                        activeIndex === idx ? "text-gold" : "text-foreground"
-                      }`}
-                    >
+                    <h4 className={`font-bold text-sm mb-1.5 transition-colors duration-300 ${activeIndex === idx ? "text-gold" : "text-foreground"}`}>
                       {step.title}
                     </h4>
                     <p className="text-xs text-muted-foreground leading-[1.7]">{step.detail}</p>
@@ -317,8 +393,9 @@ function ContentSection({ section, flip, part }: { section: IndustrySection; fli
   );
 }
 
-/* ── HIGHLIGHTS — capabilities grid ──────────────────────────────── */
-function HighlightsSection({ industry }: { industry: Industry }) {
+/* ── CAPABILITIES GRID ───────────────────────────────────────────────────── */
+
+function CapabilitiesSection({ industry }: { industry: Industry }) {
   return (
     <section className="py-24 bg-[oklch(0.97_0.004_250)]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -330,7 +407,7 @@ function HighlightsSection({ industry }: { industry: Industry }) {
           {industry.capabilities.map((cap) => (
             <div
               key={cap}
-              className="group flex items-start gap-3.5 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-gold/30 transition-all duration-300"
+              className="group flex items-start gap-3.5 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-300"
             >
               <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
               <span className="text-sm text-gray-700 leading-snug font-medium">{cap}</span>
@@ -342,32 +419,39 @@ function HighlightsSection({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── WHY US — dark editorial cards ────────────────────────────────── */
-function WhyUsSection({ industry }: { industry: Industry }) {
+/* ── SUBSIDIARIES ────────────────────────────────────────────────────────── */
+
+function SubsidiariesSection({ industry }: { industry: Industry }) {
+  if (!industry.subsidiaries.length) return null;
+
   return (
-    <section className="py-28 bg-navy relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <img src={industry.heroImages[0]} alt="" className="w-full h-full object-cover" />
-      </div>
-      <div className="absolute inset-0 bg-linear-to-b from-navy/0 via-navy/80 to-navy" />
+    <section className="py-20 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{ backgroundImage: "repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 8px)" }} />
+      <div className="absolute -right-40 top-0 w-[500px] h-[500px] rounded-full bg-gold/4 blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-16">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Why Jigisha</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white">The Jigisha Difference</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
+          <div>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Group Companies</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white">Delivered By</h2>
+          </div>
+          <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 self-start">
+            <Building2 className="w-3.5 h-3.5 text-gold" />
+            <span className="text-white/55 text-xs font-semibold">{industry.subsidiaries.length} subsidiaries active</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {industry.whyUs.map((w, i) => (
+        <div className="flex flex-wrap gap-3">
+          {industry.subsidiaries.map((sub) => (
             <div
-              key={w.title}
-              className="group bg-white/4 border border-white/8 rounded-3xl p-10 hover:bg-white/7 hover:border-gold/25 transition-all duration-400"
+              key={sub}
+              className="group flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 hover:bg-gold/10 hover:border-gold/30 transition-all duration-300 cursor-default"
             >
-              <div className="text-[56px] font-extrabold text-gold/15 leading-none mb-6 group-hover:text-gold/25 transition-colors duration-300">
-                {padIndex(i)}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">{w.title}</h3>
-              <p className="text-white/55 text-sm leading-[1.8]">{w.body}</p>
+              <div className="w-1.5 h-1.5 rounded-full bg-gold/50 group-hover:bg-gold transition-colors duration-300" />
+              <span className="text-white/70 text-sm font-semibold group-hover:text-white transition-colors duration-300">
+                {subsidiaryName(sub)}
+              </span>
             </div>
           ))}
         </div>
@@ -376,7 +460,67 @@ function WhyUsSection({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── CTA ──────────────────────────────────────────────────────────── */
+/* ── WHY JIGISHA ─────────────────────────────────────────────────────────── */
+
+function WhyJigishaSection({ industry }: { industry: Industry }) {
+  return (
+    <section className="py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left — text */}
+          <div>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Why Choose Us</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground leading-tight mb-6">
+              The Jigisha<br />
+              <span className="relative inline-block">
+                <span className="text-gold">Difference</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold/30 rounded-full" />
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-base leading-[1.85] mb-8 max-w-lg">
+              {industry.whyJigisha}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
+              >
+                {industry.ctaLabel ?? "Get Sector Brief"} <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/group"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-border text-foreground font-semibold rounded-xl hover:border-gold/30 hover:text-gold transition-all text-sm"
+              >
+                Our Group Companies <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right — stats grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {industry.stats.map((s) => (
+              <div
+                key={s.label}
+                className="group bg-card border border-border rounded-2xl p-6 text-center hover:border-gold/30 hover:shadow-md transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gold/8 border border-gold/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-gold/15 transition-colors duration-300">
+                  <Zap className="w-4 h-4 text-gold" />
+                </div>
+                <CountUp value={s.value} className="text-2xl font-extrabold text-foreground block leading-none mb-1" />
+                <span className="text-xs text-muted-foreground">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CTA ─────────────────────────────────────────────────────────────────── */
+
 function CtaSection({ industry }: { industry: Industry }) {
   return (
     <section className="relative py-28 overflow-hidden">
@@ -399,13 +543,13 @@ function CtaSection({ industry }: { industry: Industry }) {
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-9 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-xl"
+            className="inline-flex items-center gap-2 px-9 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-xl w-full sm:w-auto justify-center"
           >
             {industry.ctaLabel ?? "Get Sector Brief"} <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             to="/industries"
-            className="inline-flex items-center gap-2 px-9 py-4 bg-white/20 border border-white/30 text-gold-foreground font-semibold rounded-xl hover:bg-white/30 transition-colors text-sm"
+            className="inline-flex items-center gap-2 px-9 py-4 bg-white/20 border border-white/30 text-gold-foreground font-semibold rounded-xl hover:bg-white/30 transition-colors text-sm w-full sm:w-auto justify-center"
           >
             All Industries <ChevronRight className="w-4 h-4" />
           </Link>

@@ -151,9 +151,9 @@ function IndustryCard({ industry, index }: { industry: Industry; index: number }
           {industry.tagline}
         </p>
 
-        {/* Key highlights as chips */}
+        {/* Key offerings as chips */}
         <div className="flex flex-wrap gap-1.5 mt-auto mb-4">
-          {industry.highlights.slice(0, 3).map((h) => (
+          {industry.keyOfferings.slice(0, 3).map((h) => (
             <span
               key={h}
               className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border group-hover:border-gold/20 group-hover:text-foreground transition-all duration-300"
@@ -161,9 +161,9 @@ function IndustryCard({ industry, index }: { industry: Industry; index: number }
               {h}
             </span>
           ))}
-          {industry.highlights.length > 3 && (
+          {industry.keyOfferings.length > 3 && (
             <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-gold/8 text-gold border border-gold/20">
-              +{industry.highlights.length - 3} more
+              +{industry.keyOfferings.length - 3} more
             </span>
           )}
         </div>

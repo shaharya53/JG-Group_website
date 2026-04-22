@@ -272,9 +272,7 @@ function AboutPage() {
                <Link to="/contact" className="px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-all flex items-center gap-2">
                   Get In Touch <ArrowRight className="w-5 h-5" />
                </Link>
-               <Link to="/about" className="px-8 py-4 bg-white/20 border border-navy/20 text-navy font-bold rounded-xl hover:bg-white/40 transition-all">
-                  Our Journey
-               </Link>
+              
             </div>
          </div>
       </section>

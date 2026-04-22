@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink, Globe, ChevronRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Globe } from "lucide-react";
 import { CountUp } from "../components/CountUp";
 
 export const Route = createFileRoute("/group")({
@@ -47,7 +47,7 @@ function GroupPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative bg-[oklch(0.08_0.04_250)] pt-24 pb-20 overflow-hidden">
+      <section className="relative bg-[oklch(0.08_0.04_250)] min-h-screen flex items-end pb-20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "repeating-linear-gradient(90deg, white 0, white 1px, transparent 0, transparent 12.5%)" }} />
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "repeating-linear-gradient(0deg, white 0, white 1px, transparent 0, transparent 8%)" }} />
@@ -55,12 +55,6 @@ function GroupPage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Link to="/" className="text-white/30 hover:text-white/60 text-xs font-semibold tracking-widest uppercase transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3 text-white/20" />
-            <span className="text-gold text-xs font-semibold tracking-widest uppercase">The Group</span>
-          </div>
-
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 text-gold rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />

@@ -24,7 +24,7 @@ function AboutPage() {
       </div>
 
       {/* ── HERO SECTION ─────────────────────────────────────────── */}
-      <section className="relative bg-[oklch(0.12_0.04_255)] py-20 md:py-32 overflow-hidden">
+      <section className="relative bg-[oklch(0.12_0.04_255)] min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-gold)_0%,_transparent_70%)] opacity-20" />
           <div className="grid grid-cols-12 h-full w-full">

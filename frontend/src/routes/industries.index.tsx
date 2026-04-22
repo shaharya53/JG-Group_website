@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CountUp } from "../components/CountUp";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Zap, Globe, Layers } from "lucide-react";
 import { industriesData, type Industry } from "../data/industriesData";
 
 export const Route = createFileRoute("/industries/")({
@@ -19,7 +19,7 @@ function IndustriesIndexPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[55vh] flex items-end pb-20 overflow-hidden bg-[oklch(0.08_0.04_250)]">
+      <section className="relative min-h-screen flex items-end pb-20 overflow-hidden bg-[oklch(0.08_0.04_250)]">
         {/* Background collage */}
         <div className="absolute inset-0 grid grid-cols-4 opacity-20">
           {industriesData.slice(0, 4).map((ind) => (
@@ -79,6 +79,59 @@ function IndustriesIndexPage() {
             {industriesData.map((industry, i) => (
               <IndustryCard key={industry.slug} industry={industry} index={i} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY JIGISHA ───────────────────────────────────────────── */}
+      <section className="py-24 bg-[oklch(0.975_0.003_250)] border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+
+            {/* LEFT — headline + stats */}
+            <div className="lg:sticky lg:top-28">
+              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Why Jigisha</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6">
+                One Partner.<br />Every Sector.
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed mb-12 max-w-md">
+                Across all 12+ industry verticals, Jigisha Group brings the same four fundamentals — so you never compromise on quality, speed, compliance or scope.
+              </p>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-8">
+                {[
+                  { value: "3M+",   label: "Products Available" },
+                  { value: "28+",   label: "Industry Domains" },
+                  { value: "500K+", label: "Components Supplied" },
+                  { value: "15+",   label: "Export Markets" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <CountUp value={s.value} className="text-3xl font-extrabold text-gold block leading-none mb-1.5" />
+                    <p className="text-xs text-muted-foreground tracking-widest uppercase">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT — feature rows with dividers, no cards */}
+            <div className="divide-y divide-border">
+              {[
+                { icon: Globe,      title: "PAN-India Scale",         description: "19 specialised subsidiaries, 5 regional hubs and 200+ warehouses — deployed wherever your operations need us, nationwide." },
+                { icon: ShieldCheck,title: "Certified Compliance",    description: "RDSO, BIS, ISO 9001/14001/45001, GeM, CDSCO, MNRE and sector-specific certifications govern every single engagement." },
+                { icon: Zap,        title: "Speed & Reliability",     description: "Same-day dispatch, 24×7 emergency supply, dedicated project managers and SLA-backed service contracts across every vertical." },
+                { icon: Layers,     title: "End-to-End Capability",   description: "From product supply and SITC to full EPC, O&M and long-term AMC — single-window accountability from first order to asset end-of-life." },
+              ].map(({ icon: Icon, title, description }) => (
+                <div key={title} className="group flex items-start gap-5 py-8 first:pt-0 last:pb-0">
+                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-gold/18 group-hover:border-gold/35 transition-all duration-300">
+                    <Icon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-gold transition-colors duration-300">{title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>

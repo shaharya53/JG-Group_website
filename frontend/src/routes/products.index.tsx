@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Package2, ShieldCheck, Truck, BarChart3, Award, Search, ChevronRight } from "lucide-react";
+import { ArrowRight, Package2, ShieldCheck, Truck, BarChart3, Award, Search, ChevronRight, Zap, Layers, Globe } from "lucide-react";
 import { productsData } from "../data/productsData";
 import type { Product } from "../data/productsData";
 import { CountUp } from "../components/CountUp";
 import warehouseImg from "../assets/products-warehouse.jpg";
+
+const RETAIL_SLUGS = ["electronics-gadgets", "fashion-lifestyle", "health-personal-care"];
 
 export const Route = createFileRoute("/products/")({
   head: () => ({
@@ -38,17 +40,19 @@ const allCategories = Array.from(
 );
 
 function ProductsIndexPage() {
-  const featured = productsData.slice(0, 2);
-  const rest = productsData.slice(2);
+  const featured       = productsData.slice(0, 2);
+  const industrial     = productsData.filter((p) => !RETAIL_SLUGS.includes(p.slug)).slice(2);
+  const retail         = productsData.filter((p) => RETAIL_SLUGS.includes(p.slug));
 
   return (
     <>
       <HeroSection />
       <TrustBar />
       <FeaturedSection products={featured} />
-      <CatalogSection products={rest} />
-
+      <IndustrialCatalogSection products={industrial} />
+      <RetailCatalogSection products={retail} />
       <ProcureSection />
+      <WhyJigishaSection />
       <BottomCta />
     </>
   );
@@ -57,7 +61,7 @@ function ProductsIndexPage() {
 /* ── HERO ─────────────────────────────────────────────────────────────── */
 function HeroSection() {
   return (
-    <section className="relative bg-[oklch(0.07_0.04_250)] overflow-hidden min-h-[85vh] flex flex-col justify-between">
+    <section className="relative bg-[oklch(0.07_0.04_250)] overflow-hidden min-h-screen flex flex-col justify-between">
       {/* Grid lines */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
@@ -222,24 +226,102 @@ function FeaturedSection({ products }: { products: Product[] }) {
   );
 }
 
-/* ── FULL CATALOG ─────────────────────────────────────────────────────── */
-function CatalogSection({ products }: { products: Product[] }) {
+/* ── INDUSTRIAL CATALOG ───────────────────────────────────────────────── */
+function IndustrialCatalogSection({ products }: { products: Product[] }) {
   return (
-    <section id="catalog" className="pt-2 pb-20 bg-background">
+    <section id="catalog" className="pt-2 pb-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
           <div>
-            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-2">Complete Catalogue</p>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">All {productsData.length} Verticals</h2>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-2">Industrial Catalogue</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">Core Industrial Products</h2>
           </div>
-          <span className="hidden md:block text-sm text-muted-foreground">3M+ total SKUs across all categories</span>
+          <span className="hidden md:block text-sm text-muted-foreground">RDSO · BIS · GeM · ISO certified supply</span>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((product, i) => (
             <CatalogCard key={product.slug} product={product} index={i} />
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── RETAIL CATALOG ───────────────────────────────────────────────────── */
+function RetailCatalogSection({ products }: { products: Product[] }) {
+  if (!products.length) return null;
+  return (
+    <section className="py-16 bg-[oklch(0.975_0.003_250)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
+          <div>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-2">Retail Catalogue</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">Consumer & Retail Products</h2>
+          </div>
+          <span className="hidden md:block text-sm text-muted-foreground">Electronics · Fashion · Health · MRO</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          {products.map((product, i) => (
+            <RetailCard key={product.slug} product={product} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── WHY JIGISHA ──────────────────────────────────────────────────────── */
+function WhyJigishaSection() {
+  return (
+    <section className="py-24 bg-[oklch(0.975_0.003_250)] border-y border-border">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+
+          {/* LEFT — headline + stats */}
+          <div className="lg:sticky lg:top-28">
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Why Jigisha</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6">
+              One Source.<br />Every Industry.
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed mb-12 max-w-md">
+              From RDSO-approved railway parts to consumer electronics — Jigisha delivers on four non-negotiables across every product vertical.
+            </p>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-8">
+              {[
+                { value: "3M+",    label: "Products Available" },
+                { value: "7,500+", label: "Vendor Partners" },
+                { value: "12",     label: "Product Verticals" },
+                { value: "28+",    label: "Industry Domains" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <CountUp value={s.value} className="text-3xl font-extrabold text-gold block leading-none mb-1.5" />
+                  <p className="text-xs text-muted-foreground tracking-widest uppercase">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — feature rows with dividers, no cards */}
+          <div className="divide-y divide-border">
+            {[
+              { icon: Package2,    title: "3M+ Product Catalogue",     description: "India's widest industrial catalogue — 3 million products across 12 verticals, 7,500+ vendors, one purchase order for everything." },
+              { icon: ShieldCheck, title: "Compliance-Ready Supply",    description: "RDSO, BIS, GeM, ISO, CDSCO, MNRE and DGQA — every product verified against the applicable certification standard before dispatch." },
+              { icon: Zap,         title: "Same-Day Dispatch",          description: "PAN-India fulfillment centres with JIT dispatch capability; quotes on any BoQ delivered within 24 hours, anywhere in India." },
+              { icon: Layers,      title: "Single-Window Procurement",  description: "One vendor, one PO, one invoice for your entire product basket — across industries, categories and geographies." },
+            ].map(({ icon: Icon, title, description }) => (
+              <div key={title} className="group flex items-start gap-5 py-8 first:pt-0 last:pb-0">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-gold/18 group-hover:border-gold/35 transition-all duration-300">
+                  <Icon className="w-5 h-5 text-gold" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-gold transition-colors duration-300">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
@@ -406,6 +488,65 @@ function FeaturedCard({ product }: { product: Product }) {
 
         <div className="flex items-center gap-1.5 mt-5 pt-4 border-t border-border text-sm font-bold text-primary group-hover:text-gold transition-colors duration-300">
           View Full Catalogue <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/* ── RETAIL CARD ──────────────────────────────────────────────────────── */
+function RetailCard({ product, index }: { product: Product; index: number }) {
+  return (
+    <Link
+      to={`/products/${product.slug}` as any}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-gold/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+    >
+      {/* Image */}
+      <div className="relative h-44 overflow-hidden shrink-0">
+        <img
+          src={product.heroImages[0]}
+          alt={product.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          loading={index < 2 ? "eager" : "lazy"}
+        />
+        <img src={product.heroImages[1]} alt="" aria-hidden
+          className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/15 to-transparent" />
+        <div className="absolute top-3 right-3 bg-navy/80 backdrop-blur-sm text-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-gold/15">
+          {product.skuCount}
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-gold/90 backdrop-blur-sm text-gold-foreground text-xs font-bold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+            View Products <ArrowRight className="w-3 h-3" />
+          </div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-5">
+        <h3 className="text-[15px] font-bold text-card-foreground mb-1.5 group-hover:text-gold transition-colors duration-300 leading-tight">
+          {product.title}
+        </h3>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-4 line-clamp-2 flex-1">
+          {product.tagline}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mb-3.5">
+          {product.categories.slice(0, 3).map((cat) => (
+            <span key={cat} className="text-[9px] font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border group-hover:border-gold/15 transition-all duration-300">
+              {cat}
+            </span>
+          ))}
+          {product.categories.length > 3 && (
+            <span className="text-[9px] font-medium px-2 py-0.5 rounded-full bg-gold/8 text-gold border border-gold/20">
+              +{product.categories.length - 3}
+            </span>
+          )}
+        </div>
+        <div className="flex items-center justify-between pt-3 border-t border-border">
+          <span className="text-[11px] text-muted-foreground">{product.categories.length} categories</span>
+          <span className="text-[11px] font-semibold text-primary group-hover:text-gold transition-colors flex items-center gap-1">
+            Explore <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+          </span>
         </div>
       </div>
     </Link>

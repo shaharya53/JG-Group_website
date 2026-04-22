@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight, ChevronRight, CheckCircle2,
-  Building2, Zap,
+  Building2, Zap, Shield,
 } from "lucide-react";
-import type { Industry, IndustrySection } from "../data/industriesData";
+import type { Industry } from "../data/industriesData";
 import { padIndex } from "../lib/utils";
 import { CountUp } from "./CountUp";
 
@@ -47,18 +47,13 @@ export function IndustryTemplate({ industry }: { industry: Industry }) {
       <StatsStrip        industry={industry} />
       <KeyOfferingsSection industry={industry} />
       <UseCasesSection   industry={industry} />
-      {industry.sections.map((section, i) => (
-        <ContentSection
-          key={section.sectionTitle}
-          section={section}
-          flip={i % 2 !== 0}
-          part={i + 1}
-        />
-      ))}
       <CapabilitiesSection industry={industry} />
+      <ProcessSection      industry={industry} />
+      <CaseStudiesSection  industry={industry} />
       <SubsidiariesSection industry={industry} />
-      <WhyJigishaSection   industry={industry} />
-      <CtaSection          industry={industry} />
+      <WhyJigishaSection     industry={industry} />
+      <CertificationsSection industry={industry} />
+      <CtaSection            industry={industry} />
     </>
   );
 }
@@ -77,7 +72,7 @@ function IndustryHero({ industry }: { industry: Industry }) {
   ];
 
   return (
-    <section className="relative min-h-[92vh] flex items-center bg-[oklch(0.08_0.04_250)] overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-[oklch(0.08_0.04_250)] overflow-hidden">
       <div className="absolute inset-0 opacity-8">
         <img src={img0} alt="" className="w-full h-full object-cover" />
       </div>
@@ -90,13 +85,6 @@ function IndustryHero({ industry }: { industry: Industry }) {
 
           {/* LEFT */}
           <div className="order-2 lg:order-1">
-            <Link
-              to="/industries"
-              className="inline-flex items-center gap-1.5 text-gold/55 hover:text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-8 transition-colors"
-            >
-              ← All Industries
-            </Link>
-
             <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/20 text-gold rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-wide uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
               Industry Vertical
@@ -296,103 +284,6 @@ function UseCasesSection({ industry }: { industry: Industry }) {
   );
 }
 
-/* ── CONTENT SECTION (alternating) ──────────────────────────────────────── */
-
-function ContentSection({ section, flip, part }: { section: IndustrySection; flip: boolean; part: number }) {
-  const [activeImage, setActiveImage] = useState(section.image);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  function onStepEnter(idx: number) {
-    setActiveIndex(idx);
-    setActiveImage(section.steps[idx].image);
-  }
-  function onStepLeave() {
-    setActiveIndex(null);
-    setActiveImage(section.image);
-  }
-
-  return (
-    <section className={`py-28 ${flip ? "bg-[oklch(0.97_0.004_250)]" : "bg-background"} overflow-hidden`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-
-        <div className="flex items-center gap-3 mb-14">
-          <div className="w-8 h-0.5 bg-gold" />
-          <span className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase">
-            {flip ? "Workflow" : "Approach"} · Part {part}
-          </span>
-        </div>
-
-        <div className={`flex flex-col ${flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-16 lg:gap-24 items-start`}>
-
-          <div className="w-full lg:w-[52%] shrink-0">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "4/3" }}>
-              <img
-                key={activeImage}
-                src={activeImage}
-                alt={section.sectionTitle}
-                className="w-full h-full object-cover transition-all duration-700 ease-out"
-                style={{ animation: "imgFadeIn 0.45s ease-out" }}
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-navy/35 to-transparent pointer-events-none" />
-
-              {activeIndex !== null && (
-                <div className="absolute top-5 left-5 flex items-center gap-2 bg-gold/90 backdrop-blur-sm text-gold-foreground text-xs font-bold px-3.5 py-2 rounded-full">
-                  <span className="w-1.5 h-1.5 bg-gold-foreground rounded-full" />
-                  {section.steps[activeIndex].title}
-                </div>
-              )}
-
-              <div className="absolute bottom-5 right-5 bg-black/40 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full border border-white/10 font-medium">
-                {activeIndex !== null ? `${activeIndex + 1} / ${section.steps.length}` : `${section.steps.length} steps`}
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full lg:w-[48%] pt-2">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground leading-[1.15] mb-5">
-              {section.sectionTitle}
-            </h2>
-            <p className="text-muted-foreground leading-[1.8] text-base mb-10">
-              {section.sectionDescription}
-            </p>
-
-            <div className="space-y-3">
-              {section.steps.map((step, idx) => (
-                <div
-                  key={step.title}
-                  onMouseEnter={() => onStepEnter(idx)}
-                  onMouseLeave={onStepLeave}
-                  className={`group flex items-start gap-4 p-5 rounded-2xl border cursor-default select-none transition-all duration-300 ${
-                    activeIndex === idx
-                      ? "border-gold/50 bg-gold/6 shadow-lg -translate-x-2"
-                      : "border-border bg-card hover:border-gold/20 hover:bg-accent/40"
-                  }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs transition-all duration-300 ${
-                      activeIndex === idx
-                        ? "bg-gold text-gold-foreground scale-110 shadow-[0_0_12px_oklch(0.75_0.12_80/0.4)]"
-                        : "bg-navy/8 text-navy group-hover:bg-navy/15"
-                    }`}
-                  >
-                    {padIndex(idx)}
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className={`font-bold text-sm mb-1.5 transition-colors duration-300 ${activeIndex === idx ? "text-gold" : "text-foreground"}`}>
-                      {step.title}
-                    </h4>
-                    <p className="text-xs text-muted-foreground leading-[1.7]">{step.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── CAPABILITIES GRID ───────────────────────────────────────────────────── */
 
 function CapabilitiesSection({ industry }: { industry: Industry }) {
@@ -513,6 +404,137 @@ function WhyJigishaSection({ industry }: { industry: Industry }) {
             ))}
           </div>
 
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── PROCESS ─────────────────────────────────────────────────────────────── */
+
+function ProcessSection({ industry }: { industry: Industry }) {
+  if (!industry.process.length) return null;
+  return (
+    <section className="py-24 bg-[oklch(0.975_0.003_250)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-14">
+          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">How We Deliver</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-navy">Our Process</h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {industry.process.map((step, i) => (
+            <div
+              key={step.step}
+              className="group relative bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:border-gold/35 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+            >
+              <div className="absolute top-4 right-5 text-[64px] font-extrabold text-navy/4 leading-none select-none pointer-events-none">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <div className="w-9 h-9 rounded-xl bg-navy/6 border border-navy/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/20 transition-all duration-300">
+                <span className="text-navy text-[11px] font-extrabold group-hover:text-gold transition-colors duration-300">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-gray-800 mb-2 group-hover:text-foreground transition-colors duration-300">
+                {step.title}
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CASE STUDIES ────────────────────────────────────────────────────────── */
+
+function CaseStudiesSection({ industry }: { industry: Industry }) {
+  if (!industry.caseStudies.length) return null;
+  return (
+    <section className="py-28 bg-[oklch(0.07_0.04_250)] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
+        style={{ backgroundImage: "repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 10px)" }} />
+      <div className="absolute -left-60 bottom-0 w-[600px] h-[600px] rounded-full bg-gold/5 blur-[140px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-14">
+          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Proven Impact</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white">Case Studies</h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {industry.caseStudies.map((cs, i) => (
+            <div
+              key={i}
+              className="group flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold/30 hover:bg-white/7 transition-all duration-300"
+            >
+              {/* Case number */}
+              <div className="flex items-center gap-3 px-6 py-4 border-b border-white/8">
+                <span className="w-7 h-7 rounded-lg bg-gold/15 border border-gold/25 flex items-center justify-center text-gold text-[11px] font-extrabold shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-sm font-bold text-white leading-snug group-hover:text-gold transition-colors duration-300">
+                  {cs.title}
+                </h3>
+              </div>
+
+              <div className="flex flex-col flex-1 p-6 gap-5">
+                {/* Problem */}
+                <div>
+                  <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/35 mb-1.5">Problem</p>
+                  <p className="text-sm text-white/60 leading-relaxed">{cs.problem}</p>
+                </div>
+
+                {/* Solution */}
+                <div>
+                  <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/35 mb-1.5">Solution</p>
+                  <p className="text-sm text-white/60 leading-relaxed">{cs.solution}</p>
+                </div>
+
+                {/* Result — highlighted */}
+                <div className="mt-auto bg-gold/10 border border-gold/20 rounded-xl p-4">
+                  <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-gold mb-1.5">Result</p>
+                  <p className="text-sm text-white/80 leading-relaxed font-medium">{cs.result}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CERTIFICATIONS ──────────────────────────────────────────────────────── */
+
+function CertificationsSection({ industry }: { industry: Industry }) {
+  if (!industry.certifications.length) return null;
+  return (
+    <section className="py-20 bg-[oklch(0.975_0.003_250)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
+          <div>
+            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Standards &amp; Compliance</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-navy">Certifications &amp; Approvals</h2>
+          </div>
+          <div className="flex items-center gap-2 bg-navy/6 border border-navy/10 rounded-full px-4 py-2 self-start">
+            <Shield className="w-3.5 h-3.5 text-gold" />
+            <span className="text-navy/60 text-xs font-semibold">{industry.certifications.length} standards met</span>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          {industry.certifications.map((cert) => (
+            <div
+              key={cert}
+              className="group flex items-center gap-2 bg-white border border-gray-100 rounded-full px-4 py-2 shadow-sm hover:border-gold/35 hover:shadow-md transition-all duration-300"
+            >
+              <Shield className="w-3 h-3 text-gold shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-foreground transition-colors duration-300">{cert}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -46,6 +46,14 @@ const megaMenus = {
           { label: "Agro & Pharma",               sub: "Inputs, APIs & cold-chain",     to: "/products/agro-pharma" },
         ],
       },
+      {
+        heading: "Retail",
+        items: [
+          { label: "Electronics & Gadgets",       sub: "2,400+ devices & accessories",  to: "/products/electronics-gadgets" },
+          { label: "Fashion & Lifestyle",         sub: "5,100+ apparel & accessories",  to: "/products/fashion-lifestyle" },
+          { label: "Health & Personal Care",      sub: "2,800+ health & wellness",      to: "/products/health-personal-care" },
+        ],
+      },
     ],
   },
   Industries: {
@@ -54,9 +62,9 @@ const megaMenus = {
       {
         heading: "Infrastructure",
         items: [
-          { label: "Indian Railways",              sub: "17 zones, 7,000+ stations",    to: "/industries/indian-railways" },
+          { label: "Indian Railways",              sub: "17 zones, 7,000+ stations",    to: "/industries/railways" },
           { label: "Metro Rail",                   sub: "Urban mobility solutions",     to: "/industries/metro-rail" },
-          { label: "Construction & EPC",           sub: "Projects, plants & civil",     to: "/industries/construction-epc" },
+          { label: "Construction & EPC",           sub: "Projects, plants & civil",     to: "/industries/construction" },
           { label: "Logistics & Supply Chain",     sub: "3PL/4PL & warehousing",        to: "/industries/logistics" },
           { label: "Manufacturing",                sub: "OEM, precision & process",     to: "/industries/manufacturing" },
         ],
@@ -65,11 +73,11 @@ const megaMenus = {
         heading: "Technology & Others",
         items: [
           { label: "Aerospace & Defence",          sub: "Strategic & MIL-grade",        to: "/industries/aerospace-defence" },
-          { label: "Energy & Power",               sub: "Solar, grid & green infra",    to: "/industries/energy-power" },
+          { label: "Energy & Power",               sub: "Solar, grid & green infra",    to: "/industries/energy" },
           { label: "Infotech & Digital",           sub: "AI, IoT & industrial IT",      to: "/industries/infotech" },
-          { label: "Healthcare & Pharma",          sub: "Devices, APIs & cold-chain",   to: "/industries/healthcare-pharma" },
+          { label: "Healthcare & Pharma",          sub: "Devices, APIs & cold-chain",   to: "/industries/healthcare" },
           { label: "Agriculture",                  sub: "Inputs, FPOs & agro-tech",     to: "/industries/agriculture" },
-          { label: "Environment",                  sub: "ETP, STP & sustainability",    to: "/industries/environment" },
+          { label: "Environment",                  sub: "ETP, STP & sustainability",    to: "/industries/others" },
         ],
       },
     ],
@@ -246,7 +254,7 @@ export function Header() {
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-7">
               <div className="flex gap-12">
                 {/* Item columns */}
-                <div className="flex-1 grid grid-cols-2 gap-8">
+                <div className={`flex-1 grid gap-8 ${megaMenus[openMenu].cols.length >= 3 ? "grid-cols-3" : "grid-cols-2"}`}>
                   {megaMenus[openMenu].cols.map((col) => (
                     <div key={col.heading}>
                       <p className="text-[10px] font-extrabold tracking-[0.22em] uppercase text-gold mb-3 pb-2 border-b border-border">{col.heading}</p>
@@ -271,7 +279,7 @@ export function Header() {
                 </div>
 
                 {/* Right: view all */}
-                <div className="hidden xl:flex flex-col gap-4 w-52 shrink-0 pl-8 border-l border-border">
+                <div className="hidden xl:flex flex-col gap-3 w-52 shrink-0 pl-8 border-l border-border">
                   <p className="text-[10px] font-extrabold tracking-[0.22em] uppercase text-gold">Quick Access</p>
                   <Link
                     to={megaMenus[openMenu].to as any}
@@ -284,8 +292,21 @@ export function Header() {
                     </div>
                     <ArrowRight className="w-4 h-4 text-gold group-hover:translate-x-0.5 transition-transform shrink-0" />
                   </Link>
+                  {openMenu === "Services" && (
+                    <Link
+                      to="/domains"
+                      onClick={() => setOpenMenu(null)}
+                      className="group flex items-center justify-between px-4 py-3.5 bg-navy/8 border border-border rounded-2xl hover:bg-navy/14 hover:border-navy/30 transition-colors"
+                    >
+                      <div>
+                        <div className="text-sm font-bold text-foreground/80 group-hover:text-foreground leading-none mb-0.5">View All Domains</div>
+                        <div className="text-[11px] text-foreground/45">21 group companies</div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-foreground/40 group-hover:text-foreground group-hover:translate-x-0.5 transition-all shrink-0" />
+                    </Link>
+                  )}
                   <p className="text-[11px] text-muted-foreground leading-relaxed mt-auto">
-                    3M+ products · 7,500+ vendors · 19 companies
+                    3M+ products · 7,500+ vendors · 21 companies
                   </p>
                 </div>
               </div>
@@ -334,6 +355,15 @@ export function Header() {
                           >
                             View All {key} →
                           </Link>
+                          {key === "Services" && (
+                            <Link
+                              to="/domains"
+                              onClick={() => setMobileOpen(false)}
+                              className="py-2 text-[13px] font-semibold text-foreground/70 hover:text-foreground"
+                            >
+                              View All Domains →
+                            </Link>
+                          )}
                           {(megaMenus[key].cols as unknown as { heading: string; items: { label: string; sub: string; to: string }[] }[])
                             .flatMap(c => c.items).map(subItem => (
                               <Link

@@ -38,12 +38,6 @@ function Hero({ service }: { service: Service }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.08_0.05_250)/60] via-transparent to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full">
-        <Link
-          to="/services"
-          className="inline-flex items-center gap-1.5 text-gold/70 hover:text-gold text-xs font-semibold tracking-widest uppercase mb-6 transition-colors"
-        >
-          ← All Services
-        </Link>
         <div className="max-w-2xl">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.95] tracking-tight mb-5">
             {service.title}

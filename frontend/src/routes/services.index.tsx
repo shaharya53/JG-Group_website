@@ -37,32 +37,114 @@ function ServicesIndexPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[65vh] flex items-end pb-20 overflow-hidden bg-[oklch(0.08_0.04_250)]">
-        <img src={railwayImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 scale-105" />
-        {/* Grid lines */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[oklch(0.18_0.08_255)]">
+        {/* Subtle grid lines */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
           style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.06_0.05_250)] via-[oklch(0.08_0.05_250)/85] to-[oklch(0.1_0.04_250)/50]" />
-        <div className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-gold/5 blur-[130px] pointer-events-none" />
+        {/* Gold atmospheric glow */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-gold/6 blur-[150px] pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">What We Do</p>
-          <h1 className="text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.92] tracking-tight mb-5">
-            Complete Industrial<br />
-            <span className="text-gold">Service Portfolio</span>
-          </h1>
-          <p className="text-white/50 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-            End-to-end solutions across Railways, Metro, Defence, Manufacturing, Commercial and MRO — backed by RDSO approvals, ISO certifications and nationwide execution teams.
-          </p>
+        <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 xl:gap-24 items-start">
 
-          {/* Stats row */}
-          <div className="flex flex-wrap gap-6">
-            {heroStats.map((s) => (
-              <div key={s.label} className="flex items-center gap-2">
-                <CountUp value={s.value} className="text-gold font-extrabold text-xl" />
-                <span className="text-white/40 text-xs">{s.label}</span>
+            {/* LEFT — text */}
+            <div className="max-w-2xl">
+              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-5 flex items-center gap-3">
+                <span className="w-8 h-px bg-gold/60" />
+                What We Do
+              </p>
+
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.92] tracking-tight mb-7">
+                Complete<br />
+                Industrial<br />
+                <span className="text-gold">Service Portfolio</span>
+              </h1>
+
+              <p className="text-white/50 text-base md:text-lg leading-relaxed mb-12">
+                End-to-end solutions across Railways, Metro, Defence, Manufacturing, Commercial and MRO — backed by RDSO approvals, ISO certifications and nationwide execution teams.
+              </p>
+
+              {/* Stats 2×2 */}
+              <div className="grid grid-cols-2 gap-x-10 gap-y-7 mb-12 pt-10 border-t border-white/10">
+                {heroStats.map((s) => (
+                  <div key={s.label}>
+                    <CountUp value={s.value} className="text-3xl font-extrabold text-gold leading-none block mb-1" />
+                    <span className="text-white/40 text-xs font-semibold tracking-widest uppercase">{s.label}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
+                >
+                  Get a Service Quote <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/domains"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/8 border border-white/15 text-white/80 font-semibold rounded-xl hover:bg-white/14 hover:text-white transition-colors text-sm"
+                >
+                  Browse All Domains <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT — typographic service composition */}
+            <div className="hidden lg:flex flex-col justify-start w-[400px] xl:w-[440px] shrink-0 relative select-none mt-6">
+
+              {/* Label */}
+              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-white/25 mb-8">
+                Service Verticals
+              </p>
+
+              {/* Stacked service names — typographic composition */}
+              <div className="space-y-2 relative">
+                <div className="text-[52px] font-black text-white leading-none tracking-tight">
+                  RAILWAY
+                </div>
+
+                <div className="flex items-baseline gap-5 pl-6">
+                  <span className="text-[34px] font-black text-white/55 leading-none tracking-tight">METRO RAIL</span>
+                  <span className="text-[11px] font-bold text-gold/50 tracking-widest uppercase">Urban</span>
+                </div>
+
+                <div className="flex items-baseline gap-4">
+                  <span className="text-[44px] font-black text-gold leading-none tracking-tight">DEFENCE</span>
+                  <span className="text-[11px] font-bold text-white/25 tracking-widest uppercase">Strategic</span>
+                </div>
+
+                <div className="flex items-baseline gap-6 pl-10">
+                  <span className="text-[28px] font-black text-white/40 leading-none tracking-tight">INDUSTRIAL</span>
+                </div>
+
+                <div className="flex items-baseline gap-4">
+                  <span className="text-[36px] font-black text-white/60 leading-none tracking-tight">COMMERCIAL</span>
+                  <span className="text-[11px] font-bold text-white/20 tracking-widest uppercase">EPC</span>
+                </div>
+
+                <div className="pl-4">
+                  <span className="text-[28px] font-black text-white/35 leading-none tracking-tight">ICBMRO & BMRO</span>
+                </div>
+              </div>
+
+              {/* Divider + key credentials */}
+              <div className="mt-10 pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
+                {[
+                  { value: "RDSO",    label: "Approved"   },
+                  { value: "ISO",     label: "9001 · 14001" },
+                  { value: "GeM",     label: "Empanelled" },
+                ].map((c) => (
+                  <div key={c.label}>
+                    <div className="text-base font-extrabold text-gold/80 leading-none mb-1">{c.value}</div>
+                    <div className="text-[10px] text-white/30 tracking-widest uppercase">{c.label}</div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
           </div>
         </div>
       </section>
@@ -102,6 +184,59 @@ function ServicesIndexPage() {
         </div>
       </section>
 
+      {/* ── ONE PARTNER ──────────────────────────────────────────────── */}
+      <section className="py-24 bg-[oklch(0.975_0.003_250)] border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+
+            {/* LEFT — headline + stats */}
+            <div className="lg:sticky lg:top-28">
+              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Service Delivery</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6">
+                Built for<br />Industrial Scale.
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed mb-12 max-w-md">
+                Every service vertical runs on the same operational backbone — block-precise execution, certified compliance, nationwide reach and lifetime support.
+              </p>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-8">
+                {[
+                  { value: "6",    label: "Service Verticals" },
+                  { value: "17",   label: "Railway Zones" },
+                  { value: "12+",  label: "Metro Cities" },
+                  { value: "24×7", label: "AMC & Support" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <CountUp value={s.value} className="text-3xl font-extrabold text-gold block leading-none mb-1.5" />
+                    <p className="text-xs text-muted-foreground tracking-widest uppercase">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT — feature rows with dividers, no cards */}
+            <div className="divide-y divide-border">
+              {[
+                { icon: Wrench,      title: "Block-Perfect Execution",    description: "Pre-staged materials, method statements and trained block gangs ensure every railway and metro traffic block is cleared on time — zero extensions." },
+                { icon: Globe2,      title: "Nationwide Field Teams",      description: "Zone-wise project managers with dedicated supervisors deployed across all 17 railway zones, metro corridors and industrial hubs." },
+                { icon: ShieldCheck, title: "Compliance-First Delivery",   description: "RDSO, ISO 9001/14001/45001, GeM and IREPS approvals govern every scope of work — documentation provided at every stage." },
+                { icon: Clock,       title: "Lifetime AMC Support",        description: "From day-1 handover through the full asset lifecycle — 24×7 dedicated AMC teams with on-site spares buffers and guaranteed response SLAs." },
+              ].map(({ icon: Icon, title, description }) => (
+                <div key={title} className="group flex items-start gap-5 py-8 first:pt-0 last:pb-0">
+                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-gold/18 group-hover:border-gold/35 transition-all duration-300">
+                    <Icon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-gold transition-colors duration-300">{title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── WHY JIGISHA ──────────────────────────────────────────────── */}
       <section className="py-20 bg-navy">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -132,21 +267,66 @@ function ServicesIndexPage() {
       </section>
 
       {/* ── BOTTOM CTA ───────────────────────────────────────────────── */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Get Started</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-5">
-            Not Sure Which Service?
-          </h2>
-          <p className="text-muted-foreground text-base leading-relaxed max-w-xl mx-auto mb-10">
-            Describe your requirement and our team will identify the right vertical, assign a domain specialist, and respond within 24 hours.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
-          >
-            Talk to Our Specialists <ArrowRight className="w-4 h-4" />
-          </Link>
+      <section className="py-24 bg-navy relative overflow-hidden">
+        {/* Subtle grid lines */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
+        {/* Glow blobs */}
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/8 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full bg-gold/5 blur-[80px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* LEFT — copy */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/25 text-gold rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                Get Started Today
+              </div>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-[1.05] tracking-tight mb-5">
+                Not Sure Which<br />
+                <span className="text-gold">Service?</span>
+              </h2>
+              <p className="text-white/50 text-base leading-relaxed max-w-md mb-8">
+                Describe your requirement and our team will identify the right vertical, assign a domain specialist, and respond within 24 hours — guaranteed.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-gold/20"
+                >
+                  Talk to Our Specialists <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/group"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/70 font-semibold rounded-xl hover:border-white/30 hover:text-white transition-all text-sm"
+                >
+                  Explore Our Companies
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT — trust signals */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: "24 hrs",  label: "Response guarantee",       sub: "Every enquiry answered" },
+                { value: "6",       label: "Service verticals",        sub: "End-to-end coverage" },
+                { value: "19",      label: "Group companies",          sub: "Specialised subsidiaries" },
+                { value: "PAN",     label: "India execution",          sub: "All zones & corridors" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="group bg-white/5 border border-white/8 rounded-2xl p-5 hover:bg-white/8 hover:border-gold/25 transition-all duration-300"
+                >
+                  <p className="text-2xl font-extrabold text-gold leading-none mb-2">{item.value}</p>
+                  <p className="text-[13px] font-semibold text-white/80 mb-0.5">{item.label}</p>
+                  <p className="text-[11px] text-white/35">{item.sub}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </section>
     </>

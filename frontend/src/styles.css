@@ -145,6 +145,9 @@
   .animate-pulse-subtle {
     animation: pulseSubtle 4s ease-in-out infinite;
   }
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
+  }
 }
 
 @keyframes pulseSubtle {

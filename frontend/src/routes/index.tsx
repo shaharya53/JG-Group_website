@@ -11,6 +11,8 @@ import aboutImg from "../assets/about-office.jpg";
 import careersImg from "../assets/careers-team.jpg";
 import productsImg from "../assets/products-warehouse.jpg";
 
+import { MarqueeTicker } from "../components/MarqueeTicker";
+
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
@@ -182,15 +184,7 @@ function HomePage() {
               India's Most Comprehensive Industrial Partner — supplying, servicing and building across Railways, Metro, Defence, Manufacturing, Energy and 28+ more domains.
             </p>
 
-            {/* Hero stat pills */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              {heroStats.map(s => (
-                <div key={s.label} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 backdrop-blur-sm">
-                  <CountUp value={s.value} className="text-gold font-bold text-lg leading-none" />
-                  <span className="text-white/70 text-xs">{s.label}</span>
-                </div>
-              ))}
-            </div>
+            {/* Hero stat pills removed as they are now on the right */}
 
             <div className="flex flex-wrap gap-4">
               <Link to="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-gold-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
@@ -202,8 +196,41 @@ function HomePage() {
             </div>
           </div>
 
-          {/* Right side-nav panel */}
-         
+          {/* Right side: Stats Grid */}
+          <div className="hidden lg:flex flex-1 items-center justify-end py-20">
+            <div className="grid grid-cols-2 gap-4 w-full max-w-xl">
+              {/* Top card: Full Width */}
+              <div className="col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-12 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CountUp value="3M+" className="relative z-10 block text-7xl font-black text-gold mb-4 group-hover:scale-105 transition-transform duration-500" />
+                <span className="relative z-10 text-white/60 text-sm font-bold tracking-[0.2em] uppercase">Industrial Products</span>
+              </div>
+              
+              {/* Row 2: Two Cards */}
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CountUp value="19" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
+                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Group Companies</span>
+              </div>
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CountUp value="7,500+" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
+                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Approved Vendors</span>
+              </div>
+
+              {/* Row 3: Two Cards */}
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CountUp value="28+" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
+                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Digital Portals</span>
+              </div>
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CountUp value="24×7" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
+                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Operations Support</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom scroll indicator */}
@@ -211,6 +238,8 @@ function HomePage() {
           <div className="w-px h-12 bg-linear-to-b from-gold/60 to-transparent" />
         </div>
       </section>
+
+      <MarqueeTicker />
 
       {/* ── INDIA'S MOST COMPREHENSIVE PARTNER ───────────────────── */}
       <section className="py-20 bg-white">
@@ -230,19 +259,7 @@ function HomePage() {
             </p>
 
             {/* Mini stat icons */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {partnerStats.map(s => (
-                <div key={s.label} className="flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-gray-50">
-                  <div className="w-9 h-9 rounded-lg bg-navy flex items-center justify-center shrink-0">
-                    <s.icon className="w-4 h-4 text-gold" />
-                  </div>
-                  <div>
-                    <CountUp value={s.value} className="text-lg font-extrabold text-navy leading-none" />
-                    <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            
 
             <div className="flex gap-4">
               <Link to="/about" className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">

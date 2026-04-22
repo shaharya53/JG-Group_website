@@ -42,15 +42,13 @@ const openings = [
 function CareersPage() {
   return (
     <>
-      <section className="relative h-72 md:h-96 overflow-hidden">
-        <img src={careersImg} alt="Jigisha team" className="w-full h-full object-cover" width={1280} height={720} />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <img src={careersImg} alt="Jigisha team" className="absolute inset-0 w-full h-full object-cover" width={1280} height={720} />
         <div className="absolute inset-0 bg-hero-gradient opacity-80" />
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <div>
-            <p className="text-gold text-sm font-semibold tracking-widest uppercase">Build Your Career</p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-navy-foreground mt-2">Careers at Jigisha</h1>
-            <p className="mt-3 text-navy-foreground/70">Join the Industrial Universe</p>
-          </div>
+        <div className="relative z-10 text-center px-4">
+          <p className="text-gold text-sm font-semibold tracking-widest uppercase">Build Your Career</p>
+          <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold text-navy-foreground mt-4">Careers at Jigisha</h1>
+          <p className="mt-4 text-navy-foreground/70 text-lg">Join the Industrial Universe</p>
         </div>
       </section>
 

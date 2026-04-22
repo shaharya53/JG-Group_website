@@ -659,6 +659,228 @@ export const productsData: Product[] = [
     ],
     ctaLabel: "Request Agro & Pharma Catalogue",
   },
+
+  /* ─── ELECTRONICS & GADGETS ───────────────────────────────────── */
+  {
+    slug: "electronics-gadgets",
+    title: "Electronics & Gadgets",
+    tagline: "2,400+ consumer electronics, smart devices and accessories for retail, institutions and distributors",
+    overview:
+      "Jigisha Retails offers a curated catalogue of 2,400+ electronics and gadgets — from smartphones and laptops to smart home devices, audio gear, cameras and IT peripherals. Whether you're a retail buyer, institutional procurer or B2B distributor, we supply genuine, BIS-certified products backed by manufacturer warranties and PAN-India logistics.",
+    heroImages: [officeImg, careersImg, warehouseImg, heroImg],
+    skuCount: "2,400+",
+    stats: [
+      { value: "2,400+", label: "SKUs Catalogued" },
+      { value: "BIS",    label: "Certified Products" },
+      { value: "50+",    label: "Brands Partnered" },
+      { value: "PAN",    label: "India Delivery" },
+    ],
+    categories: [
+      "Smartphones & Accessories",
+      "Audio & Wearables",
+      "Smart Home Devices",
+      "Laptops & Tablets",
+      "Cameras & Optics",
+      "Gaming & Entertainment",
+      "Power & Charging",
+      "Networking & IT Peripherals",
+    ],
+    highlights: [
+      "BIS certified and ISI marked products across all categories",
+      "Genuine manufacturer warranty on every product",
+      "Authorized distributor tie-ups with 50+ leading brands",
+      "Competitive B2B bulk pricing with institutional billing",
+      "Same-day dispatch from PAN-India fulfillment centres",
+      "Private label options for white-label retail programmes",
+      "Corporate gifting and bulk institutional order support",
+      "30-day return and exchange with warranty management",
+    ],
+    sections: [
+      {
+        sectionTitle: "Smartphones, Computers & Audio",
+        sectionDescription:
+          "From flagship smartphones and productivity laptops to wireless earbuds and professional cameras — a comprehensive range of everyday and premium consumer electronics sourced from authorized channels with full warranty support.",
+        image: officeImg,
+        steps: [
+          { title: "Smartphones & Accessories", detail: "Android and iOS smartphones from leading brands; cases, screen guards, cables, pop sockets, car mounts, ring holders and full-device protection kits.", image: officeImg },
+          { title: "Laptops, Tablets & Peripherals", detail: "Business and consumer laptops, drawing tablets, Chromebooks, mechanical keyboards, ergonomic mice, USB hubs, monitor arms and laptop stands.", image: careersImg },
+          { title: "Audio & Wearables", detail: "True wireless earbuds, noise-cancelling headphones, portable speakers, smartwatches, fitness bands, sleep trackers and advanced health-monitoring wearables.", image: warehouseImg },
+          { title: "Cameras & Optics", detail: "Mirrorless and DSLR cameras, action cams, drone cameras, security cameras, lenses, tripods, gimbals, memory cards and professional photography accessories.", image: heroImg },
+        ],
+      },
+      {
+        sectionTitle: "Smart Home, Gaming & Power",
+        sectionDescription:
+          "Transform living spaces and workplaces with smart home automation, premium gaming gear and reliable power solutions — all curated from certified brands with integration compatibility across leading ecosystems.",
+        image: warehouseImg,
+        steps: [
+          { title: "Smart Home Devices", detail: "Smart speakers, voice assistants, smart bulbs, switches, plugs, Wi-Fi routers, video doorbells, indoor cameras and home automation hubs compatible with Alexa and Google Home.", image: warehouseImg },
+          { title: "Gaming & Entertainment", detail: "Gaming consoles, controllers, gaming mice, mechanical keyboards, gaming headsets, monitors with high refresh rates, gaming chairs and VR headsets.", image: heroImg },
+          { title: "Power & Charging Solutions", detail: "GaN chargers, fast-charging pads, solar power banks, UPS units, surge protectors, EV home chargers, portable battery stations and multi-port desktop chargers.", image: officeImg },
+          { title: "Networking & IT Peripherals", detail: "Wi-Fi 6/6E routers, mesh systems, network switches, NAS devices, webcams, document scanners, label printers and complete home-office setup bundles.", image: careersImg },
+        ],
+      },
+    ],
+    productItems: [
+      { name: "True Wireless Earbuds (ANC)",    spec: "40dB ANC, 36hr total battery, Bluetooth 5.3, IPX5, multipoint",         category: "Audio & Wearables",           brand: "boAt / Sony",       tags: ["BIS Certified", "IPX5"] },
+      { name: "Gaming Laptop 15.6\"",           spec: "RTX 4060, i7-13700H, 16GB DDR5, 512GB NVMe, 144Hz, THX Audio",         category: "Laptops & Tablets",           brand: "ASUS / Lenovo",     tags: ["BIS Certified", "ISI Mark"] },
+      { name: "Smart 4K LED TV 55\"",           spec: "4K UHD, 55\", Android TV 11, HDR10+, Dolby Vision, 60Hz",              category: "Smart Home Devices",          brand: "TCL / Hisense",     tags: ["BIS Certified", "Energy Star"] },
+      { name: "GaN Charger 65W USB-C",          spec: "65W GaN, 3-port, PD 3.0, QC 4.0, foldable plug, BIS approved",        category: "Power & Charging",            brand: "Anker / Belkin",    tags: ["BIS Certified", "PD 3.0"] },
+      { name: "Action Camera 4K60",             spec: "4K60fps, 20MP, EIS, 10m waterproof, 2\" touch LCD, Wi-Fi+Bluetooth",   category: "Cameras & Optics",            brand: "GoPro / Insta360",  tags: ["BIS Certified", "IPX8"] },
+      { name: "Mesh Wi-Fi System (3-node)",     spec: "Wi-Fi 6, tri-band, 6600Mbps, 600 sqm, Gigabit LAN, parental control",  category: "Networking & IT Peripherals", brand: "TP-Link / Netgear", tags: ["BIS Certified", "Wi-Fi 6"] },
+      { name: "Smartwatch Pro Series",          spec: "AMOLED 1.85\", GPS, SpO2, ECG, 14-day battery, IP68, BT Calling",      category: "Audio & Wearables",           brand: "Noise / Amazfit",   tags: ["BIS Certified", "IP68"] },
+      { name: "Portable Power Station 300W",    spec: "288Wh, 300W output, AC+USB-C+DC, LFP cell, BIS approved, 2000 cycles", category: "Power & Charging",            brand: "EcoFlow / Jackery",  tags: ["BIS Certified", "IEC 62133"] },
+    ],
+    ctaLabel: "Request Electronics Catalogue",
+  },
+
+  /* ─── FASHION & LIFESTYLE ─────────────────────────────────────── */
+  {
+    slug: "fashion-lifestyle",
+    title: "Fashion & Lifestyle",
+    tagline: "5,100+ curated fashion, accessories and lifestyle products for retail, institutions and B2B buyers",
+    overview:
+      "Jigisha Retails curates 5,100+ fashion and lifestyle products spanning apparel, footwear, bags, sportswear, home textiles and beauty — serving multi-brand retailers, corporate buyers, institutional purchasers and franchise networks. We combine a broad multi-brand catalogue with private label manufacturing options and PAN-India fulfillment.",
+    heroImages: [careersImg, officeImg, heroImg, warehouseImg],
+    skuCount: "5,100+",
+    stats: [
+      { value: "5,100+", label: "SKUs Catalogued" },
+      { value: "80+",    label: "Brands Curated" },
+      { value: "PVT",    label: "Label Options" },
+      { value: "PAN",    label: "India Delivery" },
+    ],
+    categories: [
+      "Men's Apparel",
+      "Women's Apparel",
+      "Kids' Wear",
+      "Footwear",
+      "Bags & Accessories",
+      "Sportswear & Athleisure",
+      "Home Textiles",
+      "Beauty & Grooming",
+    ],
+    highlights: [
+      "80+ curated brands across fashion and lifestyle categories",
+      "Private label manufacturing with MOQ from 100 units",
+      "BIS-marked textile and footwear products",
+      "Seasonal collections updated twice yearly",
+      "Institutional bulk supply with custom branding options",
+      "B2B portal with live inventory and dropshipping support",
+      "Corporate gifting catalogue with gifting packaging options",
+      "PAN-India franchise and channel partner distribution",
+    ],
+    sections: [
+      {
+        sectionTitle: "Apparel, Footwear & Accessories",
+        sectionDescription:
+          "A multi-brand collection of men's, women's and kids' apparel — paired with a wide footwear range, bags, belts and fashion accessories covering everyday essentials and occasion wear for all retail formats.",
+        image: careersImg,
+        steps: [
+          { title: "Men's Apparel", detail: "Formal shirts and trousers, casual T-shirts, polo shirts, denim jeans, ethnic kurtas, jackets, hoodies, innerwear and complete workwear and uniform solutions.", image: careersImg },
+          { title: "Women's Apparel", detail: "Kurtis, sarees, salwar suits, western tops, dresses, skirts, palazzo pants, co-ord sets, maternity wear and complete seasonal fashion collections.", image: officeImg },
+          { title: "Kids' Wear & School Uniforms", detail: "Infants' and toddlers' clothing, school uniforms with custom embroidery, play wear, party wear, sports kits and seasonal kids' fashion collections.", image: heroImg },
+          { title: "Footwear, Bags & Accessories", detail: "Casual, formal, sports and ethnic footwear for men, women and kids; handbags, backpacks, wallets, belts, sunglasses, scarves and fashion jewellery.", image: warehouseImg },
+        ],
+      },
+      {
+        sectionTitle: "Sportswear, Home Textiles & Beauty",
+        sectionDescription:
+          "Performance-engineered sportswear and athleisure, premium home textile collections and a curated beauty and grooming range — serving gyms, hotels, hospitals, hospitality chains and retail beauty shelves.",
+        image: heroImg,
+        steps: [
+          { title: "Sportswear & Athleisure", detail: "Compression tights, dry-fit jerseys, track pants, yoga pants, sports bras, gym gloves, running shoes and complete team-sports uniform kits with custom printing.", image: heroImg },
+          { title: "Home Textiles", detail: "Bedsheets, pillow covers, duvets, towels, bathrobes, curtains, table linen and hotel-grade hospitality textile packs with institutional bulk supply options.", image: warehouseImg },
+          { title: "Beauty & Grooming", detail: "Skincare, haircare, colour cosmetics, men's grooming kits, personal hygiene products, fragrance sets and complete corporate gifting and hamper options.", image: officeImg },
+          { title: "Private Label & Uniforms", detail: "Custom private-label manufacturing for apparel, footwear and accessories; corporate uniforms, hotel staff wear, retail staff uniforms with logo embroidery.", image: careersImg },
+        ],
+      },
+    ],
+    productItems: [
+      { name: "Men's Oxford Formal Shirt",       spec: "100% cotton twill, 60s count, slim-fit, Pantone-matched, S–XXL",      category: "Men's Apparel",               brand: "Arrow / Van Heusen",  tags: ["BIS IS 1964", "OEKO-TEX"] },
+      { name: "Women's Rayon Kurti (Printed)",   spec: "Rayon 110 GSM, block print, XS–3XL, machine washable, colourfast",   category: "Women's Apparel",             brand: "Biba / W",            tags: ["Azo-Free Dyes", "OEKO-TEX"] },
+      { name: "School Uniform Set (Boys)",       spec: "Poly-viscose, custom colour, shirt + trouser + tie, XS–XL",          category: "Kids' Wear",                  brand: "Private Label",       tags: ["BIS IS 7000", "Colourfast"] },
+      { name: "Running Shoes (Men)",             spec: "EVA midsole, mesh upper, size 6–12, anti-skid outsole, BIS marked",   category: "Footwear",                    brand: "Sparx / Campus",      tags: ["BIS IS 5557", "Anti-Skid"] },
+      { name: "Hotel Bedsheet Set (400 TC)",     spec: "100% cotton sateen, 400 TC, 60\"×84\", white, institutional grade",  category: "Home Textiles",               brand: "Bombay Dyeing / Trident", tags: ["OEKO-TEX", "IS 1963"] },
+      { name: "Compression Running Tights",      spec: "85% polyester 15% spandex, UPF 50+, 4-way stretch, S–XL",           category: "Sportswear & Athleisure",     brand: "Nivia / HRX",         tags: ["OEKO-TEX", "UPF 50+"] },
+      { name: "Backpack 30L (Laptop Sleeve)",    spec: "600D polyester, 30L, 15.6\" laptop sleeve, USB port, water-resistant", category: "Bags & Accessories",         brand: "Wildcraft / Skybags", tags: ["BIS Certified", "Water-Resistant"] },
+      { name: "Men's Grooming Kit (9-piece)",    spec: "Trimmer + moisturiser + facewash + deodorant + serum + razor set",   category: "Beauty & Grooming",           brand: "Bombay Shaving / Beardo", tags: ["CDSCO Compliant", "Derma Tested"] },
+    ],
+    ctaLabel: "Request Fashion Catalogue",
+  },
+
+  /* ─── HEALTH & PERSONAL CARE ──────────────────────────────────── */
+  {
+    slug: "health-personal-care",
+    title: "Health & Personal Care",
+    tagline: "2,800+ health, wellness and personal care products for retail, pharmacies and institutions",
+    overview:
+      "Jigisha Retails stocks 2,800+ health and personal care products — spanning OTC medicines, nutraceuticals, medical devices, skincare, oral care, mother & baby essentials and wellness supplements. We serve retail pharmacies, hospital stores, corporate wellness programmes and institutional bulk buyers with CDSCO-compliant, genuine products from trusted brands.",
+    heroImages: [warehouseImg, officeImg, greenImg, careersImg],
+    skuCount: "2,800+",
+    stats: [
+      { value: "2,800+", label: "SKUs Catalogued" },
+      { value: "CDSCO",  label: "Compliant Products" },
+      { value: "60+",    label: "Brands Partnered" },
+      { value: "PAN",    label: "India Delivery" },
+    ],
+    categories: [
+      "OTC Medicines & Supplements",
+      "Nutraceuticals & Vitamins",
+      "Medical Devices (Home Use)",
+      "Skincare & Derma",
+      "Oral Care",
+      "Mother & Baby Care",
+      "Personal Hygiene",
+      "Fitness & Wellness",
+    ],
+    highlights: [
+      "CDSCO-licensed wholesale distribution for all Rx/OTC categories",
+      "Cold-chain validated storage for temperature-sensitive products",
+      "Genuine manufacturer-sealed products with batch traceability",
+      "Institutional billing with CGHS/ESIC empanelment support",
+      "Private label formulation options for wellness brands",
+      "Monthly auto-replenishment for pharmacy and hospital stores",
+      "Corporate wellness hamper and gifting catalogue available",
+      "Licensed pharmacist support for product queries and compliance",
+    ],
+    sections: [
+      {
+        sectionTitle: "OTC, Nutraceuticals & Medical Devices",
+        sectionDescription:
+          "A comprehensive range of over-the-counter medicines, vitamins, protein supplements and home-use medical devices — all CDSCO-compliant and sourced from licensed manufacturers with full batch documentation.",
+        image: warehouseImg,
+        steps: [
+          { title: "OTC Medicines", detail: "Analgesics, antipyretics, antacids, antihistamines, cough syrups, first-aid kits, eye drops, ear drops and common OTC therapeutic categories across all licensed brands.", image: warehouseImg },
+          { title: "Nutraceuticals & Vitamins", detail: "Multivitamins, Vitamin C/D/B12, Omega-3, iron supplements, probiotics, protein powders, collagen, ashwagandha and complete nutritional supplement ranges.", image: greenImg },
+          { title: "Home-Use Medical Devices", detail: "Digital thermometers, blood pressure monitors, glucometers, pulse oximeters, nebulizers, heating pads, TENS units and complete home-health monitoring kits.", image: officeImg },
+          { title: "Fitness & Wellness", detail: "Protein supplements, BCAA, creatine, pre-workout, yoga mats, resistance bands, massage guns, foam rollers and complete fitness nutrition and recovery product ranges.", image: careersImg },
+        ],
+      },
+      {
+        sectionTitle: "Skincare, Personal Hygiene & Baby Care",
+        sectionDescription:
+          "Dermatologist-tested skincare, oral hygiene, premium personal care and a complete mother-and-baby product range — curated from brands trusted across Indian hospitals, pharmacies and retail chains.",
+        image: officeImg,
+        steps: [
+          { title: "Skincare & Derma", detail: "Moisturisers, sunscreens (SPF 30–100), face serums, toners, cleansers, anti-acne gels, depigmentation creams, derma-grade chemical peels and prescription-adjacent OTC skincare.", image: officeImg },
+          { title: "Oral Care", detail: "Toothpastes (herbal, whitening, sensitive), toothbrushes, electric toothbrush heads, mouthwash, dental floss, teeth whitening strips and complete oral hygiene kits.", image: warehouseImg },
+          { title: "Mother & Baby Care", detail: "Baby diapers, wet wipes, baby lotions, baby shampoo, breast pumps, sterilizers, baby food, maternity pads, nursing bras and complete newborn care bundles.", image: careersImg },
+          { title: "Personal Hygiene & Sanitisation", detail: "Soaps, body wash, hand sanitisers, deodorants, feminine hygiene products, shaving kits and institutional-pack hygiene products for hospitals and workplaces.", image: greenImg },
+        ],
+      },
+    ],
+    productItems: [
+      { name: "Digital BP Monitor (Upper Arm)",  spec: "Automatic, dual-user, 60-reading memory, WHO indicator, BIS marked",   category: "Medical Devices (Home Use)",    brand: "Omron / Dr. Morepen",  tags: ["CDSCO Licensed", "BIS Marked"] },
+      { name: "Vitamin D3 + K2 Softgels",        spec: "D3 2000IU + K2 100mcg, 60 softgels, FSSAI approved, veg capsule",     category: "Nutraceuticals & Vitamins",    brand: "HealthVit / Himalayan", tags: ["FSSAI Approved", "GMP Certified"] },
+      { name: "Whey Protein Isolate 1kg",        spec: "90% protein, 25g serving, <1g fat, Informed Sport certified, 40 serv", category: "Fitness & Wellness",           brand: "Optimum / MuscleBlaze",  tags: ["FSSAI Approved", "Informed Sport"] },
+      { name: "Broad-Spectrum Sunscreen SPF 50", spec: "SPF 50 PA++++, 50ml, UVA+UVB, derma tested, non-comedogenic",         category: "Skincare & Derma",             brand: "La Shield / Minimalist", tags: ["CDSCO Compliant", "Derma Tested"] },
+      { name: "Baby Diaper Pants (M, 100-pack)", spec: "Medium 7–12 kg, 100 pcs, 12hr protection, wetness indicator, aloe",   category: "Mother & Baby Care",           brand: "Pampers / MamyPoko",     tags: ["BIS IS 17591", "Derma Tested"] },
+      { name: "Pulse Oximeter (Fingertip)",      spec: "SpO2 ±2%, PR ±2 bpm, OLED, auto-off, PI display, CE + CDSCO",        category: "Medical Devices (Home Use)",   brand: "BPL / Contec",           tags: ["CDSCO Licensed", "CE Marked"] },
+      { name: "Probiotic Capsules 10B CFU",      spec: "10B CFU, 10 strains, delayed-release, 30 caps, FSSAI, refrigerator-free", category: "Nutraceuticals & Vitamins", brand: "Wellbeing / Yakult",    tags: ["FSSAI Approved", "GMP"] },
+      { name: "Hand Sanitiser 500ml (Gel)",      spec: "70% IPA, WHO formula, CDSCO listed, institutional pack, pump dispenser", category: "Personal Hygiene",           brand: "Dettol / Himalaya",      tags: ["CDSCO Approved", "WHO Formula"] },
+    ],
+    ctaLabel: "Request Health Catalogue",
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {

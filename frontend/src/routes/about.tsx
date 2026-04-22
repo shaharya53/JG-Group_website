@@ -262,19 +262,26 @@ function AboutPage() {
       </section>
 
       {/* ── FOOTER CTA ───────────────────────────────────────────── */}
-      <section className="py-20 bg-gold">
-         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="text-center md:text-left">
-               <h2 className="text-3xl md:text-4xl font-black text-navy leading-tight">Scale Your Industrial<br/>Horizon With Us.</h2>
-               <p className="mt-4 text-navy/70 font-semibold">Join 7,500+ vendors and thousands of industrial partners.</p>
-            </div>
-            <div className="flex flex-wrap gap-4">
-               <Link to="/contact" className="px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-all flex items-center gap-2">
-                  Get In Touch <ArrowRight className="w-5 h-5" />
-               </Link>
-              
-            </div>
-         </div>
+      <section className="relative py-28 overflow-hidden">
+        <img src={aboutImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gold/75" />
+        <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Join The Universe</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
+            Scale Your Industrial<br/>Horizon With Us.
+          </h2>
+          <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
+            Join 7,500+ vendors and thousands of industrial partners powering India's growth.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm">
+              Get In Touch <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/group" className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm">
+              Our Companies <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );

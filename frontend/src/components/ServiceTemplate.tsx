@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Service, ServiceSection } from "../data/servicesData";
 import { CountUp } from "./CountUp";
 
@@ -238,33 +238,29 @@ function WhyUsSection({ whyUs }: { whyUs: Service["whyUs"] }) {
 /* ── CTA ──────────────────────────────────────────────────────────── */
 function CtaSection({ service }: { service: Service }) {
   return (
-    <section className="relative py-24 bg-[oklch(0.12_0.05_250)] overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 opacity-10">
-        <img src={service.heroImage} alt="" className="w-full h-full object-cover" />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.12_0.05_250)] to-[oklch(0.12_0.05_250)/80]" />
-
+    <section className="relative py-28 overflow-hidden">
+      <img src={service.heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gold/75" />
       <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
-        <p className="text-gold text-xs font-bold tracking-widest uppercase mb-3">Get Started</p>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-5">
+        <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Get Started</p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
           Ready to Partner<br />With Jigisha?
         </h2>
-        <p className="text-white/60 text-lg max-w-xl mx-auto mb-10">
+        <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
           Talk to our specialists about your {service.title.toLowerCase()} requirements. We respond within 24 hours.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
           >
             {service.ctaLabel ?? "Request a Quote"} <ArrowRight className="w-5 h-5" />
           </Link>
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm"
           >
-            All Services <ChevronRight className="w-5 h-5" />
+            All Services <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>

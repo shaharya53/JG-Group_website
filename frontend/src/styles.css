@@ -146,7 +146,7 @@
     animation: pulseSubtle 4s ease-in-out infinite;
   }
   .animate-ticker {
-    animation: ticker 30s linear infinite;
+    animation: ticker 10s linear infinite;
   }
 }
 

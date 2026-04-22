@@ -1,33 +1,40 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, ExternalLink, Globe, TrendingUp, Users, Zap } from "lucide-react";
-import { CountUp } from "../components/CountUp";
-import railwayImg   from "../assets/railway-services.jpg";
-import metroImg     from "../assets/metro-rail.jpg";
-import defenceImg   from "../assets/defence-tech.jpg";
-import greenImg     from "../assets/green-energy.jpg";
+import { ArrowRight, Users, Zap, Globe, Rocket } from "lucide-react";
 import warehouseImg from "../assets/products-warehouse.jpg";
-import careersImg   from "../assets/careers-team.jpg";
 
 export const Route = createFileRoute("/domains")({
   component: DomainsPage,
   head: () => ({
     meta: [
-      { title: "Our Domains — Jigisha Group of Companies" },
+      { title: "Our Group Companies — Jigisha Group" },
       { name: "description", content: "Explore all 21 specialized companies under Jigisha Group, from Railways and Defence to IT, Agro, Green Energy and more." },
-      { property: "og:title", content: "Our Domains — Jigisha Group" },
-      { property: "og:description", content: "21 specialized companies. One unified industrial ecosystem." },
+      { property: "og:title", content: "Our Group Companies — Jigisha Group" },
+      { property: "og:description", content: "21 specialized companies. Unified excellence." },
     ],
   }),
 });
 
-const companies = [
+type Stat = { value: string; label: string };
+type Company = {
+  id: number;
+  name: string;
+  shortName: string;
+  description: string;
+  color: string;
+  logo: string;
+  services: string[];
+  stats: Stat[];
+};
+
+const companies: Company[] = [
   {
     id: 0,
     name: "Jigisha Infin Corp Pvt. Ltd.",
-    shortName: "Infin Corp",
-    description: "Financial services, investment advisory, and insurance consulting for industrial and corporate clients.",
-    color: "oklch(0.55 0.15 145)",
+    shortName: "Jigisha Infin Corp Pvt. Ltd.",
+    description: "Financial services, investment advisory, and insurance consulting.",
+    color: "#4CAF50",
+    logo: "INFIN.png",
     services: [
       "Corporate Finance & Project Funding Consultancy",
       "Industrial & Trade Finance Solutions",
@@ -48,9 +55,10 @@ const companies = [
   {
     id: 1,
     name: "Jigisha International Pvt. Ltd.",
-    shortName: "International",
+    shortName: "Jigisha International Pvt. Ltd.",
     description: "Global operations arm managing international expansion, trade, and cross-border partnerships.",
-    color: "oklch(0.50 0.20 260)",
+    color: "#0066cc",
+    logo: "INTERNATIONAL.png",
     services: [
       "Global Market Expansion Strategy",
       "Overseas Operations Management",
@@ -70,9 +78,10 @@ const companies = [
   {
     id: 2,
     name: "Jigisha Retails Pvt. Ltd.",
-    shortName: "Retails",
+    shortName: "Jigisha Retails Pvt. Ltd.",
     description: "Omni-channel retail and e-commerce platforms for consumer and industrial markets.",
-    color: "oklch(0.55 0.15 145)",
+    color: "#4CAF50",
+    logo: "RETAIL.png",
     services: [
       "General E-commerce Operations (jigisha.online & .world)",
       "B2B/B2G Industrial E-commerce Portal",
@@ -93,9 +102,10 @@ const companies = [
   {
     id: 3,
     name: "Jigisha Railtech Pvt. Ltd.",
-    shortName: "Railtech",
+    shortName: "Jigisha Railtech Pvt. Ltd.",
     description: "End-to-end railway, metro, and bullet train solutions including manufacturing and maintenance.",
-    color: "oklch(0.55 0.20 30)",
+    color: "#FF5722",
+    logo: "RAILTECH.png",
     services: [
       "Research & Development of Railway Technologies",
       "Manufacturing & Contract Manufacturing of Rail Components",
@@ -116,9 +126,10 @@ const companies = [
   {
     id: 4,
     name: "Jigisha Infotech Pvt. Ltd.",
-    shortName: "Infotech",
+    shortName: "Jigisha Infotech Pvt. Ltd.",
     description: "IT solutions, software development, IoT, and digital transformation services.",
-    color: "oklch(0.50 0.22 300)",
+    color: "#9C27B0",
+    logo: "INFOTECH.png",
     services: [
       "Software Development & IT Solutions",
       "Hardware Manufacturing & Integration",
@@ -139,9 +150,10 @@ const companies = [
   {
     id: 5,
     name: "Jigisha Industrial Services Pvt. Ltd.",
-    shortName: "Ind. Services",
+    shortName: "Jigisha Industrial Services Pvt. Ltd.",
     description: "Comprehensive industrial support, maintenance, and service management.",
-    color: "oklch(0.45 0.08 60)",
+    color: "#795548",
+    logo: "JISPL.png",
     services: [
       "Core Industrial Support Services",
       "After-Sales, MRO & Technical Services",
@@ -162,9 +174,10 @@ const companies = [
   {
     id: 6,
     name: "Jigisha Industries Pvt. Ltd.",
-    shortName: "Industries",
+    shortName: "Jigisha Industries Pvt. Ltd.",
     description: "Core manufacturing and diversified industrial production across multiple sectors.",
-    color: "oklch(0.45 0.05 220)",
+    color: "#607D8B",
+    logo: "INDUSTRIES.png",
     services: [
       "Diversified Industrial Manufacturing",
       "Engineering & Turnkey Industrial Solutions",
@@ -185,9 +198,10 @@ const companies = [
   {
     id: 7,
     name: "Jigisha Engineering Pvt. Ltd.",
-    shortName: "Engineering",
+    shortName: "Jigisha Engineering Pvt. Ltd.",
     description: "Engineering, design, and turnkey project execution for industrial and infrastructure sectors.",
-    color: "oklch(0.55 0.22 350)",
+    color: "#E91E63",
+    logo: "ENGINEERING.png",
     services: [
       "Turnkey Engineering Projects (EPC)",
       "Mechanical, Electrical & Civil Engineering",
@@ -208,9 +222,10 @@ const companies = [
   {
     id: 8,
     name: "Jigisha Agro Industries Pvt. Ltd.",
-    shortName: "Agro",
+    shortName: "Jigisha Agro Industries Pvt. Ltd.",
     description: "Modern agriculture, food processing, and agri-tech solutions.",
-    color: "oklch(0.58 0.18 135)",
+    color: "#8BC34A",
+    logo: "AGRO.png",
     services: [
       "Modern Farming & Contract Agriculture",
       "Agricultural Inputs Manufacturing & Supply",
@@ -231,9 +246,10 @@ const companies = [
   {
     id: 9,
     name: "Jigisha Electricals & Electronics Pvt. Ltd.",
-    shortName: "Electricals",
+    shortName: "Jigisha Electricals & Electronics Pvt. Ltd.",
     description: "Electrical systems, electronics design, and smart technology solutions.",
-    color: "oklch(0.70 0.18 85)",
+    color: "#FFC107",
+    logo: "JE.png",
     services: [
       "Electrical Systems Manufacturing",
       "Electronics Design & Production",
@@ -254,9 +270,10 @@ const companies = [
   {
     id: 10,
     name: "Jigisha Automobiles Pvt. Ltd.",
-    shortName: "Automobiles",
+    shortName: "Jigisha Automobiles Pvt. Ltd.",
     description: "Vehicle manufacturing, automotive components, and sustainable mobility solutions.",
-    color: "oklch(0.55 0.20 260)",
+    color: "#2196F3",
+    logo: "AUTOMOBILES.png",
     services: [
       "Vehicle Manufacturing & Assembly",
       "Electric & Sustainable Mobility Solutions",
@@ -277,9 +294,10 @@ const companies = [
   {
     id: 11,
     name: "Jigisha Enterprises",
-    shortName: "Enterprises",
-    description: "Apex holding company providing strategic oversight, financial management, and governance across all group subsidiaries.",
-    color: "oklch(0.25 0.08 250)",
+    shortName: "Jigisha Enterprises",
+    description: "Holding company providing strategic oversight, financial management, and governance across all group subsidiaries.",
+    color: "#003366",
+    logo: "JGC.png",
     services: [
       "Strategic Oversight & Governance",
       "Financial Management & Capital Allocation",
@@ -300,9 +318,10 @@ const companies = [
   {
     id: 12,
     name: "Jigisha Technologies Pvt. Ltd.",
-    shortName: "Technologies",
+    shortName: "Jigisha Technologies Pvt. Ltd.",
     description: "High-tech innovations including semiconductors, graphene, and advanced materials.",
-    color: "oklch(0.50 0.22 300)",
+    color: "#9C27B0",
+    logo: "TECHNOLOGIES.png",
     services: [
       "Semiconductor Technologies",
       "Graphene & Advanced Materials",
@@ -323,9 +342,10 @@ const companies = [
   {
     id: 13,
     name: "Jigisha Logistics Pvt. Ltd.",
-    shortName: "Logistics",
+    shortName: "Jigisha Logistics Pvt. Ltd.",
     description: "Integrated logistics, supply chain, and transportation services.",
-    color: "oklch(0.65 0.18 60)",
+    color: "#FF9800",
+    logo: "LOGISTICS.png",
     services: [
       "Freight & Cargo Transportation",
       "Warehousing & Distribution",
@@ -346,9 +366,10 @@ const companies = [
   {
     id: 14,
     name: "Jigisha Media Vision Pvt. Ltd.",
-    shortName: "Media Vision",
+    shortName: "Jigisha Media Vision Pvt. Ltd.",
     description: "Media, advertising, creative communications, and event management.",
-    color: "oklch(0.55 0.22 350)",
+    color: "#E91E63",
+    logo: "MEDIA.png",
     services: [
       "Advertising & Marketing Services",
       "Multimedia & Content Creation",
@@ -369,9 +390,10 @@ const companies = [
   {
     id: 15,
     name: "Jigisha Pharma & Healthcare Pvt. Ltd.",
-    shortName: "Pharma",
+    shortName: "Jigisha Pharma & Healthcare Pvt. Ltd.",
     description: "Pharmaceuticals, medical devices, and comprehensive healthcare solutions.",
-    color: "oklch(0.60 0.18 210)",
+    color: "#00BCD4",
+    logo: "PHARMA.png",
     services: [
       "Pharmaceutical Manufacturing & Supply",
       "Medical Devices & Diagnostics",
@@ -392,9 +414,10 @@ const companies = [
   {
     id: 16,
     name: "Jigisha Envirocare Pvt. Ltd.",
-    shortName: "Envirocare",
+    shortName: "Jigisha Envirocare Pvt. Ltd.",
     description: "Environmental solutions, sustainability services, and green technology.",
-    color: "oklch(0.55 0.18 145)",
+    color: "#4CAF50",
+    logo: "ENVIROCARE.png",
     services: [
       "Waste Management & Recycling",
       "Water Management & Treatment",
@@ -415,9 +438,10 @@ const companies = [
   {
     id: 17,
     name: "Jigisha Defense Technologies Pvt. Ltd.",
-    shortName: "Defense Tech",
+    shortName: "Jigisha Defense Technologies Pvt. Ltd.",
     description: "Defense research, manufacturing, and systems integration for armed forces.",
-    color: "oklch(0.40 0.15 270)",
+    color: "#3F51B5",
+    logo: "DEFENSE.png",
     services: [
       "Land Systems Development",
       "Naval & Marine Defense Systems",
@@ -438,9 +462,10 @@ const companies = [
   {
     id: 18,
     name: "Jigisha Green Pvt. Ltd.",
-    shortName: "Green",
+    shortName: "Jigisha Green Pvt. Ltd.",
     description: "Renewable energy, sustainability projects, and green infrastructure.",
-    color: "oklch(0.58 0.18 135)",
+    color: "#8BC34A",
+    logo: "GREEN.png",
     services: [
       "Renewable Energy Development",
       "Energy Efficiency & Green Building Solutions",
@@ -461,9 +486,10 @@ const companies = [
   {
     id: 19,
     name: "Jigisha Consultancy Pvt. Ltd.",
-    shortName: "Consultancy",
+    shortName: "Jigisha Consultancy Pvt. Ltd.",
     description: "Strategic advisory, project management, and business consulting services.",
-    color: "oklch(0.45 0.08 60)",
+    color: "#795548",
+    logo: "JGC.png",
     services: [
       "Business Strategy & Management Consulting",
       "Project Management & Execution Support",
@@ -484,9 +510,10 @@ const companies = [
   {
     id: 20,
     name: "Jigisha Infra Pvt. Ltd.",
-    shortName: "Infra",
+    shortName: "Jigisha Infra Pvt. Ltd.",
     description: "Infrastructure development, engineering, and project execution.",
-    color: "oklch(0.55 0.20 30)",
+    color: "#FF5722",
+    logo: "INFRA.png",
     services: [
       "Urban Infrastructure Development",
       "Transportation Infrastructure",
@@ -506,274 +533,281 @@ const companies = [
   },
 ];
 
+const advantages = [
+  {
+    icon: Users,
+    title: "Integrated Expertise",
+    desc: "Access specialized knowledge across 21 companies through single-point coordination.",
+  },
+  {
+    icon: Zap,
+    title: "Cross-Company Synergy",
+    desc: "Seamless collaboration between companies for complex, multi-disciplinary projects.",
+  },
+  {
+    icon: Globe,
+    title: "Global-Local Execution",
+    desc: "International strategy combined with 2,000+ local branches for ground-level execution.",
+  },
+  {
+    icon: Rocket,
+    title: "Innovation Pipeline",
+    desc: "R&D from tech companies directly feeds into manufacturing and infrastructure subsidiaries.",
+  },
+];
+
 function DomainsPage() {
   const [activeId, setActiveId] = useState(0);
   const active = companies[activeId];
 
   return (
-    <>
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-[oklch(0.18_0.08_255)]">
-        {/* Subtle grid lines */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
-          style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
-        {/* Gold glow */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-gold/8 blur-[140px] pointer-events-none" />
+    <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-20 items-center">
-
-            {/* LEFT — text */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/25 text-gold rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase mb-7">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                Jigisha Group Portfolio
+      {/* ── HERO ─────────────────────────────────────────────────── */}
+      <section className="relative text-white text-center overflow-hidden py-20">
+        <img src={warehouseImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, rgba(0,51,102,0.88) 0%, rgba(0,102,204,0.82) 100%)" }}
+        />
+        <div className="relative max-w-5xl mx-auto px-4 md:px-8">
+          <span className="inline-block bg-white/15 px-5 py-2 rounded-full text-sm font-semibold tracking-wide mb-5">
+            Jigisha Group Portfolio
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-5">
+            21 Specialized Companies.<br />Unified Excellence.
+          </h1>
+          <p className="text-white/90 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-10">
+            Explore the complete ecosystem of Jigisha Group's diversified business verticals.
+            Click on any company to discover its specialized services and capabilities.
+          </p>
+          <div className="flex flex-wrap justify-center gap-10 mt-2">
+            {[
+              { value: "21",      label: "Companies" },
+              { value: "15,000+", label: "Professionals" },
+              { value: "2,000+",  label: "Locations" },
+              { value: "30+",     label: "Countries" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-3xl font-bold">{s.value}</div>
+                <div className="text-white/80 text-sm mt-1">{s.label}</div>
               </div>
-
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.92] tracking-tight mb-6">
-                21 Companies.<br />
-                <span className="text-gold">One Universe.</span>
-              </h1>
-
-              <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-lg">
-                Explore the complete ecosystem of Jigisha Group's diversified business verticals — from Railways and Defence to IT, Green Energy and beyond.
-              </p>
-
-              <div className="grid grid-cols-4 gap-6 pt-8 border-t border-white/10">
-                {[
-                  { value: "21",      label: "Companies" },
-                  { value: "15,000+", label: "Workforce" },
-                  { value: "28+",     label: "Sectors" },
-                  { value: "PAN",     label: "India" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <CountUp value={s.value} className="text-2xl md:text-3xl font-extrabold text-gold leading-none block mb-1" />
-                    <div className="text-white/40 text-[10px] font-semibold tracking-widest uppercase">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-3 mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
-                >
-                  Partner With Us <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/group"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/8 border border-white/15 text-white/80 font-semibold rounded-xl hover:bg-white/14 hover:text-white transition-colors text-sm"
-                >
-                  View The Group <ExternalLink className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            {/* RIGHT — image mosaic */}
-            <div className="hidden lg:grid grid-cols-2 gap-3">
-              {[
-                { img: railwayImg,   label: "Railways & Metro",    span: false },
-                { img: defenceImg,   label: "Defence & Aerospace",  span: false },
-                { img: greenImg,     label: "Green Energy",         span: false },
-                { img: warehouseImg, label: "Industrial Supply",    span: false },
-                { img: metroImg,     label: "Infrastructure & EPC", span: false },
-                { img: careersImg,   label: "IT & Services",        span: false },
-              ].map(({ img, label }) => (
-                <div key={label} className="group relative h-44 rounded-2xl overflow-hidden">
-                  <img
-                    src={img}
-                    alt={label}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.08_0.05_255)/85] via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-[11px] font-bold text-white tracking-wide">{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── TABBED COMPANIES ──────────────────────────────────────── */}
-      <section id="domains-tabs" className="py-16 bg-[oklch(0.975_0.003_250)]">
+      {/* ── COMPANIES TABS ───────────────────────────────────────── */}
+      <section id="domains-tabs" className="py-10" style={{ backgroundColor: "#f8fafc" }}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="bg-white rounded-xl overflow-hidden" style={{ boxShadow: "0 5px 20px rgba(0,0,0,0.08)" }}>
 
-          <div className="mb-10">
-            <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-2">Group Companies</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Explore Our Domains</h2>
-            <p className="text-muted-foreground text-sm mt-2">Click any company to discover its specialized services and capabilities.</p>
-          </div>
-
-          {/* Tab pills */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {companies.map((co) => (
-              <button
-                key={co.id}
-                onClick={() => setActiveId(co.id)}
-                className={`px-3.5 py-1.5 rounded-full text-[12px] font-semibold border transition-all duration-200 whitespace-nowrap ${
-                  activeId === co.id
-                    ? "bg-gold text-gold-foreground border-gold shadow-sm"
-                    : "bg-card border-border text-foreground/60 hover:border-gold/40 hover:text-foreground"
-                }`}
-              >
-                {co.shortName}
-              </button>
-            ))}
-          </div>
-
-          {/* Active company panel */}
-          <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
-            {/* Top color bar */}
-            <div className="h-1 w-full" style={{ background: `linear-gradient(to right, ${active.color}, ${active.color}88)` }} />
-
-            <div className="p-8 md:p-10">
-              {/* Company header */}
-              <div className="flex items-start gap-5 mb-8">
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 text-white font-black text-lg"
-                  style={{ background: active.color }}
+            {/* 3-part header: logo | heading | logo */}
+            <div
+              className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 p-5 border-b"
+              style={{
+                background: "linear-gradient(135deg, rgba(0,51,102,0.05) 0%, rgba(0,102,204,0.03) 100%)",
+                borderColor: "#e2e8f0",
+                minHeight: 80,
+              }}
+            >
+              <div className="flex-1 flex items-center justify-start">
+                <img src="/all_company/JGC.png" alt="Jigisha Group" className="object-contain" style={{ maxHeight: 64 }} />
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <h2
+                  className="text-xl md:text-2xl font-extrabold uppercase tracking-wide text-center"
+                  style={{ color: "#0066cc" }}
                 >
-                  {String(active.id + 1).padStart(2, "0")}
+                  Our Group Companies
+                </h2>
+              </div>
+              <div className="flex-1 flex items-center justify-end">
+                <img src="/all_company/GO GLOBAL.png" alt="Mission Go Global" className="object-contain" style={{ maxHeight: 64 }} />
+              </div>
+            </div>
+
+            {/* Subtitle */}
+            <div className="px-5 py-3 text-center border-b" style={{ background: "#f8fafc", borderColor: "#e2e8f0" }}>
+              <p className="text-sm font-medium" style={{ color: "#718096" }}>
+                Select a company to view its specialized services
+              </p>
+            </div>
+
+            {/* Pill tabs */}
+            <div className="flex flex-wrap gap-2 p-4 border-b justify-center" style={{ borderColor: "#e2e8f0" }}>
+              {companies.map((c) => {
+                const isActive = c.id === activeId;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => setActiveId(c.id)}
+                    className="px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 hover:-translate-y-0.5"
+                    style={{
+                      border: `2px solid ${isActive ? c.color : "#e2e8f0"}`,
+                      backgroundColor: isActive ? c.color : "transparent",
+                      color: isActive ? "#fff" : "#4a5568",
+                      boxShadow: isActive ? "0 4px 12px rgba(0,0,0,0.12)" : undefined,
+                    }}
+                  >
+                    {c.shortName}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active company content */}
+            <div className="p-6 md:p-8">
+
+              {/* Company header */}
+              <div className="flex flex-col md:flex-row items-start gap-5 mb-6">
+                <div className="w-16 h-16 flex items-center justify-center shrink-0 bg-white">
+                  <img
+                    src={`/all_company/${active.logo}`}
+                    alt={active.name}
+                    className="w-16 h-16 object-contain"
+                  />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-extrabold text-foreground leading-tight mb-1">{active.name}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-2xl">{active.description}</p>
+                  <h3
+                    className="text-xl md:text-2xl font-bold mb-2 leading-tight"
+                    style={{ color: "rgba(174,151,19,0.9)" }}
+                  >
+                    {active.name.toUpperCase()}
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: "#4a5568" }}>{active.description}</p>
                 </div>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-8 p-5 rounded-xl bg-[oklch(0.975_0.003_250)] border border-border">
-                {active.stats.map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="text-xl md:text-2xl font-extrabold text-foreground leading-none mb-1" style={{ color: active.color }}>{s.value}</div>
-                    <div className="text-[11px] text-muted-foreground tracking-wider uppercase">{s.label}</div>
+              <div
+                className="flex flex-wrap gap-5 p-5 rounded-xl mb-8"
+                style={{ background: "#f8fafc" }}
+              >
+                {active.stats.map((s, i) => (
+                  <div key={i} className="flex-1 text-center" style={{ minWidth: 100 }}>
+                    <span className="block text-2xl font-bold text-black mb-1">{s.value}</span>
+                    <span className="text-sm" style={{ color: "#718096" }}>{s.label}</span>
                   </div>
                 ))}
               </div>
 
               {/* Services grid */}
-              <div className="mb-8">
-                <h4 className="text-sm font-extrabold text-foreground tracking-wider uppercase mb-4">Key Services & Capabilities</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {active.services.map((svc, i) => (
+              <h4 className="text-lg font-semibold mb-5" style={{ color: "#003366" }}>
+                Core Services & Solutions
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {active.services.map((service, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 p-4 bg-white rounded-lg border transition-all duration-300 hover:-translate-y-0.5"
+                    style={{ borderColor: "#e2e8f0", boxShadow: "none" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+                  >
                     <div
-                      key={i}
-                      className="flex items-start gap-3 p-3.5 bg-background border border-border rounded-xl hover:border-gold/30 transition-colors group"
+                      className="w-9 h-9 rounded-md flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${active.color}20` }}
                     >
-                      <div
-                        className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                        style={{ background: active.color }}
-                      />
-                      <span className="text-[13px] text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">{svc}</span>
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: active.color }} />
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-border">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-opacity hover:opacity-90"
-                  style={{ background: active.color }}
-                >
-                  Partner With Us <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/get-quote"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold border border-border text-foreground/70 hover:border-gold/40 hover:text-foreground transition-colors bg-card"
-                >
-                  Request a Quote <ArrowRight className="w-4 h-4" />
-                </Link>
-                <span className="text-xs text-muted-foreground ml-auto hidden md:block">
-                  Company {String(active.id + 1).padStart(2, "0")} of {companies.length}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── WHY JIGISHA GROUP ─────────────────────────────────────── */}
-      <section className="py-24 bg-background border-y border-border">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
-
-            <div className="lg:sticky lg:top-28">
-              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Why Jigisha</p>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6">
-                One Group.<br />Every Domain.
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed mb-12 max-w-md">
-                Across all 21 companies, the Jigisha Group brings the same fundamentals — unified governance, shared technology, and cross-sector synergy.
-              </p>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-8">
-                {[
-                  { value: "21", label: "Group Companies" },
-                  { value: "28+", label: "Sectors Served" },
-                  { value: "15,000+", label: "Workforce" },
-                  { value: "15+", label: "Export Markets" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <CountUp value={s.value} className="text-3xl font-extrabold text-gold block leading-none mb-1.5" />
-                    <p className="text-xs text-muted-foreground tracking-widest uppercase">{s.label}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#4a5568" }}>{service}</p>
                   </div>
                 ))}
               </div>
-            </div>
 
-            <div className="divide-y divide-border">
-              {[
-                { icon: Globe,       title: "Unified Ecosystem",       description: "21 specialized subsidiaries share technology, talent, and infrastructure — creating synergies that no single-sector company can match." },
-                { icon: TrendingUp,  title: "Cross-Sector Leverage",   description: "A project in Railways can draw on Engineering, Infotech, Logistics, and Finance simultaneously — from one group, under one SLA." },
-                { icon: Users,       title: "Dedicated Leadership",     description: "Each domain has its own leadership team, P&L accountability, and growth mandate — backed by the full group's resources." },
-                { icon: Zap,         title: "Speed at Scale",           description: "From concept to execution, Jigisha Group's integrated structure cuts lead times, approval chains, and friction across every vertical." },
-              ].map(({ icon: Icon, title, description }) => (
-                <div key={title} className="group flex items-start gap-5 py-8 first:pt-0 last:pb-0">
-                  <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-gold/18 group-hover:border-gold/35 transition-all duration-300">
-                    <Icon className="w-5 h-5 text-gold" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-gold transition-colors duration-300">{title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+              {/* Actions */}
+              <div className="flex flex-wrap gap-3 pt-6 border-t" style={{ borderColor: "#e2e8f0" }}>
+                <Link
+                  to="/contact"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-white font-semibold rounded-md text-sm hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: active.color, minWidth: 140 }}
+                >
+                  View Company Details <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white font-semibold rounded-md text-sm transition-colors hover:bg-gray-50"
+                  style={{ color: "#0066cc", border: "2px solid #0066cc", minWidth: 140 }}
+                >
+                  Contact Now
+                </Link>
+              </div>
 
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ───────────────────────────────────────────────────── */}
-      <section className="py-20 bg-navy">
-        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Partner With Us</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-5">
-            Ready to Explore a Partnership?
+      {/* ── ADVANTAGES ───────────────────────────────────────────── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: "#003366" }}>
+              The Jigisha Group Advantage
+            </h2>
+            <p className="max-w-xl mx-auto" style={{ color: "#718096" }}>
+              Why our integrated multi-company structure delivers superior value
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {advantages.map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="text-center p-6 rounded-xl border transition-all duration-300 hover:-translate-y-1"
+                style={{ background: "#f8fafc", borderColor: "#e2e8f0" }}
+                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)")}
+                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+              >
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-white"
+                  style={{ background: "linear-gradient(135deg, #0066cc 0%, #003366 100%)" }}
+                >
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h4 className="font-semibold mb-2" style={{ color: "#003366" }}>{title}</h4>
+                <p className="text-sm leading-relaxed" style={{ color: "#4a5568" }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ──────────────────────────────────────────────────── */}
+      <section
+        className="py-16 text-white text-center"
+        style={{ background: "linear-gradient(135deg, #003366 0%, #0066cc 100%)" }}
+      >
+        <div className="max-w-3xl mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Partner with the Complete Ecosystem
           </h2>
-          <p className="text-white/50 text-base leading-relaxed max-w-xl mx-auto mb-10">
-            Whether you're a vendor, client, investor, or partner — one or more of our 21 companies is built for your sector.
+          <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto px-2">
+            Whether you need a single service or a comprehensive multi-company solution,
+            our integrated structure ensures seamless delivery across the value chain.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white font-semibold rounded-md text-sm hover:bg-gray-50 transition-colors"
+              style={{ color: "#0066cc", minWidth: 200 }}
             >
-              Get In Touch <ArrowRight className="w-4 h-4" />
+              Discuss Your Requirements
             </Link>
             <Link
-              to="/group"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-bold rounded-xl hover:bg-white/15 transition-colors text-sm border border-white/20"
+              to="/about"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-md text-sm border-2 border-white text-white transition-all hover:bg-white"
+              style={{ minWidth: 200 }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#0066cc"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "white"; }}
             >
-              View The Group <ExternalLink className="w-4 h-4" />
+              Learn About Our Group
             </Link>
           </div>
         </div>
       </section>
-    </>
+
+    </div>
   );
 }

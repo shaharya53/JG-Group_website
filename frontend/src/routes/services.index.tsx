@@ -267,65 +267,24 @@ function ServicesIndexPage() {
       </section>
 
       {/* ── BOTTOM CTA ───────────────────────────────────────────────── */}
-      <section className="py-24 bg-navy relative overflow-hidden">
-        {/* Subtle grid lines */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-          style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
-        {/* Glow blobs */}
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/8 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full bg-gold/5 blur-[80px] pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-            {/* LEFT — copy */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/25 text-gold rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                Get Started Today
-              </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-[1.05] tracking-tight mb-5">
-                Not Sure Which<br />
-                <span className="text-gold">Service?</span>
-              </h2>
-              <p className="text-white/50 text-base leading-relaxed max-w-md mb-8">
-                Describe your requirement and our team will identify the right vertical, assign a domain specialist, and respond within 24 hours — guaranteed.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-gold/20"
-                >
-                  Talk to Our Specialists <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/group"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/70 font-semibold rounded-xl hover:border-white/30 hover:text-white transition-all text-sm"
-                >
-                  Explore Our Companies
-                </Link>
-              </div>
-            </div>
-
-            {/* RIGHT — trust signals */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: "24 hrs",  label: "Response guarantee",       sub: "Every enquiry answered" },
-                { value: "6",       label: "Service verticals",        sub: "End-to-end coverage" },
-                { value: "19",      label: "Group companies",          sub: "Specialised subsidiaries" },
-                { value: "PAN",     label: "India execution",          sub: "All zones & corridors" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="group bg-white/5 border border-white/8 rounded-2xl p-5 hover:bg-white/8 hover:border-gold/25 transition-all duration-300"
-                >
-                  <p className="text-2xl font-extrabold text-gold leading-none mb-2">{item.value}</p>
-                  <p className="text-[13px] font-semibold text-white/80 mb-0.5">{item.label}</p>
-                  <p className="text-[11px] text-white/35">{item.sub}</p>
-                </div>
-              ))}
-            </div>
-
+      <section className="relative py-28 overflow-hidden">
+        <img src={railwayImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gold/75" />
+        <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Get Started Today</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
+            Not Sure Which Service?
+          </h2>
+          <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
+            Describe your requirement and our team will identify the right vertical, assign a domain specialist, and respond within 24 hours — guaranteed.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm">
+              Talk to Our Specialists <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm">
+              All Services <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

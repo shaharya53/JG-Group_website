@@ -5,7 +5,11 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:8080",
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
   methods: ["GET", "POST"],
 }));
 app.use(express.json());

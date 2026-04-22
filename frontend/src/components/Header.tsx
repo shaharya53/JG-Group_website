@@ -173,7 +173,7 @@ export function Header() {
 
           {/* DESKTOP NAV */}
           <nav
-            className="hidden lg:flex items-center gap-1"
+            className="hidden xl:flex items-center gap-0.5"
             onMouseLeave={startClose}
             onMouseEnter={cancelClose}
           >
@@ -185,7 +185,7 @@ export function Header() {
                     key={item.key}
                     onMouseEnter={() => { cancelClose(); setOpenMenu(item.key); }}
                     onClick={() => setOpenMenu(p => p === item.key ? null : item.key)}
-                    className={`relative flex items-center gap-1 px-3 py-2 text-[13px] font-semibold rounded-lg transition-colors ${
+                    className={`relative flex items-center gap-1 px-2 py-2 text-[13px] font-semibold rounded-lg transition-colors ${
                       active ? "text-gold bg-gold/10" : "text-foreground/65 hover:text-gold hover:bg-gold/8"
                     }`}
                   >
@@ -198,7 +198,7 @@ export function Header() {
               if (item.kind === "external") {
                 return (
                   <a key={item.to} href={item.to} target="_blank" rel="noopener noreferrer"
-                    className="px-3 py-2 text-[13px] font-semibold rounded-lg transition-colors text-foreground/65 hover:text-gold hover:bg-gold/8">
+                    className="px-2 py-2 text-[13px] font-semibold rounded-lg transition-colors text-foreground/65 hover:text-gold hover:bg-gold/8">
                     {item.label}
                   </a>
                 );
@@ -206,7 +206,7 @@ export function Header() {
               const active = isActive(item.to);
               return (
                 <Link key={item.to} to={item.to as any}
-                  className={`relative px-3 py-2 text-[13px] font-semibold rounded-lg transition-colors ${
+                  className={`relative px-2 py-2 text-[13px] font-semibold rounded-lg transition-colors ${
                     active ? "text-gold bg-gold/10" : "text-foreground/65 hover:text-gold hover:bg-gold/8"
                   }`}
                 >
@@ -218,7 +218,7 @@ export function Header() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <div className="hidden xl:flex items-center gap-3 shrink-0">
             <Link
               to="/contact"
               className={`px-3 py-2 text-[13px] font-semibold rounded-lg transition-colors ${
@@ -238,7 +238,7 @@ export function Header() {
           {/* MOBILE TOGGLE */}
           <button
             onClick={() => setMobileOpen(p => !p)}
-            className="lg:hidden w-9 h-9 flex items-center justify-center text-foreground/70 hover:text-foreground rounded-lg hover:bg-accent transition-colors"
+            className="xl:hidden w-9 h-9 flex items-center justify-center text-foreground/70 hover:text-foreground rounded-lg hover:bg-accent transition-colors"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -319,14 +319,15 @@ export function Header() {
       {openMenu && (
         <div
           className="fixed inset-0 z-40 bg-foreground/5"
-          style={{ top: "calc(62px + 32px)" }}
+          style={{ top: scrolled ? "62px" : "94px" }}
           onClick={() => setOpenMenu(null)}
         />
       )}
 
       {/* ── MOBILE MENU ─────────────────────────────────────────────── */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-x-0 z-40 bg-card border-b border-border shadow-xl overflow-y-auto max-h-[calc(100vh-94px)] animate-fade-in" style={{ top: "94px" }}>
+        <div className="lg:hidden fixed inset-x-0 z-40 bg-card border-b border-border shadow-xl overflow-y-auto max-h-[calc(100vh-62px)] animate-fade-in" style={{ top: "62px" }}>
+
           <nav className="flex flex-col p-3">
             {[...navItems, { kind: "internal" as const, label: "Contact", to: "/contact" }].map((item) => {
               if (item.kind === "mega") {
@@ -411,11 +412,26 @@ export function Header() {
             })}
           </nav>
 
-          <div className="p-4 border-t border-border">
+          <div className="p-4 border-t border-border bg-muted/30">
+            <div className="flex flex-col gap-3 mb-6 px-2">
+              <a href="tel:+918989167888" className="flex items-center gap-3 text-xs font-medium text-foreground/70 hover:text-gold transition-colors">
+                <div className="w-8 h-8 rounded-full bg-navy/5 flex items-center justify-center">
+                  <Phone className="w-3.5 h-3.5 text-navy" />
+                </div>
+                +91 8989167888
+              </a>
+              <a href="mailto:info@jigisha.in" className="flex items-center gap-3 text-xs font-medium text-foreground/70 hover:text-gold transition-colors">
+                <div className="w-8 h-8 rounded-full bg-navy/5 flex items-center justify-center">
+                  <Phone className="w-3.5 h-3.5 text-navy rotate-90" /> {/* Reusing Phone for simplicity or could use Mail */}
+                </div>
+                info@jigisha.in
+              </a>
+            </div>
+
             <Link
               to="/get-quote"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-3 bg-gold text-gold-foreground text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-2 w-full py-3.5 bg-gold text-gold-foreground text-sm font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-gold/20"
             >
               Get Quote <ArrowRight className="w-4 h-4" />
             </Link>

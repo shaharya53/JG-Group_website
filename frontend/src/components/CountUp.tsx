@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /** Parse "7,500+" → { before:"", num:7500, after:"+", comma:true } */
 function parse(val: string) {
@@ -18,10 +18,11 @@ function fmt(n: number, comma: boolean) {
 interface CountUpProps {
   value: string;
   className?: string;
+  style?: React.CSSProperties;
   duration?: number; // ms
 }
 
-export function CountUp({ value, className, duration }: CountUpProps) {
+export function CountUp({ value, className, style, duration }: CountUpProps) {
   const ref   = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(value);
   const started = useRef(false);
@@ -61,5 +62,5 @@ export function CountUp({ value, className, duration }: CountUpProps) {
     return () => obs.disconnect();
   }, [value, duration]);
 
-  return <span ref={ref} className={className}>{display}</span>;
+  return <span ref={ref} className={className} style={style}>{display}</span>;
 }

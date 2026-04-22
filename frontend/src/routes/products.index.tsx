@@ -386,30 +386,27 @@ function ProcureSection() {
 /* ── BOTTOM CTA ───────────────────────────────────────────────────────── */
 function BottomCta() {
   return (
-    <section className="relative py-24 bg-navy overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.018]"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 10px)" }} />
-      <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/5 blur-[120px] pointer-events-none" />
-      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/4 blur-[120px] pointer-events-none" />
-
+    <section className="relative py-28 overflow-hidden">
+      <img src={warehouseImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gold/75" />
       <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
-        <p className="text-gold text-[11px] font-bold tracking-[0.22em] uppercase mb-4">Start Procuring Today</p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-5">
+        <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Start Procuring Today</p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
           Can't Find What You Need?
         </h2>
-        <p className="text-white/45 text-base leading-relaxed max-w-xl mx-auto mb-10">
+        <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
           Jigisha sources across 28+ domains and 7,500+ vendors. If it's industrial — we can procure it.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-xl shadow-gold/20"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
           >
             Talk to a Specialist <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             to="/group"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/15 text-white/65 font-semibold rounded-xl hover:border-white/28 hover:text-white transition-all text-sm"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm"
           >
             Explore Our Companies
           </Link>

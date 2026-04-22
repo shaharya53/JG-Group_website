@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CountUp } from "../components/CountUp";
 import { ArrowRight, ShieldCheck, Zap, Globe, Layers } from "lucide-react";
 import { industriesData, type Industry } from "../data/industriesData";
+import warehouseImg from "../assets/products-warehouse.jpg";
 
 export const Route = createFileRoute("/industries/")({
   component: IndustriesIndexPage,
@@ -137,21 +138,25 @@ function IndustriesIndexPage() {
       </section>
 
       {/* ── BOTTOM CTA ────────────────────────────────────────────── */}
-      <section className="py-20 bg-navy">
-        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Cross-Sector Expertise</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-5">
+      <section className="relative py-28 overflow-hidden">
+        <img src={warehouseImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gold/75" />
+        <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Cross-Sector Expertise</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
             Don't See Your Industry?
           </h2>
-          <p className="text-white/50 text-base leading-relaxed max-w-xl mx-auto mb-10">
+          <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
             Jigisha Group serves 28+ domains. Talk to our team about tailored solutions for your sector.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm"
-          >
-            Talk to Our Specialists <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm">
+              Talk to Our Specialists <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/industries" className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm">
+              All Industries <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -275,7 +275,6 @@ function UseCasesSection({ industry }: { industry: Industry }) {
                 <p className="text-sm text-muted-foreground leading-[1.8]">{uc.description}</p>
               </div>
 
-              <div className="absolute left-0 top-0 bottom-0 w-0.75 bg-gold scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-top rounded-full" />
             </div>
           ))}
         </div>
@@ -461,7 +460,7 @@ function CaseStudiesSection({ industry }: { industry: Industry }) {
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
           <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Proven Impact</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white">Case Studies</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white">Success Stories</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -546,34 +545,30 @@ function CertificationsSection({ industry }: { industry: Industry }) {
 function CtaSection({ industry }: { industry: Industry }) {
   return (
     <section className="relative py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-linear-to-br from-[oklch(0.75_0.12_80)] via-[oklch(0.7_0.14_70)] to-[oklch(0.65_0.15_60)]" />
-      <div className="absolute inset-0 opacity-8">
-        <img src={industry.heroImages[2]} alt="" className="w-full h-full object-cover" />
-      </div>
-      <div className="absolute inset-0 bg-linear-to-r from-[oklch(0.75_0.12_80)/80] to-[oklch(0.65_0.15_60)/60]" />
-
+      <img src={industry.heroImages[0]} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gold/75" />
       <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
-        <p className="text-gold-foreground/65 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">
+        <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">
           Partner With Us
         </p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gold-foreground leading-tight mb-6">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
           Transform Your<br />{industry.title} Operations
         </h2>
-        <p className="text-gold-foreground/70 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+        <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
           Connect with our {industry.title.toLowerCase()} specialists for a tailored solution brief. We respond within 24 hours.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-9 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-xl w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-xl hover:opacity-90 transition-opacity text-sm w-full sm:w-auto justify-center"
           >
             {industry.ctaLabel ?? "Get Sector Brief"} <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             to="/industries"
-            className="inline-flex items-center gap-2 px-9 py-4 bg-white/20 border border-white/30 text-gold-foreground font-semibold rounded-xl hover:bg-white/30 transition-colors text-sm w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 border border-navy/20 text-navy font-semibold rounded-xl hover:bg-white/45 transition-colors text-sm w-full sm:w-auto justify-center"
           >
-            All Industries <ChevronRight className="w-4 h-4" />
+            All Industries <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

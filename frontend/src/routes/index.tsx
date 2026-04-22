@@ -12,6 +12,7 @@ import careersImg from "../assets/careers-team.jpg";
 import productsImg from "../assets/products-warehouse.jpg";
 
 import { MarqueeTicker } from "../components/MarqueeTicker";
+import { CompanyMarquee } from "../components/CompanyMarquee";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -196,39 +197,39 @@ function HomePage() {
             </div>
           </div>
 
-          {/* Right side: Stats Grid */}
-          <div className="hidden lg:flex flex-1 items-center justify-end py-20">
-            <div className="grid grid-cols-2 gap-4 w-full max-w-xl">
-              {/* Top card: Full Width */}
-              <div className="col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-12 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CountUp value="3M+" className="relative z-10 block text-7xl font-black text-gold mb-4 group-hover:scale-105 transition-transform duration-500" />
-                <span className="relative z-10 text-white/60 text-sm font-bold tracking-[0.2em] uppercase">Industrial Products</span>
-              </div>
-              
-              {/* Row 2: Two Cards */}
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CountUp value="19" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
-                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Group Companies</span>
-              </div>
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CountUp value="7,500+" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
-                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Approved Vendors</span>
+          {/* Right side: editorial image composition */}
+          <div className="hidden lg:flex flex-1 items-center justify-end py-16">
+            <div className="relative w-[460px] h-[520px] shrink-0">
+
+              {/* Decorative offset gold border frame */}
+              <div className="absolute top-8 right-0 w-[360px] h-[440px] rounded-3xl border border-gold/20 pointer-events-none" />
+
+              {/* Primary large image */}
+              <div className="absolute top-0 left-0 w-[360px] h-[420px] rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
+                <img
+                  src={railwayImg}
+                  alt="Railway infrastructure"
+                  className="w-full h-full object-cover scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
               </div>
 
-              {/* Row 3: Two Cards */}
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CountUp value="28+" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
-                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Digital Portals</span>
+              {/* Secondary image — bottom-right overlap */}
+              <div className="absolute bottom-0 right-0 w-[190px] h-[240px] rounded-2xl overflow-hidden shadow-[0_16px_40px_-8px_rgba(0,0,0,0.7)] border-4 border-[oklch(0.1_0.05_250)]">
+                <img
+                  src={greenImg}
+                  alt="Green energy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-500 group shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CountUp value="24×7" className="relative z-10 block text-4xl font-black text-gold mb-2 group-hover:scale-105 transition-transform duration-500" />
-                <span className="relative z-10 text-white/60 text-xs font-bold tracking-[0.15em] uppercase">Operations Support</span>
-              </div>
+
+              {/* Gold accent dot — top-left of primary */}
+              <div className="absolute top-5 left-5 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_12px_4px_oklch(0.75_0.18_85/0.5)]" />
+
+              {/* Thin vertical gold line — left edge */}
+              <div className="absolute top-0 -left-5 w-px h-48 bg-linear-to-b from-gold/60 to-transparent" />
+
             </div>
           </div>
         </div>
@@ -243,6 +244,7 @@ function HomePage() {
 
       {/* ── INDIA'S MOST COMPREHENSIVE PARTNER ───────────────────── */}
       <section className="py-20 bg-white">
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* Left text */}
           <div>
@@ -288,6 +290,8 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <CompanyMarquee />
 
       {/* ── THE NUMBERS ──────────────────────────────────────────── */}
       <section className="bg-navy-gradient py-16">
@@ -622,9 +626,9 @@ function HomePage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
-            <Link to="/careers" className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
+            <a href="https://careers.jigisha.group/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
               View Openings <Briefcase className="w-4 h-4" />
-            </Link>
+            </a>
             <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 border border-white/30 text-gold-foreground font-semibold rounded-lg hover:bg-white/30 transition-colors text-sm">
               Enquire Now
             </Link>
@@ -665,83 +669,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ── GET IN TOUCH ─────────────────────────────────────────── */}
-      <section className="py-20 bg-[oklch(0.97_0.004_250)]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14">
-          {/* Left contact info */}
-          <div>
-            <p className="text-gold text-xs font-bold tracking-widest uppercase mb-2">Reach Us</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-6">Get In Touch</h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-8">
-              We're available 24 hours, 7 days a week. Reach out for procurement enquiries, vendor registration, service requests or general information.
-            </p>
-            <div className="space-y-5">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-gold" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-navy mb-0.5">Head Office</div>
-                  <div className="text-sm text-gray-500">F 904, 10th Floor, Rachna Tower, Rachna Nagar, Bhopal, MP – 462023</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-gold" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-navy mb-0.5">Phone</div>
-                  <div className="text-sm text-gray-500">(+91) 8989167888</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-gold" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-navy mb-0.5">Email</div>
-                  <div className="text-sm text-gray-500">info@jigisha.in</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right quick enquiry form */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-8">
-            <h3 className="text-lg font-bold text-navy mb-6">Quick Enquiry</h3>
-            <form
-              onSubmit={e => e.preventDefault()}
-              className="space-y-4"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">Full Name</label>
-                  <input type="text" placeholder="Your name" className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 transition-colors" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">Phone</label>
-                  <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 transition-colors" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Email</label>
-                <input type="email" placeholder="your@email.com" className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 transition-colors" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Subject</label>
-                <input type="text" placeholder="How can we help you?" className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 transition-colors" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Message</label>
-                <textarea rows={4} placeholder="Describe your requirement…" className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 transition-colors resize-none" />
-              </div>
-              <button type="submit" className="w-full py-3 bg-navy text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
-                Submit Enquiry
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+     
     </>
   );
 }

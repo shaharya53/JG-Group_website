@@ -20,9 +20,9 @@ function IndustriesIndexPage() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-end pb-20 overflow-hidden bg-[oklch(0.08_0.04_250)]">
+      <section className="relative min-h-screen flex items-center lg:items-end py-20 lg:pb-32 overflow-hidden bg-[#0b1220]">
         {/* Background collage */}
-        <div className="absolute inset-0 grid grid-cols-4 opacity-20">
+        <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 opacity-20 grayscale brightness-75">
           {industriesData.slice(0, 4).map((ind) => (
             <img
               key={ind.slug}
@@ -32,28 +32,35 @@ function IndustriesIndexPage() {
             />
           ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.06_0.05_250)] via-[oklch(0.08_0.05_250)/85] to-[oklch(0.1_0.04_250)/60]" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0b1220] via-[#0b1220]/90 to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full">
-          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Sector Coverage</p>
-          <h1 className="text-5xl md:text-6xl xl:text-7xl font-extrabold text-white leading-[0.9] tracking-tight mb-5">
-            Industries<br />We Serve
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2.5 bg-gold/10 border border-gold/25 rounded-full px-4 py-1.5 mb-6 lg:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+            <span className="text-gold text-[10px] lg:text-[11px] font-bold tracking-[0.25em] uppercase text-center">Sector Coverage</span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.9] tracking-tighter mb-8">
+            Industries<br />
+            <span className="text-gold">We Serve</span>
           </h1>
-          <p className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed mb-10">
+
+          <p className="text-white/50 text-base lg:text-xl max-w-2xl leading-relaxed mb-12 font-medium">
             From Railways and Defence to Agriculture and Green Energy — comprehensive solutions for every sector powering India's growth.
           </p>
 
-          {/* Stats row */}
-          <div className="flex flex-wrap gap-6">
+          {/* High-Impact Stats Row */}
+          <div className="grid grid-cols-2 lg:flex lg:flex-wrap gap-6 lg:gap-12 border-t border-white/10 pt-10">
             {[
               { value: "12+", label: "Industry Verticals" },
               { value: "500K+", label: "Components Supplied" },
               { value: "17", label: "Railway Zones" },
               { value: "PAN-India", label: "Presence" },
             ].map((s) => (
-              <div key={s.label} className="flex items-center gap-2">
-                <CountUp value={s.value} className="text-gold font-extrabold text-xl" />
-                <span className="text-white/40 text-xs">{s.label}</span>
+              <div key={s.label} className="flex flex-col">
+                <CountUp value={s.value} className="text-2xl lg:text-3xl font-black text-gold leading-none" />
+                <span className="text-white/30 text-[9px] font-bold uppercase tracking-[0.2em] mt-3">{s.label}</span>
               </div>
             ))}
           </div>

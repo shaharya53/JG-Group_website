@@ -238,9 +238,9 @@ export function Header() {
           {/* MOBILE TOGGLE */}
           <button
             onClick={() => setMobileOpen(p => !p)}
-            className="xl:hidden w-9 h-9 flex items-center justify-center text-foreground/70 hover:text-foreground rounded-lg hover:bg-accent transition-colors"
+            className="xl:hidden w-10 h-10 flex items-center justify-center text-foreground/70 hover:text-gold rounded-xl hover:bg-gold/10 transition-all border border-border/40"
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? <X className="w-5 h-5 text-gold" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
@@ -326,7 +326,7 @@ export function Header() {
 
       {/* ── MOBILE MENU ─────────────────────────────────────────────── */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-x-0 z-40 bg-card border-b border-border shadow-xl overflow-y-auto max-h-[calc(100vh-62px)] animate-fade-in" style={{ top: "62px" }}>
+        <div className="xl:hidden fixed inset-x-0 z-40 bg-card border-b border-border shadow-xl overflow-y-auto max-h-[calc(100vh-62px)] animate-fade-in" style={{ top: "62px" }}>
 
           <nav className="flex flex-col p-3">
             {[...navItems, { kind: "internal" as const, label: "Contact", to: "/contact" }].map((item) => {

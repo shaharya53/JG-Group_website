@@ -81,32 +81,32 @@ function IndustryHero({ industry }: { industry: Industry }) {
         style={{ backgroundImage: "repeating-linear-gradient(90deg,white 0,white 1px,transparent 0,transparent 8.333%),repeating-linear-gradient(0deg,white 0,white 1px,transparent 0,transparent 8%)" }} />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* LEFT */}
-          <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/20 text-gold rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-wide uppercase mb-6">
+          {/* LEFT: Text Content */}
+          <div className="flex-1 text-left w-full">
+            <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/20 text-gold rounded-full px-3.5 py-1.5 text-[10px] lg:text-[11px] font-bold tracking-wide uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
               Industry Vertical
             </div>
 
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-extrabold text-white leading-[0.9] tracking-tight mb-6">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-black text-white leading-[0.95] lg:leading-[0.9] tracking-tight mb-6">
               {industry.title}
             </h1>
 
-            <p className="text-white/55 text-base md:text-lg leading-[1.7] max-w-lg mb-10">
+            <p className="text-white/55 text-sm md:text-lg leading-[1.7] max-w-lg mb-8 lg:mb-10 font-medium">
               {industry.description}
             </p>
 
             {/* Stat pills */}
-            <div className="flex flex-wrap gap-2.5 mb-12">
+            <div className="flex flex-wrap gap-2 mb-10 lg:mb-12">
               {industry.stats.map((s) => (
                 <div
                   key={s.label}
-                  className="flex items-center gap-2 bg-white/7 border border-white/10 rounded-full px-4 py-2 backdrop-blur-sm"
+                  className="flex items-center gap-2 bg-white/7 border border-white/10 rounded-full px-3 lg:px-4 py-1.5 lg:py-2 backdrop-blur-sm"
                 >
-                  <CountUp value={s.value} className="text-gold font-extrabold text-sm leading-none" />
-                  <span className="text-white/45 text-[11px]">{s.label}</span>
+                  <CountUp value={s.value} className="text-gold font-black text-xs lg:text-sm leading-none" />
+                  <span className="text-white/45 text-[10px] lg:text-[11px]">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -114,31 +114,36 @@ function IndustryHero({ industry }: { industry: Industry }) {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-gold/20"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 lg:px-7 py-3 lg:py-3.5 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-gold/20"
               >
                 {industry.ctaLabel ?? "Get Sector Brief"} <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href="#offerings"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/80 font-semibold rounded-xl hover:bg-white/8 hover:text-white transition-all text-sm"
+                href="#"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 lg:px-7 py-3 lg:py-3.5 border border-white/15 text-white/80 font-semibold rounded-xl hover:bg-white/8 hover:text-white transition-all text-sm"
               >
-                Explore Solutions
+                View More
               </a>
             </div>
           </div>
 
-          {/* RIGHT — masonry image grid */}
-          <div className="order-1 lg:order-2">
+          {/* RIGHT: Editorial Visual */}
+          <div className="flex-1 flex justify-center lg:justify-end relative w-full mt-12 lg:mt-0">
             <div
-              className="grid gap-3"
-              style={{ gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr 1fr", height: "480px" }}
+              className="grid gap-2 lg:gap-3"
+              style={{ 
+                gridTemplateColumns: "1fr 1fr 1fr", 
+                gridTemplateRows: "1fr 1fr", 
+                aspectRatio: "4/3",
+                height: "auto",
+              }}
             >
               {cells.map((cell, i) => (
                 <div
                   key={i}
-                  className={`relative ${cell.spanClass} overflow-hidden rounded-2xl cursor-pointer transition-all duration-500 ${
+                  className={`relative ${cell.spanClass} overflow-hidden rounded-xl lg:rounded-2xl cursor-pointer transition-all duration-500 ${
                     hoveredIndex === i
-                      ? "ring-2 ring-gold shadow-[0_0_40px_oklch(0.75_0.12_80/0.35)] scale-[1.02] z-10"
+                      ? "ring-2 ring-gold scale-[1.02] z-10"
                       : hoveredIndex !== null
                       ? "opacity-55 scale-[0.98]"
                       : ""
@@ -155,28 +160,17 @@ function IndustryHero({ industry }: { industry: Industry }) {
                   />
                   <div className={`absolute inset-0 ${cell.gradient} transition-opacity duration-300 ${hoveredIndex === i ? "opacity-80" : "opacity-50"}`} />
                   {"showTitle" in cell && cell.showTitle && hoveredIndex === i && (
-                    <div className="absolute bottom-3 left-3 bg-gold/90 text-gold-foreground text-[11px] font-bold px-2.5 py-1 rounded-full">
+                    <div className="absolute bottom-2 lg:bottom-3 left-2 lg:left-3 bg-gold/90 text-gold-foreground text-[10px] lg:text-[11px] font-bold px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full">
                       {industry.title}
                     </div>
                   )}
                 </div>
               ))}
             </div>
-
-            <div className="flex gap-1.5 mt-3 justify-end">
-              {cells.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-1 rounded-full transition-all duration-300 ${hoveredIndex === i ? "w-6 bg-gold" : "w-1.5 bg-white/25"}`}
-                />
-              ))}
-            </div>
           </div>
 
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-background to-transparent" />
     </section>
   );
 }
@@ -185,13 +179,13 @@ function IndustryHero({ industry }: { industry: Industry }) {
 
 function StatsStrip({ industry }: { industry: Industry }) {
   return (
-    <div className="bg-navy border-y border-white/5 py-10">
+    <div className="bg-navy border-y border-white/5 py-8 lg:py-10">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-8 md:divide-x md:divide-white/8">
           {industry.stats.map((s, i) => (
-            <div key={s.label} className={`text-center ${i > 0 ? "pl-8" : ""}`}>
-              <CountUp value={s.value} className="text-3xl md:text-4xl font-extrabold text-gold leading-none mb-2 block" />
-              <div className="text-xs text-white/45 tracking-widest uppercase">{s.label}</div>
+            <div key={s.label} className={`text-center ${i > 0 ? "md:pl-8" : ""}`}>
+              <CountUp value={s.value} className="text-2xl lg:text-4xl font-black text-gold leading-none mb-2 block" />
+              <div className="text-[10px] lg:text-xs text-white/45 tracking-widest uppercase font-bold">{s.label}</div>
             </div>
           ))}
         </div>

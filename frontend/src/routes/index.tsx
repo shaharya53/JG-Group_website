@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CountUp } from "../components/CountUp";
-import { ArrowRight, ChevronRight, Train, Building2, Shield, Factory, Zap, Globe, Bot, Briefcase, Phone, Mail, MapPin, Package, Users, Building, Wrench } from "lucide-react";
+import { ArrowRight, ChevronRight, Train, Building2, Shield, Factory, Zap, Globe, Bot, Briefcase, Plus, Sparkles, Phone, Mail, MapPin, Package, Users, Building, Wrench } from "lucide-react";
 import { EcosystemDiagram } from "../components/EcosystemDiagram";
 import heroImg from "../assets/hero-industrial.jpg";
 import railwayImg from "../assets/railway-services.jpg";
@@ -175,7 +175,7 @@ function HomePage() {
         {/* Main hero content */}
         <div className="relative z-10 flex flex-1 max-w-7xl mx-auto w-full px-4 md:px-8">
           {/* Left content */}
-          <div className="flex-1 flex flex-col justify-center py-20 pr-0 lg:pr-16">
+          <div className="flex-1 flex flex-col justify-center py-20">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">The Industrial Universe</p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.9] mb-6">
               The Industrial<br />
@@ -197,38 +197,79 @@ function HomePage() {
             </div>
           </div>
 
-          {/* Right side: editorial image composition */}
-          <div className="hidden lg:flex flex-1 items-center justify-end py-16">
-            <div className="relative w-[460px] h-[520px] shrink-0">
-
-              {/* Decorative offset gold border frame */}
-              <div className="absolute top-8 right-0 w-[360px] h-[440px] rounded-3xl border border-gold/20 pointer-events-none" />
-
-              {/* Primary large image */}
-              <div className="absolute top-0 left-0 w-[360px] h-[420px] rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
-                <img
-                  src={railwayImg}
-                  alt="Railway infrastructure"
-                  className="w-full h-full object-cover scale-105"
+          {/* Right side: Exact Collage UI composition */}
+          <div className="hidden lg:flex flex-1 items-center justify-end py-16 pr-4">
+            <div className="relative w-[520px] h-[580px] shrink-0">
+              
+              {/* Left Image (Concave-Right Shape) */}
+              <div className="absolute left-0 top-[15%] w-[260px] h-[360px] z-10 shadow-2xl border-4 border-[oklch(0.1_0.05_250)]"
+                   style={{ borderRadius: "3rem 1.5rem 1.5rem 3rem" }}>
+                <img 
+                  src={careersImg} 
+                  className="w-full h-full object-cover grayscale brightness-90 contrast-110" 
+                  alt="Team collaboration" 
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-navy/5" />
               </div>
 
-              {/* Secondary image — bottom-right overlap */}
-              <div className="absolute bottom-0 right-0 w-[190px] h-[240px] rounded-2xl overflow-hidden shadow-[0_16px_40px_-8px_rgba(0,0,0,0.7)] border-4 border-[oklch(0.1_0.05_250)]">
-                <img
-                  src={greenImg}
-                  alt="Green energy"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
+              {/* Right Column (Convex-Left Layout) */}
+              <div className="flex flex-col gap-3 ml-auto w-[230px] h-full justify-center">
+                <div className="h-[170px] shadow-xl border-2 border-white/10 overflow-hidden"
+                     style={{ borderRadius: "1.5rem 6rem 1.5rem 1.5rem" }}>
+                  <img 
+                    src={railwayImg} 
+                    className="w-full h-full object-cover grayscale brightness-95" 
+                    alt="Industrial" 
+                  />
+                </div>
+                <div className="h-[190px] shadow-xl border-2 border-white/10 overflow-hidden"
+                     style={{ borderRadius: "1.5rem 1.5rem 1.5rem 1.5rem" }}>
+                  <img 
+                    src={metroImg} 
+                    className="w-full h-full object-cover grayscale brightness-95" 
+                    alt="Metro" 
+                  />
+                </div>
+                <div className="h-[160px] shadow-xl border-2 border-white/10 overflow-hidden"
+                     style={{ borderRadius: "1.5rem 1.5rem 6rem 1.5rem" }}>
+                  <img 
+                    src={defenceImg} 
+                    className="w-full h-full object-cover grayscale brightness-95" 
+                    alt="Technology" 
+                  />
+                </div>
               </div>
 
-              {/* Gold accent dot — top-left of primary */}
-              <div className="absolute top-5 left-5 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_12px_4px_oklch(0.75_0.18_85/0.5)]" />
+              {/* Scalloped Seal Badge */}
+              <div className="absolute bottom-[22%] left-[-45px] z-20">
+                <div className="relative w-32 h-32 flex items-center justify-center filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                  {/* Jagged Seal Background */}
+                  <div className="absolute inset-0 bg-[#1a2b2b]" 
+                       style={{ clipPath: "polygon(50% 0%, 58% 3%, 67% 1%, 74% 7%, 83% 7%, 88% 15%, 95% 21%, 95% 31%, 100% 40%, 97% 50%, 100% 60%, 95% 69%, 95% 79%, 88% 85%, 83% 93%, 74% 93%, 67% 99%, 58% 97%, 50% 100%, 42% 97%, 33% 99%, 26% 93%, 17% 93%, 12% 85%, 5% 79%, 5% 69%, 0% 60%, 3% 50%, 0% 40%, 5% 31%, 5% 21%, 12% 15%, 17% 7%, 26% 7%, 33% 1%, 42% 3%)" }}>
+                    {/* Curved Text */}
+                    <svg viewBox="0 0 100 100" className="w-full h-full fill-white/60 text-[7px] font-bold tracking-[0.25em]">
+                      <path id="photoSealPath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
+                      <text>
+                        <textPath xlinkHref="#photoSealPath">QUALITY • PRIDE • HONOUR • HONESTY •</textPath>
+                      </text>
+                    </svg>
+                  </div>
+                  {/* Neon Center */}
+                  <div className="w-14 h-14 rounded-full bg-[#c5ff00] flex items-center justify-center shadow-inner z-10 border-4 border-[#1a2b2b]">
+                    <Plus className="w-7 h-7 text-navy" />
+                  </div>
+                </div>
+              </div>
 
-              {/* Thin vertical gold line — left edge */}
-              <div className="absolute top-0 -left-5 w-px h-48 bg-linear-to-b from-gold/60 to-transparent" />
+              {/* Precise 4-pointed Stars (Sparkles) */}
+              <div className="absolute bottom-[8%] right-[-10px] z-20 flex flex-col items-end gap-2">
+                <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c5ff00] drop-shadow-[0_0_15px_rgba(197,255,0,0.8)] animate-pulse">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor" />
+                </svg>
+                <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#c5ff00] mr-8">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor" />
+                </svg>
+              </div>
 
             </div>
           </div>

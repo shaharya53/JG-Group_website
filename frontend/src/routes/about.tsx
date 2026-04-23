@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CountUp } from "../components/CountUp";
 import aboutImg from "../assets/about-office.jpg";
+import railwayImg from "../assets/railway-services.jpg";
+import greenImg from "../assets/green-energy.jpg";
 import { Target, Eye, Heart, Users, Award, Shield, Check, ArrowRight, Quote, Globe, Briefcase, MapPin, Phone, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -34,18 +36,57 @@ function AboutPage() {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-6">
-            <span className="w-8 h-px bg-gold/50" />
-            The Industrial Universe
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 flex flex-col lg:flex-row items-center w-full">
+          {/* Left content */}
+          <div className="flex-1 py-20">
+            <div className="flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-6">
+              <span className="w-8 h-px bg-gold/50" />
+              The Industrial Universe
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-none mb-8">
+              ABOUT <br />
+              <span className="text-gold">JIGISHA GROUP</span>
+            </h1>
+            <p className="text-white/60 text-lg max-w-2xl leading-relaxed">
+              Leading India's industrial transformation through precision manufacturing, global sourcing, and unyielding commitment to quality across 28+ domains.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-none mb-8">
-            ABOUT <br />
-            <span className="text-gold">JIGISHA GROUP</span>
-          </h1>
-          <p className="text-white/60 text-lg max-w-2xl leading-relaxed">
-            Leading India's industrial transformation through precision manufacturing, global sourcing, and unyielding commitment to quality across 28+ domains.
-          </p>
+
+          {/* Right side: editorial image composition */}
+          <div className="hidden lg:flex flex-1 items-center justify-end py-16">
+            <div className="relative w-[460px] h-[520px] shrink-0">
+
+              {/* Decorative offset gold border frame */}
+              <div className="absolute top-8 right-0 w-[360px] h-[440px] rounded-3xl border border-gold/20 pointer-events-none" />
+
+              {/* Primary large image */}
+              <div className="absolute top-0 left-0 w-[360px] h-[420px] rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
+                <img
+                  src={railwayImg}
+                  alt="Railway infrastructure"
+                  className="w-full h-full object-cover scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
+              </div>
+
+              {/* Secondary image — bottom-right overlap */}
+              <div className="absolute bottom-0 right-0 w-[190px] h-[240px] rounded-2xl overflow-hidden shadow-[0_16px_40px_-8px_rgba(0,0,0,0.7)] border-4 border-[oklch(0.12_0.04_255)]">
+                <img
+                  src={greenImg}
+                  alt="Green energy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
+              </div>
+
+              {/* Gold accent dot — top-left of primary */}
+              <div className="absolute top-5 left-5 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_12px_4px_oklch(0.75_0.18_85/0.5)]" />
+
+              {/* Thin vertical gold line — left edge */}
+              <div className="absolute top-0 -left-5 w-px h-48 bg-linear-to-b from-gold/60 to-transparent" />
+
+            </div>
+          </div>
         </div>
       </section>
 

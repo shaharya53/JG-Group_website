@@ -167,6 +167,20 @@ function HomePage() {
           <div className="absolute inset-0 bg-linear-to-r from-[oklch(0.1_0.05_250)] via-[oklch(0.12_0.05_250)/90] to-[oklch(0.15_0.05_250)/60]" />
         </div>
 
+        {/* Animated Scanning Line */}
+        <div className="absolute inset-0 pointer-events-none z-1 overflow-hidden">
+          <div className="absolute inset-x-0 h-24 bg-linear-to-b from-transparent via-gold/35 to-transparent blur-lg animate-[scan_15s_linear_infinite]" />
+        </div>
+
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes scan {
+            0% { top: -5%; opacity: 0; }
+            5% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { top: 105%; opacity: 0; }
+          }
+        `}} />
+
         {/* Top announcement bar */}
         <div className="relative z-10 bg-gold text-gold-foreground text-center text-xs font-semibold py-1.5 tracking-wide">
           India's Largest Industrial Supermarket — 3M+ Products · 7,500+ Vendors · 19 Group Companies &nbsp;|&nbsp; Serving Industries With Honesty, Pride &amp; Honour
@@ -202,39 +216,38 @@ function HomePage() {
             <div className="relative w-[520px] h-[580px] shrink-0">
               
               {/* Left Image (Concave-Right Shape) */}
-              <div className="absolute left-0 top-[15%] w-[260px] h-[360px] z-10 shadow-2xl border-4 border-[oklch(0.1_0.05_250)]"
+              <div className="absolute left-0 top-[15%] w-[260px] h-[360px] z-10 shadow-2xl overflow-hidden group cursor-pointer"
                    style={{ borderRadius: "3rem 1.5rem 1.5rem 3rem" }}>
                 <img 
                   src={careersImg} 
-                  className="w-full h-full object-cover grayscale brightness-90 contrast-110" 
+                  className="w-full h-full object-cover object-center grayscale brightness-90 contrast-110 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105" 
                   alt="Team collaboration" 
                 />
-                <div className="absolute inset-0 bg-navy/5" />
               </div>
 
               {/* Right Column (Convex-Left Layout) */}
               <div className="flex flex-col gap-3 ml-auto w-[230px] h-full justify-center">
-                <div className="h-[170px] shadow-xl border-2 border-white/10 overflow-hidden"
+                <div className="h-[170px] shadow-xl border-2 border-white/10 overflow-hidden group cursor-pointer"
                      style={{ borderRadius: "1.5rem 6rem 1.5rem 1.5rem" }}>
                   <img 
                     src={railwayImg} 
-                    className="w-full h-full object-cover grayscale brightness-95" 
+                    className="w-full h-full object-cover object-center grayscale brightness-95 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105" 
                     alt="Industrial" 
                   />
                 </div>
-                <div className="h-[190px] shadow-xl border-2 border-white/10 overflow-hidden"
+                <div className="h-[190px] shadow-xl border-2 border-white/10 overflow-hidden group cursor-pointer"
                      style={{ borderRadius: "1.5rem 1.5rem 1.5rem 1.5rem" }}>
                   <img 
                     src={metroImg} 
-                    className="w-full h-full object-cover grayscale brightness-95" 
+                    className="w-full h-full object-cover object-center grayscale brightness-95 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105" 
                     alt="Metro" 
                   />
                 </div>
-                <div className="h-[160px] shadow-xl border-2 border-white/10 overflow-hidden"
+                <div className="h-[160px] shadow-xl border-2 border-white/10 overflow-hidden group cursor-pointer"
                      style={{ borderRadius: "1.5rem 1.5rem 6rem 1.5rem" }}>
                   <img 
                     src={defenceImg} 
-                    className="w-full h-full object-cover grayscale brightness-95" 
+                    className="w-full h-full object-cover object-center grayscale brightness-95 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105" 
                     alt="Technology" 
                   />
                 </div>
@@ -242,20 +255,20 @@ function HomePage() {
 
               {/* Scalloped Seal Badge */}
               <div className="absolute bottom-[22%] left-[-45px] z-20">
-                <div className="relative w-32 h-32 flex items-center justify-center filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                <div className="relative w-32 h-32 flex items-center justify-center filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] animate-[spin_20s_linear_infinite]">
                   {/* Jagged Seal Background */}
                   <div className="absolute inset-0 bg-[#1a2b2b]" 
                        style={{ clipPath: "polygon(50% 0%, 58% 3%, 67% 1%, 74% 7%, 83% 7%, 88% 15%, 95% 21%, 95% 31%, 100% 40%, 97% 50%, 100% 60%, 95% 69%, 95% 79%, 88% 85%, 83% 93%, 74% 93%, 67% 99%, 58% 97%, 50% 100%, 42% 97%, 33% 99%, 26% 93%, 17% 93%, 12% 85%, 5% 79%, 5% 69%, 0% 60%, 3% 50%, 0% 40%, 5% 31%, 5% 21%, 12% 15%, 17% 7%, 26% 7%, 33% 1%, 42% 3%)" }}>
                     {/* Curved Text */}
-                    <svg viewBox="0 0 100 100" className="w-full h-full fill-white/60 text-[7px] font-bold tracking-[0.25em]">
+                    <svg viewBox="0 0 100 100" className="w-full h-full fill-white/80 text-[7px] font-bold tracking-[0.25em]">
                       <path id="photoSealPath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
                       <text>
                         <textPath xlinkHref="#photoSealPath">QUALITY • PRIDE • HONOUR • HONESTY •</textPath>
                       </text>
                     </svg>
                   </div>
-                  {/* Neon Center */}
-                  <div className="w-14 h-14 rounded-full bg-[#c5ff00] flex items-center justify-center shadow-inner z-10 border-4 border-[#1a2b2b]">
+                  {/* Gold Center (Static inside the rotation) */}
+                  <div className="w-14 h-14 rounded-full bg-gold flex items-center justify-center shadow-inner z-10 border-4 border-[#1a2b2b] animate-[spin_20s_linear_infinite_reverse]">
                     <Plus className="w-7 h-7 text-navy" />
                   </div>
                 </div>
@@ -263,10 +276,10 @@ function HomePage() {
 
               {/* Precise 4-pointed Stars (Sparkles) */}
               <div className="absolute bottom-[8%] right-[-10px] z-20 flex flex-col items-end gap-2">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c5ff00] drop-shadow-[0_0_15px_rgba(197,255,0,0.8)] animate-pulse">
+                <svg viewBox="0 0 24 24" className="w-12 h-12 text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.8)] animate-pulse">
                   <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor" />
                 </svg>
-                <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#c5ff00] mr-8">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 text-gold mr-8">
                   <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor" />
                 </svg>
               </div>
@@ -275,10 +288,6 @@ function HomePage() {
           </div>
         </div>
 
-        {/* Bottom scroll indicator */}
-        <div className="relative z-10 flex justify-center pb-6">
-          <div className="w-px h-12 bg-linear-to-b from-gold/60 to-transparent" />
-        </div>
       </section>
 
       <MarqueeTicker />

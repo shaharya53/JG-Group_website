@@ -3,6 +3,7 @@ import { CountUp } from "../components/CountUp";
 import aboutImg from "../assets/about-office.jpg";
 import railwayImg from "../assets/railway-services.jpg";
 import greenImg from "../assets/green-energy.jpg";
+import heroImg from "../assets/hero-industrial.jpg";
 import { Target, Eye, Heart, Users, Award, Shield, Check, ArrowRight, Quote, Globe, Briefcase, MapPin, Phone, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -26,38 +27,94 @@ function AboutPage() {
       </div>
 
       {/* ── HERO SECTION ─────────────────────────────────────────── */}
-      <section className="relative bg-[oklch(0.12_0.04_255)] min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-gold)_0%,_transparent_70%)] opacity-20" />
-          <div className="grid grid-cols-12 h-full w-full">
-             {Array.from({length: 12}).map((_, i) => (
-               <div key={i} className="border-r border-white/5 h-full" />
-             ))}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0b1220]">
+        {/* Editorial Image Background System */}
+        <div className="absolute inset-0 z-0">
+          {/* Base Image Layer */}
+          <img 
+            src={heroImg} 
+            alt="Background" 
+            className="w-full h-full object-cover opacity-30 grayscale contrast-125 scale-105"
+          />
+
+          {/* Layer 1: The 'Blue Wash' Overlay */}
+          <div className="absolute inset-0 bg-linear-to-br from-[oklch(0.12_0.04_255)] via-[oklch(0.12_0.04_255)/90] to-transparent mix-blend-multiply" />
+          
+          {/* Layer 2: Technical Blueprint Grid */}
+          <div className="absolute inset-0 opacity-[0.07]" 
+               style={{ 
+                 backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                 backgroundSize: '80px 80px' 
+               }} 
+          />
+
+          {/* Layer 3: Vertical 'Industrial Beam' Accent */}
+          <div className="absolute top-0 right-[25%] w-[30%] h-full bg-linear-to-b from-gold/10 via-gold/[0.02] to-transparent skew-x-[-15deg] blur-3xl pointer-events-none" />
+
+          {/* Layer 4: Geometric 'Corner Frames' */}
+          <div className="absolute top-20 left-20 w-32 h-32 border-t-2 border-l-2 border-gold/20 pointer-events-none" />
+          <div className="absolute bottom-20 right-20 w-32 h-32 border-b-2 border-r-2 border-white/10 pointer-events-none" />
+
+          {/* Layer 5: Technical Watermark */}
+          <div className="absolute bottom-10 left-10 text-[oklch(0.8_0.1_80)]/5 font-black text-9xl tracking-tighter uppercase select-none pointer-events-none">
+            JIGISHA
           </div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 flex flex-col lg:flex-row items-center w-full">
           {/* Left content */}
-          <div className="flex-1 py-20">
-            <div className="flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase mb-6">
-              <span className="w-8 h-px bg-gold/50" />
-              The Industrial Universe
+          <div className="flex-1 py-20 pr-0 lg:pr-12">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/25 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+              <span className="text-gold text-[11px] font-bold tracking-[0.25em] uppercase">The Industrial Universe</span>
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-none mb-8">
-              ABOUT <br />
-              <span className="text-gold">JIGISHA GROUP</span>
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.92] mb-6 tracking-tight">
+              ABOUT<br />
+              <span className="text-gold">JIGISHA</span><br />
+              <span className="text-white/30 text-4xl md:text-5xl lg:text-6xl font-extrabold">GROUP</span>
             </h1>
-            <p className="text-white/60 text-lg max-w-2xl leading-relaxed">
-              Leading India's industrial transformation through precision manufacturing, global sourcing, and unyielding commitment to quality across 28+ domains.
+
+            {/* Divider */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-gold/60" />
+              <div className="h-px flex-1 bg-white/10" />
+            </div>
+
+            {/* Description */}
+            <p className="text-white/55 text-base leading-relaxed max-w-md mb-10">
+              Leading India's industrial transformation through precision manufacturing, global sourcing, and unyielding commitment to quality across <span className="text-white/80 font-semibold">28+ domains</span>.
             </p>
+
+            {/* Stat pills */}
+            <div className="flex flex-wrap gap-3 mb-10">
+              {[
+                { value: "19+", label: "Group Companies" },
+                { value: "3M+", label: "Products" },
+                { value: "7,500+", label: "Vendors" },
+                { value: "28+", label: "Domains" },
+              ].map(s => (
+                <div key={s.label} className="flex flex-col items-center bg-white/5 border border-white/10 rounded-2xl px-5 py-3 backdrop-blur-sm hover:border-gold/40 transition-colors">
+                  <span className="text-gold font-black text-xl leading-none">{s.value}</span>
+                  <span className="text-white/40 text-[10px] font-semibold uppercase tracking-wider mt-1">{s.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-3">
+              <a href="#who-we-are" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-gold-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-sm">
+                Our Story <ArrowRight className="w-4 h-4" />
+              </a>
+              
+            </div>
           </div>
 
           {/* Right side: editorial image composition */}
           <div className="hidden lg:flex flex-1 items-center justify-end py-16">
             <div className="relative w-[460px] h-[520px] shrink-0">
-
-              {/* Decorative offset gold border frame */}
-              <div className="absolute top-8 right-0 w-[360px] h-[440px] rounded-3xl border border-gold/20 pointer-events-none" />
 
               {/* Primary large image */}
               <div className="absolute top-0 left-0 w-[360px] h-[420px] rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
@@ -81,9 +138,6 @@ function AboutPage() {
 
               {/* Gold accent dot — top-left of primary */}
               <div className="absolute top-5 left-5 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_12px_4px_oklch(0.75_0.18_85/0.5)]" />
-
-              {/* Thin vertical gold line — left edge */}
-              <div className="absolute top-0 -left-5 w-px h-48 bg-linear-to-b from-gold/60 to-transparent" />
 
             </div>
           </div>
@@ -111,14 +165,14 @@ function AboutPage() {
               </p>
             </div>
             <div className="mt-10 flex flex-wrap gap-4">
-               <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-                  <CountUp value="19" className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-gold font-bold" />
-                  <span className="text-xs font-bold text-navy uppercase tracking-wider">Group<br/>Companies</span>
-               </div>
-               <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-                  <CountUp value="3M" className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-gold font-bold" />
-                  <span className="text-xs font-bold text-navy uppercase tracking-wider">Industrial<br/>Products</span>
-               </div>
+              <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
+                <CountUp value="19" className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-gold font-bold" />
+                <span className="text-xs font-bold text-navy uppercase tracking-wider">Group<br />Companies</span>
+              </div>
+              <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
+                <CountUp value="3M" className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-gold font-bold" />
+                <span className="text-xs font-bold text-navy uppercase tracking-wider">Industrial<br />Products</span>
+              </div>
             </div>
           </div>
           <div className="relative">
@@ -142,7 +196,7 @@ function AboutPage() {
             <h2 className="text-3xl font-extrabold text-navy">Group Identity At A Glance</h2>
             <div className="w-20 h-1 bg-gold mx-auto mt-4" />
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { label: "Group Name", value: "JIGISHA GROUP OF COMPANIES", icon: Globe },
@@ -173,23 +227,23 @@ function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-1">
               <p className="text-gold text-xs font-bold tracking-widest uppercase mb-4">Our Purpose</p>
-              <h2 className="text-4xl font-extrabold text-navy leading-tight">Driven By Future,<br/>Anchored By Values.</h2>
+              <h2 className="text-4xl font-extrabold text-navy leading-tight">Driven By Future,<br />Anchored By Values.</h2>
               <p className="mt-6 text-gray-500 leading-relaxed">
                 Our vision and mission aren't just words on a wall; they are the operational pulse of our 19 enterprises.
               </p>
             </div>
-            
+
             <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                { 
-                  icon: Eye, 
-                  title: "Our Vision", 
+                {
+                  icon: Eye,
+                  title: "Our Vision",
                   text: "To join our journey to make global markets reachable to everyone, and industrial operations more convenient and profitable for every stakeholder — big or small — across India and the world.",
                   color: "bg-navy"
                 },
-                { 
-                  icon: Target, 
-                  title: "Our Mission", 
+                {
+                  icon: Target,
+                  title: "Our Mission",
                   text: "To be a leading industrial supplier, manufacturer, and service provider for Indian Railways, Metro Rail, and various industries — making Jigisha a unique and renowned name for quality services.",
                   color: "bg-gold"
                 },
@@ -208,13 +262,13 @@ function AboutPage() {
       {/* ── CORE VALUES (CIRCLES) ────────────────────────────────── */}
       <section className="py-24 bg-navy text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 translate-x-1/2" />
-        
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-4xl font-black mb-4">Our Core Values</h2>
             <p className="text-gold font-bold tracking-widest uppercase text-xs">The Pillars of Jigisha</p>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-10 md:gap-20">
             {[
               { icon: Heart, label: "HONESTY", desc: "Integrity in every transaction" },
@@ -246,7 +300,7 @@ function AboutPage() {
               <div className="text-5xl font-black text-gray-100 uppercase tracking-tighter -mb-4">Clients</div>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               "Indian Railways & Metro Rail",
@@ -273,31 +327,31 @@ function AboutPage() {
       <section className="py-24 bg-[oklch(0.1_0.03_255)] text-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-3">
-             <Quote className="w-16 h-16 text-gold mb-8 opacity-40" />
-             <h2 className="text-3xl md:text-4xl font-extrabold mb-8 italic">"Building the foundation of modern India through industrial excellence."</h2>
-             <div className="space-y-6 text-white/70 leading-relaxed text-sm lg:text-base">
-                <p>
-                  At Jigisha Group, we don't view ourselves merely as suppliers. We are partners in India's rapid industrialization. Whether it is a safety-critical component for the Indian Railways or a strategic asset for Defence, our approach remains the same: accuracy, quality, and commitment.
-                </p>
-                <p>
-                  Our expansion into 19 subsidiaries reflects our ambition to cover every conceivable industrial vertical, ensuring that our clients have one trusted name to rely on, 24 hours a day, 7 days a week.
-                </p>
-             </div>
-             <div className="mt-10">
-                <div className="text-gold font-black text-xl lg:text-2xl tracking-tight">Thakur Umesh Singh</div>
-                <div className="text-white/40 text-xs font-bold uppercase tracking-[0.2em] mt-1">Founder Chairman, Jigisha Group</div>
-             </div>
+            <Quote className="w-16 h-16 text-gold mb-8 opacity-40" />
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 italic">"Building the foundation of modern India through industrial excellence."</h2>
+            <div className="space-y-6 text-white/70 leading-relaxed text-sm lg:text-base">
+              <p>
+                At Jigisha Group, we don't view ourselves merely as suppliers. We are partners in India's rapid industrialization. Whether it is a safety-critical component for the Indian Railways or a strategic asset for Defence, our approach remains the same: accuracy, quality, and commitment.
+              </p>
+              <p>
+                Our expansion into 19 subsidiaries reflects our ambition to cover every conceivable industrial vertical, ensuring that our clients have one trusted name to rely on, 24 hours a day, 7 days a week.
+              </p>
+            </div>
+            <div className="mt-10">
+              <div className="text-gold font-black text-xl lg:text-2xl tracking-tight">Thakur Umesh Singh</div>
+              <div className="text-white/40 text-xs font-bold uppercase tracking-[0.2em] mt-1">Founder Chairman, Jigisha Group</div>
+            </div>
           </div>
           <div className="lg:col-span-2 flex justify-center">
-             <div className="relative w-full max-w-sm">
-                <div className="absolute -inset-4 border-2 border-gold/30 rounded-3xl" />
-                <div className="relative aspect-[4/5] bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                   {/* Placeholder for Chairman image */}
-                   <div className="absolute inset-0 flex items-center justify-center text-white/20 text-xs font-bold text-center p-10">
-                      [Chairman Image]
-                   </div>
+            <div className="relative w-full max-w-sm">
+              <div className="absolute -inset-4 border-2 border-gold/30 rounded-3xl" />
+              <div className="relative aspect-[4/5] bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                {/* Placeholder for Chairman image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white/20 text-xs font-bold text-center p-10">
+                  [Chairman Image]
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -309,7 +363,7 @@ function AboutPage() {
         <div className="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
           <p className="text-navy/60 text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Join The Universe</p>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy leading-tight mb-5">
-            Scale Your Industrial<br/>Horizon With Us.
+            Scale Your Industrial<br />Horizon With Us.
           </h2>
           <p className="text-navy/65 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
             Join 7,500+ vendors and thousands of industrial partners powering India's growth.

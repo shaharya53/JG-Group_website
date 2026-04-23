@@ -38,15 +38,20 @@ export function Footer() {
           {/* Services */}
           <div>
             <h4 className="font-semibold text-sm mb-4 text-gold">Key Services</h4>
-            <ul className="space-y-2 text-sm opacity-70">
-              <li>Railway Solutions</li>
-              <li>Metro Rail Projects</li>
-              <li>ICBMRO & BMRO</li>
-              <li>Defence Supply</li>
-              <li>Industrial Manufacturing</li>
-              <li>Green Energy</li>
-              <li>IT & Digital Solutions</li>
-            </ul>
+            <nav className="flex flex-col gap-2">
+              {[
+                { label: "Railway Services",    to: "/services/railway" },
+                { label: "Metro Rail Services", to: "/services/metro-rail" },
+                { label: "Defence Supply",      to: "/services/defence" },
+                { label: "Industrial Services", to: "/services/industrial" },
+                { label: "Commercial Services", to: "/services/commercial" },
+                { label: "ICBMRO & BMRO",       to: "/services/icbmro" },
+              ].map(s => (
+                <Link key={s.to} to={s.to as any} className="text-sm opacity-70 hover:opacity-100 transition-opacity">
+                  {s.label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
           {/* Contact */}

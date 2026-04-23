@@ -48,36 +48,82 @@ function GroupPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative bg-[oklch(0.08_0.04_250)] min-h-screen flex items-end pb-20 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "repeating-linear-gradient(90deg, white 0, white 1px, transparent 0, transparent 12.5%)" }} />
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "repeating-linear-gradient(0deg, white 0, white 1px, transparent 0, transparent 8%)" }} />
-          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gold/5 blur-[120px]" />
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0b1220]">
+        {/* Background Layers */}
+        <div className="absolute inset-0 z-0 opacity-20 grayscale brightness-75">
+          <img src={warehouseImg} alt="Warehouse background" className="w-full h-full object-cover" />
         </div>
+        
+        {/* Technical Blueprint Grid (Neutral) */}
+        <div className="absolute inset-0 opacity-[0.05]" 
+             style={{ 
+               backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+               backgroundSize: '100px 100px' 
+             }} 
+        />
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 text-gold rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase mb-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full flex flex-col lg:flex-row items-center gap-12 py-20 lg:py-32">
+          
+          {/* LEFT SIDE: Content */}
+          <div className="flex-1 text-left w-full">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-3 bg-gold/10 border border-gold/25 rounded-full px-4 py-2 mb-6 lg:mb-10">
               <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-              The Industrial Universe
+              <span className="text-gold text-[10px] lg:text-[11px] font-black tracking-[0.3em] uppercase">Group Identity Portfolio</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tight mb-6">
-              19 GROUP<br />
-              <span className="text-gold">COMPANIES</span>
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-8xl lg:text-[7.5rem] font-black text-white leading-[0.9] lg:leading-[0.85] tracking-tighter mb-8">
+              19<br />
+              <span className="text-gold">GROUP</span><br />
+              <span className="text-white/30 text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase">Subsidiaries</span>
             </h1>
-            <p className="text-white/50 text-lg max-w-xl leading-relaxed">
-              One conglomerate. Nineteen specialized subsidiaries. Serving India's most critical sectors with precision, scale, and purpose.
+
+            {/* Divider */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px w-12 lg:w-20 bg-gold/70" />
+              <div className="h-px flex-1 max-w-[150px] lg:max-w-sm bg-white/10" />
+            </div>
+
+            {/* Description */}
+            <p className="text-white/50 text-base lg:text-xl max-w-xl leading-relaxed mb-10 lg:mb-12 font-medium">
+              A unified conglomerate of nineteen specialized entities serving India's most critical sectors with <span className="text-white/80">unmatched precision and scale</span>.
             </p>
+
+            {/* Stats row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 w-full md:w-fit">
+              {heroStats.map((s, i) => (
+                <div
+                  key={s.label}
+                  className="flex flex-col p-4 lg:p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md hover:border-gold/40 hover:bg-white/10 transition-all duration-500"
+                >
+                  <CountUp value={s.value} className="text-2xl lg:text-3xl font-black text-gold leading-none" />
+                  <span className="text-white/30 text-[8px] lg:text-[9px] font-bold uppercase tracking-[0.2em] mt-2 lg:mt-3">{s.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-white/8">
-            {heroStats.map((s) => (
-              <div key={s.label}>
-                <CountUp value={s.value} className="text-3xl md:text-4xl font-extrabold text-gold leading-none" />
-                <div className="text-white/40 text-xs font-semibold tracking-widest uppercase mt-1">{s.label}</div>
-              </div>
-            ))}
+          {/* RIGHT SIDE: Editorial Visual */}
+          <div className="flex-1 flex justify-center lg:justify-end relative w-full mt-12 lg:mt-0">
+            <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-[4/5] lg:h-[520px] shrink-0">
+               {/* Main image card */}
+               <div className="absolute top-0 right-0 w-[90%] h-[90%] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl border-2 border-white/5 group">
+                 <img src={warehouseImg} className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 transition-all duration-700" alt="Industrial Hub" />
+                 <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+               </div>
+               
+               {/* Floating accent badge */}
+               <div className="absolute -bottom-6 -left-6 lg:-bottom-10 lg:-left-10 w-32 h-32 lg:w-48 lg:h-48 bg-gold rounded-[1.5rem] lg:rounded-[2.5rem] p-4 lg:p-8 flex flex-col justify-end shadow-2xl border-4 border-[#0b1220]">
+                  <div className="text-navy font-black text-2xl lg:text-4xl mb-1">19</div>
+                  <div className="text-navy/70 text-[8px] lg:text-[9px] font-bold uppercase tracking-widest leading-tight">Business<br/>Verticals</div>
+               </div>
+
+               {/* Decorative frame */}
+               <div className="absolute -top-4 -left-4 lg:-top-6 -left-6 w-20 h-20 lg:w-32 lg:h-32 border-t-4 border-l-4 border-gold/40 rounded-tl-[2rem] lg:rounded-tl-[3rem]" />
+            </div>
           </div>
+
         </div>
       </section>
 

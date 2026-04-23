@@ -560,37 +560,70 @@ function DomainsPage() {
   const [activeId, setActiveId] = useState(0);
   const active = companies[activeId];
 
+  const handleTabClick = (id: number) => {
+    setActiveId(id);
+    // Smooth scroll to the company details section
+    const detailsSection = document.getElementById("active-company-details");
+    if (detailsSection) {
+      const offset = 100; // Account for sticky headers if any
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = detailsSection.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative text-white text-center overflow-hidden py-20">
-        <img src={warehouseImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(0,51,102,0.88) 0%, rgba(0,102,204,0.82) 100%)" }}
-        />
-        <div className="relative max-w-5xl mx-auto px-4 md:px-8">
-          <span className="inline-block bg-white/15 px-5 py-2 rounded-full text-sm font-semibold tracking-wide mb-5">
-            Jigisha Group Portfolio
-          </span>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-5">
-            21 Specialized Companies.<br />Unified Excellence.
+      <section className="relative min-h-screen flex items-center justify-center text-white text-center overflow-hidden">
+        {/* Background Layer */}
+        <div className="absolute inset-0 z-0">
+          <img src={warehouseImg} alt="Warehouse background" className="w-full h-full object-cover" />
+          {/* Neutral Dark Overlay (Removing the heavy blue) */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/40 to-black/80" />
+          
+          {/* Subtle Industrial Grid */}
+          <div className="absolute inset-0 opacity-[0.05]" 
+               style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} 
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8 py-20 flex flex-col items-center">
+          {/* Glassmorphism Badge */}
+          <div className="inline-flex items-center px-6 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+            <span className="text-[10px] lg:text-[11px] font-bold tracking-[0.25em] uppercase text-white/90 text-center">
+              Jigisha Group Portfolio
+            </span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] lg:leading-[1.05] mb-6 tracking-tight text-center">
+            21 Specialized Companies.<br />
+            <span className="text-gold">Unified Excellence.</span>
           </h1>
-          <p className="text-white/90 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-10">
+
+          <p className="text-white/70 text-sm md:text-xl max-w-3xl mx-auto leading-relaxed mb-12 lg:mb-16 font-medium text-center">
             Explore the complete ecosystem of Jigisha Group's diversified business verticals.
             Click on any company to discover its specialized services and capabilities.
           </p>
-          <div className="flex flex-wrap justify-center gap-10 mt-2">
+
+          {/* High-Impact Stats Row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-16 w-full max-w-4xl border-t border-white/10 pt-10 lg:pt-12">
             {[
               { value: "21",      label: "Companies" },
               { value: "15,000+", label: "Professionals" },
               { value: "2,000+",  label: "Locations" },
               { value: "30+",     label: "Countries" },
             ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-3xl font-bold">{s.value}</div>
-                <div className="text-white/80 text-sm mt-1">{s.label}</div>
+              <div key={s.label} className="text-center group">
+                <div className="text-2xl md:text-5xl font-black text-white group-hover:text-gold transition-colors duration-500">{s.value}</div>
+                <div className="text-white/40 text-[8px] md:text-xs font-bold uppercase tracking-[0.2em] mt-2 lg:mt-3">{s.label}</div>
               </div>
             ))}
           </div>
@@ -635,14 +668,14 @@ function DomainsPage() {
             </div>
 
             {/* Pill tabs */}
-            <div className="flex flex-wrap gap-2 p-4 border-b justify-center" style={{ borderColor: "#e2e8f0" }}>
+            <div className="flex flex-wrap gap-2 p-4 border-b justify-center overflow-x-auto" style={{ borderColor: "#e2e8f0" }}>
               {companies.map((c) => {
                 const isActive = c.id === activeId;
                 return (
                   <button
                     key={c.id}
-                    onClick={() => setActiveId(c.id)}
-                    className="px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 hover:-translate-y-0.5"
+                    onClick={() => handleTabClick(c.id)}
+                    className="px-3 lg:px-4 py-2 rounded-full text-[11px] lg:text-sm font-semibold whitespace-nowrap transition-all duration-300 hover:-translate-y-0.5"
                     style={{
                       border: `2px solid ${isActive ? c.color : "#e2e8f0"}`,
                       backgroundColor: isActive ? c.color : "transparent",
@@ -657,7 +690,7 @@ function DomainsPage() {
             </div>
 
             {/* Active company content */}
-            <div className="p-6 md:p-8">
+            <div id="active-company-details" className="p-4 md:p-8">
 
               {/* Company header */}
               <div className="flex flex-col md:flex-row items-start gap-5 mb-6">
